@@ -12,6 +12,6 @@
   <context-param>
   	<description>File Upload Location.</description>
   	<param-name>file_upload</param-name>
-  	<param-value>/home/nadeera/eclipse-workspace/CCC/WebContent/uploads</param-value>
+  	<param-value>git/CodeComplexityCalculator/CCC/WebContent/uploads/</param-value>
   </context-param>
 </web-app>

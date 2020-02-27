@@ -12,8 +12,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="/home/nadeera/eclipse-workspace/CCC/WebContent/WEB-INF/lib/apache-commons.jar"/>
-	<classpathentry kind="lib" path="/home/nadeera/eclipse-workspace/CCC/WebContent/WEB-INF/lib/commons-io-1.3.2.jar"/>
-	<classpathentry kind="lib" path="/home/nadeera/eclipse-workspace/CCC/WebContent/WEB-INF/lib/org.apache.commons.fileupload.jar"/>
+	<classpathentry kind="lib" path="/home/nadeera/git/CodeComplexityCalculator/CCC/WebContent/WEB-INF/lib/apache-commons.jar"/>
+	<classpathentry kind="lib" path="/home/nadeera/git/CodeComplexityCalculator/CCC/WebContent/WEB-INF/lib/commons-io-1.3.2.jar"/>
+	<classpathentry kind="lib" path="/home/nadeera/git/CodeComplexityCalculator/CCC/WebContent/WEB-INF/lib/org.apache.commons.fileupload.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

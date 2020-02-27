@@ -1,5 +1,8 @@
 package com.ccc.servlet;
 
+import com.ccc.*;
+import com.ccc.services.Main;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +23,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  */
 @WebServlet("/UploadServlet")
 public class UploadServlet extends HttpServlet {
-	private final String UPLOAD_DIRECTORY = "eclipse-workspace/CCC/WebContent/uploads/";
+	private final String UPLOAD_DIRECTORY = Main.WEBCONTENTDIR + "uploads/";
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -36,6 +39,7 @@ public class UploadServlet extends HttpServlet {
 					{
 						String name = new File(item.getName()).getName();
 						item.write(new File(UPLOAD_DIRECTORY + name));
+						Main.run(name);
 					}
 				}
 				request.setAttribute("message", "File uploaded successfully.");
