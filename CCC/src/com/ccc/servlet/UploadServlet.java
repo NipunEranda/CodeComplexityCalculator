@@ -1,6 +1,7 @@
 package com.ccc.servlet;
 
 import com.ccc.*;
+import com.ccc.model.CustomFile;
 import com.ccc.services.Main;
 
 import java.io.File;
@@ -34,7 +35,8 @@ public class UploadServlet extends HttpServlet {
 			{
 				List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 				for(FileItem item : multiparts)
-				{
+				{			
+					Main main = new Main();
 					if(!item.isFormField())
 					{
 						String name = new File(item.getName()).getName();
@@ -42,12 +44,11 @@ public class UploadServlet extends HttpServlet {
 							System.out.println("Upload UnSuccessful. Wrong File Format");
 						}else {
 							item.write(new File(UPLOAD_DIRECTORY + name));
-							Main.run(name);
-							//request.setAttribute("message", "File uploaded successfully.");
-							//System.out.println("Upload Successful");
+							CustomFile file = new CustomFile(name);
+							main.getFileList().add(file);
 						}
-						
 					}
+					main.run();
 				}
 			}
 			catch(Exception ex)

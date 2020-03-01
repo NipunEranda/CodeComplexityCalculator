@@ -21,15 +21,19 @@ public class Maths2{
 			return getCube(num2-1) + 3 * (getSqr(num2)) - 3 * num2 + 1;
 	}
 	
+	//regular method calling another regular method
+	public double getCube (double num3){
+		return getSqr(double num1);
+	}
+	
 	public void answer(){
 		Maths2 m1 = new Maths();
 		
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter a number : ");
-		num = input.nextInt()'
-	}
+		num = input.nextInt();
 	
-	double n2 = n1.getSqr(num);
+	double n2 = m1.getSqr(num);
 	
 	System.out.println("Squared value of " + num + "is " + n2);
 	System.out.println("Cube value of " + num + "is " + m1.getCube(num)); 

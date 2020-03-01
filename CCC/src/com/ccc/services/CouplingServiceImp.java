@@ -1,8 +1,10 @@
 package com.ccc.services;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.ccc.model.Coupling;
+import com.ccc.model.CustomFile;
 import com.ccc.model.FileRead;
 import com.ccc.model.Line;
 import com.ccc.util.LineArrayListToArray;
@@ -28,135 +30,127 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
-	public ArrayList<String> getMethodSet() {
+	public void getMethodSet(CustomFile file) {
 
-		ArrayList<String> methodList = new ArrayList<>();
+		ArrayList<Line> methodSet = new ArrayList<Line>();
 
-		int count = 1;
+		for (Line line : file.getLineSet()) {
+			if (line.getLineContent().contains("main") || line.getLineContent().contains("class")
+					|| line.getLineContent().contains("if") || line.getLineContent().contains("switch")
+					|| line.getLineContent().contains("catch") || line.getLineContent().contains("return")
+					|| line.getLineContent().contains(";")) {
 
-		for (String line : Main.programLineList) {
-
-			if (line.contains("main") || line.contains("class") || line.contains("if") || line.contains("switch")
-					|| line.contains("catch") || line.contains("return") || line.contains(";")) {
-
-			} else if (line.contains("public")) {
-				String[] sub = line.split("\\(");
+			} else if (line.getLineContent().contains("public")) {
+				String[] sub = line.getLineContent().split("\\(");
 				String x = sub[0].replace("public", "").replace("private", "").replace("protected", "")
 						.replace("static", "").replace("final", "").trim();
 				if (x.split(" ").length > 1) {
-					System.out.println(x.split(" ")[1]);
-					Main.functionList.add(new Line(count, line));
-					methodList.add(x.split(" ")[1]);
+					methodSet.add(new Line(line.getLineNumber(), x.split(" ")[1]));
+
 				} else {
-					System.out.println(x);
-					Main.functionList.add(new Line(count, line));
-					methodList.add(x);
+					methodSet.add(new Line(line.getLineNumber(), x));
 				}
 			}
-			count++;
 		}
-		return methodList;
+		file.setMethodList(methodSet);
 	}
 
 	@Override
-	public ArrayList<String> getCalledMethodSet() {
+	public void getCalledMethodSet(CustomFile file) {
 
-		ArrayList<String> calledMethodList = new ArrayList<>();
-		int count = 1;
-		for (String line : Main.programLineList) {
+		for (Line line : file.getLineSet()) {
 
-			for (String method : Main.methodList) {
-				if (line.contains("." + method)) {
+			for (Line method : file.getMethodList()) {
+				if (line.getLineContent().contains("." + method)) {
 					System.out.println("Called Method List -> " + method);
-					calledMethodList.add(method);
-					Main.methodCallList.add(new Line(count, line));
+					file.getCalledMethodList().add(method);
+					file.getCalledMethodList().add(new Line(line.getLineNumber(), line.getLineContent()));
 				}
 			}
-			count++;
 		}
-		return calledMethodList;
-	}
 
-	
-	@Override
-	public void getRegularMethods() {
-		
-		for(Line alLine : Main.functionList) {
-			
-			for(Line recLine : Main.recursiveMethodList) {
-				if(alLine.getLineNumber() != recLine.getLineNumber()) {
-					Main.regularMethodList.add(alLine);
-				}
-			}
-		}
-		
 	}
 
 	// Senario 1
 	@Override
-	public void getRecursiveMethods() {
+	public void getRecursiveMethods(CustomFile file) {
 
-		Line[] lineList = LineArrayListToArray.convert(Main.functionList);
+		for (int i = 0; i < file.getMethodList().size(); i++) {
 
-		for (int i = 0; i <= lineList.length - 1; i++) {
-			if (i == lineList.length-1) {
-				for (int j = lineList[i].getLineNumber()+1; j <= Main.lastLineNumber; ++j) {
-					
-					if(Main.programLineList.get(j-1).contains(getMethodName(lineList[i].getLineContent()))) {
-						Main.recursiveMethodList.add(lineList[i]);
-						System.out.println("Recursive Method" + lineList[i].getLineNumber());
+			if (i == file.getMethodList().size() - 1) {
+				for (int j = file.getMethodList().get(i).getLineNumber() + 1; j < file.getLastIndex(); j++) {
+
+					if (file.getLineSet().get(j).getLineContent()
+							.contains(file.getMethodList().get(i).getLineContent())) {
+						System.out.println(file.getMethodList().get(i).getLineNumber());
 					}
-					
+
 				}
 			} else {
-				for (int j = lineList[i].getLineNumber()+1; j < lineList[i + 1].getLineNumber(); ++j) {
-					
-					if(Main.programLineList.get(j).contains(getMethodName(lineList[i].getLineContent()))) {
-						Main.recursiveMethodList.add(lineList[i]);
-						System.out.println("Recursive Method" + lineList[i].getLineNumber());
+
+				for (int j = file.getMethodList().get(i).getLineNumber() + 1; j < file.getMethodList().get(i + 1)
+						.getLineNumber() - 1; j++) {
+
+					if (file.getLineSet().get(j).getLineContent()
+							.contains(file.getMethodList().get(i).getLineContent())) {
+						System.out.println(file.getMethodList().get(i).getLineNumber());
 					}
-					
+
 				}
+
 			}
-			
+
 		}
 
 	}
-	
-	
 
-	//Senario 2
 	@Override
-	public void getRegToReg() {
-		
-		Line[] lineList = LineArrayListToArray.convert(Main.regularMethodList);
-		
-		for (int i = 0; i <= lineList.length - 1; i++) {
-			if (i == lineList.length-1) {
-				for (int j = lineList[i].getLineNumber()+1; j <= Main.lastLineNumber; ++j) {
-					
-					if(Main.programLineList.get(j-1).contains(getMethodName(lineList[i].getLineContent()))) {
-						Main.regToReg.add(lineList[i]);
-						System.out.println("Recursive Method" + lineList[i].getLineNumber());
-					}
-					
-				}
-			} else {
-				for (int j = lineList[i].getLineNumber()+1; j < lineList[i + 1].getLineNumber(); ++j) {
-					
-					if(Main.programLineList.get(j).contains(getMethodName(lineList[i].getLineContent()))) {
-						Main.regToReg.add(lineList[i]);
-						System.out.println("Recursive Method" + lineList[i].getLineNumber());
-					}
-					
+	public ArrayList<List> getRegularMethods(CustomFile file) {
+
+		for (Line alLine : file.getMethodList()) {
+
+			for (Line recLine : file.getRecursiveMethods()) {
+				if (alLine.getLineNumber() != recLine.getLineNumber()) {
+					file.getRegularMethods().add(alLine);
 				}
 			}
-			
 		}
-		
+		return null;
+
 	}
 
-	
+	// Senario 2
+	@Override
+	public ArrayList<List> getRegToReg(CustomFile file) {
 
+		Line[] lineList = LineArrayListToArray.convert(file.getRegularMethods());
+
+		for (int i = 0; i <= lineList.length - 1; i++) {
+			if (i == lineList.length - 1) {
+				for (int j = lineList[i].getLineNumber() + 1; j <= file.getLastIndex(); ++j) {
+
+					if (file.getLineSet().get(j - 1).getLineContent()
+							.contains(getMethodName(lineList[i].getLineContent()))) {
+						file.getRegularToRegularMethods().add(lineList[i]);
+						System.out.println("Recursive Method" + lineList[i].getLineNumber());
+					}
+
+				}
+			} else {
+				for (int j = lineList[i].getLineNumber() + 1; j < lineList[i + 1].getLineNumber(); ++j) {
+
+					if (file.getLineSet().get(j - 1).getLineContent()
+							.contains(getMethodName(lineList[i].getLineContent()))) {
+						file.getRegularToRegularMethods().add(lineList[i]);
+						System.out.println("Recursive Method" + lineList[i].getLineNumber());
+					}
+
+				}
+			}
+
+		}
+		return null;
+
+	}
 
 }

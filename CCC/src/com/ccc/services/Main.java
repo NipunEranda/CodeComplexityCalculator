@@ -2,60 +2,81 @@ package com.ccc.services;
 
 import java.util.ArrayList;
 
+import org.apache.commons.fileupload.FileItem;
+
+import com.ccc.model.CustomFile;
 import com.ccc.model.FileRead;
 import com.ccc.model.Line;
 
 public class Main {
+
+	private ArrayList<CustomFile> fileList = new ArrayList<CustomFile>();
 	
-	public static ArrayList<Line> regToReg = new ArrayList<>();
-	
-	public static ArrayList<Line> recursiveMethodList = new ArrayList<>();
-	public static ArrayList<Line> regularMethodList = new ArrayList<>();
-	
-	public static String fileType = "";
-	public static int lastLineNumber = 0;
-	public static ArrayList<String> programLineList = new ArrayList<>();
-	public static ArrayList<String> methodList;
-	public static ArrayList<Line> functionList = new ArrayList<Line>();
-	public static ArrayList<Line> methodCallList = new ArrayList<Line>();
-	public static ArrayList<String> calledMethodList;
+	//public static ArrayList<Line> regToReg = new ArrayList<>();
+	//public static ArrayList<Line> recursiveMethodList;
+	//public static ArrayList<Line> regularMethodList;
+
+	private String fileType = "";
+	//public static ArrayList<String> programLineList;
+	//public static ArrayList<Line> functionList;
+	//public static ArrayList<Line> methodCallList;
+	//public static ArrayList<String> calledMethodList;
 	public static String WEBCONTENTDIR = "git/CodeComplexityCalculator/CCC/WebContent/";
 	
-	public static void run(String fName) {
-		
-		if(!(fName.contains("java") || fName.contains("cpp"))) {
-			System.out.println("Wrong file type");
-		}else{
-			
-			if(fName.contains("java")) {
-				fileType = "java";
-			}else {
-				fileType = "cpp";
-			}
-			
-			FileRead fileRead = new FileRead(fName);
-			FileReadService fileReadService = new FileReadServiceImp();
-			
-			fileReadService.openFile(fileRead);
-			fileReadService.readFile(fileRead);
+	
 
-			CouplingService couplingService = new CouplingServiceImp();
-			methodList = (ArrayList<String>)couplingService.getMethodSet().clone();
-			calledMethodList = (ArrayList<String>)couplingService.getCalledMethodSet().clone();
-			
-			for(Line line : functionList) {
-				System.out.print("Line no : " + line.getLineNumber());
-				System.out.println(", Line content : " + line.getLineContent());;
+	public ArrayList<CustomFile> getFileList() {
+		return fileList;
+	}
+
+
+
+	public void setFileList(ArrayList<CustomFile> fileList) {
+		this.fileList = fileList;
+	}
+
+
+
+	public String getFileType() {
+		return fileType;
+	}
+
+
+
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
+	}
+
+	public void run() {
+
+		for (CustomFile file : this.fileList) {
+
+			if (!(file.getFileName().contains("java") || file.getFileName().contains("cpp"))) {
+				System.out.println("Wrong file type");
+			} else {
+
+				if (file.getFileName().contains("java")) {
+					fileType = "java";
+				} else {
+					fileType = "cpp";
+				}
+
+				
+				FileRead fileRead = new FileRead(file.getFileName());
+				FileReadService fileReadService = new FileReadServiceImp();
+
+				fileReadService.openFile(fileRead);
+				fileReadService.readFile(fileRead, file);
+
+				CouplingService couplingService = new CouplingServiceImp();
+				
+				couplingService.getMethodSet(file);
+				couplingService.getCalledMethodSet(file);
+				couplingService.getRecursiveMethods(file);
+
+				fileReadService.closeFile(fileRead);
 			}
-			
-			for(Line line : methodCallList) {
-				System.out.print("Line no : " + line.getLineNumber());
-				System.out.println(", Line content : " + line.getLineContent());;
-			}	
-			couplingService.getRecursiveMethods();
-			
-			fileReadService.closeFile(fileRead);
 		}
 	}
-    
+
 }

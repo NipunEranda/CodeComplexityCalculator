@@ -1,10 +1,12 @@
 package com.ccc.services;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.ccc.model.Coupling;
+import com.ccc.model.CustomFile;
 import com.ccc.model.FileRead;
+import com.ccc.model.Line;
 
 public class FileReadServiceImp implements FileReadService{
 
@@ -18,19 +20,16 @@ public class FileReadServiceImp implements FileReadService{
 	}
 
 	@Override
-	public void readFile(FileRead file) {
+	public void readFile(FileRead file, CustomFile fileobj) {
+		int count=1;
+		ArrayList<Line> lineSet = new ArrayList<Line>();
 		while(file.getScanner().hasNext()){
-            //Test if this works
-			//System.out.println(file.getScanner().nextLine());
-			
-			Main.programLineList.add(file.getScanner().nextLine());
-			Main.lastLineNumber++;
-			//Calculating coupling
-			//Coupling coupling = new Coupling();
-			//CouplingService couplingService = new CouplingServiceImp();
-			//couplingService.checkComplexityByLine(file.getScanner().nextLine());
-			
+			Line line = new Line(count, file.getScanner().nextLine());
+			lineSet.add(line);
+			count++;
         }
+		fileobj.setLineSet(lineSet);
+		fileobj.setLastIndex(lineSet.size());
 	}
 
 	@Override
