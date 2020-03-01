@@ -87,7 +87,7 @@ public class CouplingServiceImp implements CouplingService {
 
 				}
 			} else {
-
+ 
 				for (int j = file.getMethodList().get(i).getLineNumber() + 1; j < file.getMethodList().get(i + 1)
 						.getLineNumber() - 1; j++) {
 
