@@ -38,15 +38,21 @@ public class UploadServlet extends HttpServlet {
 					if(!item.isFormField())
 					{
 						String name = new File(item.getName()).getName();
-						item.write(new File(UPLOAD_DIRECTORY + name));
-						Main.run(name);
+						if(!(name.contains("java") || name.contains("cpp"))) {
+							System.out.println("Upload UnSuccessful. Wrong File Format");
+						}else {
+							item.write(new File(UPLOAD_DIRECTORY + name));
+							Main.run(name);
+							//request.setAttribute("message", "File uploaded successfully.");
+							//System.out.println("Upload Successful");
+						}
+						
 					}
 				}
-				request.setAttribute("message", "File uploaded successfully.");
-				System.out.println("Upload Successful");
 			}
 			catch(Exception ex)
 			{
+				ex.printStackTrace();
 				request.setAttribute("message", "File upload failed due to : " + ex);
 				System.out.println("Upload UnSuccessful");
 			}

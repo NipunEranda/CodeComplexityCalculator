@@ -3,6 +3,7 @@ package com.ccc.services;
 import java.io.File;
 import java.util.Scanner;
 
+import com.ccc.model.Coupling;
 import com.ccc.model.FileRead;
 
 public class FileReadServiceImp implements FileReadService{
@@ -19,7 +20,16 @@ public class FileReadServiceImp implements FileReadService{
 	@Override
 	public void readFile(FileRead file) {
 		while(file.getScanner().hasNext()){
-            System.out.println(file.getScanner().nextLine());
+            //Test if this works
+			//System.out.println(file.getScanner().nextLine());
+			
+			Main.programLineList.add(file.getScanner().nextLine());
+			Main.lastLineNumber++;
+			//Calculating coupling
+			//Coupling coupling = new Coupling();
+			//CouplingService couplingService = new CouplingServiceImp();
+			//couplingService.checkComplexityByLine(file.getScanner().nextLine());
+			
         }
 	}
 
