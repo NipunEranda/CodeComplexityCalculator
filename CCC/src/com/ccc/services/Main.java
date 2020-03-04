@@ -7,41 +7,25 @@ import org.apache.commons.fileupload.FileItem;
 import com.ccc.model.CustomFile;
 import com.ccc.model.FileRead;
 import com.ccc.model.Line;
+import com.ccc.util.RemoveDuplicateMethods;
 
 public class Main {
 
 	private ArrayList<CustomFile> fileList = new ArrayList<CustomFile>();
-	
-	//public static ArrayList<Line> regToReg = new ArrayList<>();
-	//public static ArrayList<Line> recursiveMethodList;
-	//public static ArrayList<Line> regularMethodList;
-
 	private String fileType = "";
-	//public static ArrayList<String> programLineList;
-	//public static ArrayList<Line> functionList;
-	//public static ArrayList<Line> methodCallList;
-	//public static ArrayList<String> calledMethodList;
 	public static String WEBCONTENTDIR = "git/CodeComplexityCalculator/CCC/WebContent/";
 	
-	
-
 	public ArrayList<CustomFile> getFileList() {
 		return fileList;
 	}
-
-
 
 	public void setFileList(ArrayList<CustomFile> fileList) {
 		this.fileList = fileList;
 	}
 
-
-
 	public String getFileType() {
 		return fileType;
 	}
-
-
 
 	public void setFileType(String fileType) {
 		this.fileType = fileType;
@@ -65,7 +49,7 @@ public class Main {
 				FileRead fileRead = new FileRead(file.getFileName());
 				FileReadService fileReadService = new FileReadServiceImp();
 
-				fileReadService.openFile(fileRead);
+				fileReadService.openFile(fileRead, file);
 				fileReadService.readFile(fileRead, file);
 
 				CouplingService couplingService = new CouplingServiceImp();
@@ -73,7 +57,15 @@ public class Main {
 				couplingService.getMethodSet(file);
 				couplingService.getCalledMethodSet(file);
 				couplingService.getRecursiveMethods(file);
+				couplingService.getRegularMethods(file);
+				couplingService.getRegInReg(file);
+				couplingService.getRecInReg(file);
+				
+				for(Line line : file.getRecursiveInRegularMethods()) {
+					System.out.println(line.getLineContent());
+				}
 
+				
 				fileReadService.closeFile(fileRead);
 			}
 		}

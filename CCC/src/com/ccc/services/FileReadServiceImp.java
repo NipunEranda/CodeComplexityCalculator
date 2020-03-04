@@ -11,9 +11,9 @@ import com.ccc.model.Line;
 public class FileReadServiceImp implements FileReadService{
 
 	@Override
-	public void openFile(FileRead file) {
+	public void openFile(FileRead file, CustomFile fileobj) {
 		try{
-			file.setScanner(new Scanner(new File(Main.WEBCONTENTDIR + "uploads/" + file.getFileName()))); 
+			file.setScanner(new Scanner(new File(fileobj.getFilePath() + file.getFileName()))); 
         }catch(Exception e){
             System.out.println("Couldn't find the file.");
         }

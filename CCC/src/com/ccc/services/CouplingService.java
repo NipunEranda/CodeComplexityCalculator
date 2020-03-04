@@ -15,7 +15,8 @@ public interface CouplingService {
 	public void getCalledMethodSet(CustomFile file);
 	
 	public void getRecursiveMethods(CustomFile file);
-	public ArrayList<List> getRegularMethods(CustomFile file);
-	public ArrayList<List> getRegToReg(CustomFile file);
+	public void getRegularMethods(CustomFile file);
+	public void getRegInReg(CustomFile file);
+	public void getRecInReg(CustomFile file);
 
 }

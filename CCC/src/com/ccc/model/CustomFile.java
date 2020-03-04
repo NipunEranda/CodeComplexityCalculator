@@ -5,13 +5,15 @@ import java.util.ArrayList;
 public class CustomFile {
 	
 	private String fileName;
+	private String filePath;
 	private int lastIndex;
 	private ArrayList<Line> lineSet;
 	private ArrayList<Line> MethodList;
 	private ArrayList<Line> calledMethodList;
 	private ArrayList<Line> regularMethods;
 	private ArrayList<Line> recursiveMethods;
-	private ArrayList<Line> regularToRegularMethods;
+	private ArrayList<Line> regularInRegularMethods;
+	private ArrayList<Line> recursiveInRegularMethods;
 	
 	public CustomFile(String fileName) {
 		this.fileName = fileName;
@@ -20,11 +22,19 @@ public class CustomFile {
 		this.calledMethodList = null;
 		this.regularMethods = null;
 		this.recursiveMethods = null;
-		this.regularToRegularMethods = null;
+		this.regularInRegularMethods = null;
 	}
 
 	public String getFileName() {
 		return fileName;
+	}
+	
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 
 	public void setFileName(String fileName) {
@@ -59,8 +69,12 @@ public class CustomFile {
 		this.recursiveMethods = new ArrayList<Line>(recursiveMethods);
 	}
 
-	public void setRegularToRegularMethods(ArrayList<Line> regularToRegularMethods) {
-		this.regularToRegularMethods = new ArrayList<Line>(regularToRegularMethods);
+	public void setRegularInRegularMethods(ArrayList<Line> regularToRegularMethods) {
+		this.regularInRegularMethods = new ArrayList<Line>(regularToRegularMethods);
+	}
+
+	public void setRecursiveInRegularMethods(ArrayList<Line> recursiveInRegularMethods) {
+		this.recursiveInRegularMethods = recursiveInRegularMethods;
 	}
 
 	public ArrayList<Line> getLineSet(){
@@ -83,8 +97,13 @@ public class CustomFile {
 		return recursiveMethods;
 	}
 	
-	public ArrayList<Line> getRegularToRegularMethods(){
-		return regularToRegularMethods;
+	public ArrayList<Line> getRegularInRegularMethods(){
+		return regularInRegularMethods;
 	}
+
+	public ArrayList<Line> getRecursiveInRegularMethods() {
+		return recursiveInRegularMethods;
+	}
+
 
 }

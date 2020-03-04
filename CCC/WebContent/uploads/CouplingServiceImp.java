@@ -111,92 +111,55 @@ public class CouplingServiceImp implements CouplingService {
 	@Override
 	public void getRegularMethods(CustomFile file) {
 
-		ArrayList<Line> regularMethodSet = new ArrayList<Line>();
+		ArrayList<Line> regularMethods = new ArrayList<Line>();
 
-		for (int i = 0; i < file.getMethodList().size(); i++) {
-			if (i == file.getMethodList().size() - 1) {
-				boolean no_recursive = true;
-				for (int j = file.getMethodList().get(i).getLineNumber() + 1; j < file.getLastIndex(); j++) {
+		for (Line alLine : file.getMethodList()) {
 
-					if (file.getLineSet().get(j).getLineContent()
-							.contains(file.getMethodList().get(i).getLineContent())) {
-						no_recursive = false;
-					}
-				}
-				if (no_recursive) {
-					regularMethodSet.add(new Line(file.getMethodList().get(i).getLineNumber(),
-							file.getMethodList().get(i).getLineContent()));
-				}
-			} else {
-				boolean no_recursive = true;
-				for (int j = file.getMethodList().get(i).getLineNumber() + 1; j < file.getMethodList().get(i + 1)
-						.getLineNumber() - 1; j++) {
-
-					if (file.getLineSet().get(j).getLineContent()
-							.contains(file.getMethodList().get(i).getLineContent())) {
-						no_recursive = false;
-					}
-
-				}
-				if (no_recursive) {
-					regularMethodSet.add(new Line(file.getMethodList().get(i).getLineNumber(),
-							file.getMethodList().get(i).getLineContent()));
+			for (Line recLine : file.getRecursiveMethods()) {
+				if (alLine.getLineNumber() != recLine.getLineNumber()) {
+					regularMethods.add(alLine);
 				}
 			}
-
 		}
-		file.setRegularMethods(regularMethodSet);
-
+		file.setRegularMethods(regularMethods);
 	}
 
 	// Senario 2
 	@Override
-	public void getRegInReg(CustomFile file) {
-
-		ArrayList<Line> regInReg = new ArrayList<Line>();
+	public void getRegToReg(CustomFile file) {
 
 		for (int i = 0; i < file.getMethodList().size(); i++) {
+
 			if (i == file.getMethodList().size() - 1) {
-				boolean is_recursive = false;
-				for (int j = file.getMethodList().get(i).getLineNumber() + 1; j < file.getLastIndex(); j++) {
-					if (file.getLineSet().get(j).getLineContent()
-							.contains(file.getMethodList().get(i).getLineContent())) {
-						is_recursive = true;
+				for (int j = file.getMethodList().get(i).getLineNumber() - 1; j < file.getLastIndex()-1; j++) {
+
+					for (Line line : file.getMethodList()) {
+						if (!line.getLineContent().equalsIgnoreCase(file.getMethodList().get(i).getLineContent())) {
+							if (file.getLineSet().get(j).getLineContent().contains(line.getLineContent())) {
+								System.out.println(file.getLineSet().get(j).getLineContent());
+							}
+						}
 					}
+
 				}
-				if (is_recursive == true) {
-					continue;
-				} else {
-					regInReg.add(file.getMethodList().get(i));
-				}
-				is_recursive = false;
 			} else {
-				boolean is_recursive = false;
-				for (int j = file.getMethodList().get(i).getLineNumber() + 1; j < file.getMethodList().get(i + 1)
+
+				for (int j = file.getMethodList().get(i).getLineNumber() - 1; j < file.getMethodList().get(i + 1)
 						.getLineNumber() - 1; j++) {
-					if (file.getLineSet().get(j).getLineContent()
-							.contains(file.getMethodList().get(i).getLineContent())) {
-						is_recursive = true;
+
+					for (Line line : file.getMethodList()) {
+						if (!line.getLineContent().equalsIgnoreCase(file.getMethodList().get(i).getLineContent())) {
+							if (file.getLineSet().get(j).getLineContent().contains(line.getLineContent())) {
+								System.out.println(file.getLineSet().get(j).getLineContent());
+							}
+						}
 					}
+
 				}
-				if (is_recursive == true) {
-					continue;
-				} else {
-					regInReg.add(file.getMethodList().get(i));
-				}
-				is_recursive = false;
+
 			}
 		}
-		file.setRegularInRegularMethods(regInReg);
 
-	}
-
-	// Senario 4
-	@Override
-	public void getRecInReg(CustomFile file) {
-
-		
-		
 	}
 
 }
