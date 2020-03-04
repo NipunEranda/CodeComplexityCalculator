@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Coupling {
 	
+	private String fileName;
+	
 	private final int Wr = 2;
 	private final int Wmcms = 2;
 	private final int Wmcmd = 3;
@@ -34,8 +36,24 @@ public class Coupling {
 	private int Nrmrgvs;
 	private int Nrmrgvd;
 	
-	private ArrayList<Coupling> lineList = new ArrayList<Coupling>();
+	private ArrayList<Line> MethodList;
+	private ArrayList<Line> calledMethodList;
+	private ArrayList<Line> regularMethods;
+	private ArrayList<Line> recursiveMethods;
+	private ArrayList<Line> regularInRegularMethods;
+	private ArrayList<Line> recursiveInRegularMethods;
 	
+	
+	
+	public Coupling(String fileName) {
+		this.setFileName(fileName);
+		this.MethodList = null;
+		this.calledMethodList = null;
+		this.regularMethods = null;
+		this.recursiveMethods = null;
+		this.regularInRegularMethods = null;
+	}
+
 	public Line getLine() {
 		return line;
 	}
@@ -206,6 +224,63 @@ public class Coupling {
 
 	public void setNrmrgvd(int nrmrgvd) {
 		Nrmrgvd = nrmrgvd;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	
+	public void setMethodList(ArrayList<Line> methodList) {
+		this.MethodList = new ArrayList<Line>(methodList);
+	}
+
+	public void setCalledMethodList(ArrayList<Line> calledMethodList) {
+		this.calledMethodList = new ArrayList<Line>(calledMethodList);
+	}
+
+	public void setRegularMethods(ArrayList<Line> regularMethods) {
+		this.regularMethods = new ArrayList<Line>(regularMethods);
+	}
+
+	public void setRecursiveMethods(ArrayList<Line> recursiveMethods) {
+		this.recursiveMethods = new ArrayList<Line>(recursiveMethods);
+	}
+
+	public void setRegularInRegularMethods(ArrayList<Line> regularToRegularMethods) {
+		this.regularInRegularMethods = new ArrayList<Line>(regularToRegularMethods);
+	}
+
+	public void setRecursiveInRegularMethods(ArrayList<Line> recursiveInRegularMethods) {
+		this.recursiveInRegularMethods = recursiveInRegularMethods;
+	}
+
+	
+	public ArrayList<Line> getMethodList(){
+		return MethodList;
+	}
+
+	public ArrayList<Line> getCalledMethodList(){
+		return calledMethodList;
+	}
+
+	public ArrayList<Line> getRegularMethods(){
+		return regularMethods;
+	}
+	
+	public ArrayList<Line> getRecursiveMethods(){
+		return recursiveMethods;
+	}
+	
+	public ArrayList<Line> getRegularInRegularMethods(){
+		return regularInRegularMethods;
+	}
+
+	public ArrayList<Line> getRecursiveInRegularMethods() {
+		return recursiveInRegularMethods;
 	}
 
 }

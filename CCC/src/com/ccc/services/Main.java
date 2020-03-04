@@ -61,7 +61,7 @@ public class Main {
 				couplingService.getRegInReg(file);
 				couplingService.getRecInReg(file);
 				
-				for(Line line : file.getRecursiveInRegularMethods()) {
+				for(Line line : file.getCoupling().getRegularInRegularMethods()) {
 					System.out.println(line.getLineContent());
 				}
 
