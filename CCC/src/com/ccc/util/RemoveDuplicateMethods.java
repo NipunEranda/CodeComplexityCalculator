@@ -9,7 +9,6 @@ import com.ccc.model.Line;
 public class RemoveDuplicateMethods 
 {
     public ArrayList<Line> initiate(ArrayList<Line> lineSet) {
-        // ArrayList with duplicate elements
  
         LinkedHashSet<Line> hashSet = new LinkedHashSet<>(lineSet);
          

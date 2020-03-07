@@ -8,6 +8,7 @@ public class Maths2{
 	}
 	
 	public double getSqr(double num1){
+		answer();
 		if(num1 == 0)
 			return 0;
 		else
@@ -35,7 +36,7 @@ public class Maths2{
 }
 
 public double getlqr(double num1){
-		getCube();
+		answer();
 		if(num1 == 0)
 			return 0;
 		else
