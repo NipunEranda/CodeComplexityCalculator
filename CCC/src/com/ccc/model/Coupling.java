@@ -39,6 +39,7 @@ public class Coupling {
 	private ArrayList<Line> MethodList;
 	private ArrayList<Line> methodSetFull;
 	private ArrayList<Line> calledMethodList;
+	private ArrayList<Line> globalVariableList;
 	private ArrayList<Line> regularMethods;
 	private ArrayList<Line> recursiveMethods;
 	private ArrayList<Line> regularInRegularMethods;
@@ -238,12 +239,24 @@ public class Coupling {
 		this.fileName = fileName;
 	}
 	
+	public void setEndLineNumber(int lineNumber ,int number) {
+		this.MethodList.get(lineNumber).setEndLineNumber(number);
+	}
+	
 	public void setMethodList(ArrayList<Line> methodList) {
 		this.MethodList = new ArrayList<Line>(methodList);
 	}
 
 	public void setCalledMethodList(ArrayList<Line> calledMethodList) {
 		this.calledMethodList = new ArrayList<Line>(calledMethodList);
+	}
+
+	public ArrayList<Line> getGlobalVariableList() {
+		return globalVariableList;
+	}
+
+	public void setGlobalVariableList(ArrayList<Line> globalVariableList) {
+		this.globalVariableList = globalVariableList;
 	}
 
 	public void setRegularMethods(ArrayList<Line> regularMethods) {

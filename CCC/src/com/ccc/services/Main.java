@@ -51,22 +51,10 @@ public class Main {
 
 				fileReadService.openFile(fileRead, file);
 				fileReadService.readFile(fileRead, file);
-
+				
 				CouplingService couplingService = new CouplingServiceImp();
-				
-				couplingService.getMethodSet(file);
-				couplingService.getMethodListFull(file);
-				couplingService.getCalledMethodSet(file);
-				couplingService.getRecursiveMethods(file);
-				couplingService.getRegularMethods(file);
-				couplingService.getRegInReg(file);
-				couplingService.getRecInReg(file);
-				couplingService.getRecInRec(file);
-				couplingService.getRegInRec(file);
-				
-				for(Line line : file.getCoupling().getRegularInRecursiveMethods()) {
-					System.out.println(line.getLineNumber() + ", " + line.getLineContent());
-				}
+				couplingService.proceed(file);
+
 
 				fileReadService.closeFile(fileRead);
 			}
