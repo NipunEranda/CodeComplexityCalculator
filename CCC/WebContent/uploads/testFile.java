@@ -35,6 +35,7 @@ public class Maths2{
 }
 
 public double getlqr(double num1){
+		getCube();
 		if(num1 == 0)
 			return 0;
 		else

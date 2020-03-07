@@ -15,5 +15,6 @@ public interface CouplingService {
 	public void getRegInReg(CustomFile file);
 	public void getRecInReg(CustomFile file);
 	public void getRecInRec(CustomFile file);
+	public void getRegInRec(CustomFile file);
 
 }

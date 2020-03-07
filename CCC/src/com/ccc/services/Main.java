@@ -62,6 +62,10 @@ public class Main {
 				couplingService.getRegInReg(file);
 				couplingService.getRecInReg(file);
 				couplingService.getRecInRec(file);
+				
+				for(Line line : file.getCoupling().getRecursiveInRecursiveMethods()) {
+					System.out.println(line.getLineNumber() + ", " + line.getLineContent()	);
+				}
 
 				fileReadService.closeFile(fileRead);
 			}

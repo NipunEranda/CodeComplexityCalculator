@@ -44,6 +44,7 @@ public class Coupling {
 	private ArrayList<Line> regularInRegularMethods;
 	private ArrayList<Line> recursiveInRegularMethods;
 	private ArrayList<Line> recursiveInRecursiveMethods;
+	private ArrayList<Line> regularInRecursiveMethods;
 	
 	
 	
@@ -300,6 +301,14 @@ public class Coupling {
 
 	public void setRecursiveInRecursiveMethods(ArrayList<Line> recursiveInRecursiveMethods) {
 		this.recursiveInRecursiveMethods = recursiveInRecursiveMethods;
+	}
+
+	public ArrayList<Line> getRegularInRecursiveMethods() {
+		return regularInRecursiveMethods;
+	}
+
+	public void setRegularInRecursiveMethods(ArrayList<Line> regularInRecursiveMethods) {
+		this.regularInRecursiveMethods = regularInRecursiveMethods;
 	}
 
 	
