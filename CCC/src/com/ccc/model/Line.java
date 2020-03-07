@@ -4,6 +4,7 @@ public class Line {
 	
 	private int lineNumber;
 	private String lineContent;
+	private int endLineNumber;
 	
 	public Line(int lineNumber, String lineContent) {
 		this.lineNumber = lineNumber;
@@ -26,6 +27,13 @@ public class Line {
 		this.lineContent = lineContent;
 	}
 	
+	public int getEndLineNumber() {
+		return endLineNumber;
+	}
+
+	public void setEndLineNumber(int endLineNumber) {
+		this.endLineNumber = endLineNumber;
+	}
 	
 
 }

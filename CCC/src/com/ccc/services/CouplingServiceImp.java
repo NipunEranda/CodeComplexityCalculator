@@ -30,6 +30,43 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
+	public void getMethodListFull(CustomFile file) {
+
+		ArrayList<Line> methodSetFull = new ArrayList<Line>();
+
+		for (Line line : file.getLineSet()) {
+			if (line.getLineContent().contains("main") || line.getLineContent().contains("class")
+					|| line.getLineContent().contains("if") || line.getLineContent().contains("switch")
+					|| line.getLineContent().contains("catch") || line.getLineContent().contains("return")
+					|| line.getLineContent().contains(";")) {
+
+			} else if (line.getLineContent().contains("{") && (line.getLineContent().contains("public")
+					|| line.getLineContent().contains("private") || line.getLineContent().contains("protected"))) {
+				methodSetFull.add(new Line(line.getLineNumber(), line.getLineContent()));
+			}
+		}
+		file.getCoupling().setMethodSetFull(methodSetFull);
+
+	}
+
+	@Override
+	public boolean isAMethod(Line line) {
+
+		if (line.getLineContent().contains("main") || line.getLineContent().contains("class")
+				|| line.getLineContent().contains("if") || line.getLineContent().contains("switch")
+				|| line.getLineContent().contains("catch") || line.getLineContent().contains("return")
+				|| line.getLineContent().contains(";")) {
+			return false;
+		} else if (line.getLineContent().contains("{") && (line.getLineContent().contains("public")
+				|| line.getLineContent().contains("private") || line.getLineContent().contains("protected"))) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	@Override
 	public void getMethodSet(CustomFile file) {
 
 		ArrayList<Line> methodSet = new ArrayList<Line>();
@@ -80,7 +117,8 @@ public class CouplingServiceImp implements CouplingService {
 		for (int i = 0; i < file.getCoupling().getMethodList().size(); i++) {
 
 			if (i == file.getCoupling().getMethodList().size() - 1) {
-				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file.getLastIndex(); j++) {
+				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file
+						.getLastIndex(); j++) {
 
 					if (file.getLineSet().get(j).getLineContent()
 							.contains(file.getCoupling().getMethodList().get(i).getLineContent())) {
@@ -91,8 +129,8 @@ public class CouplingServiceImp implements CouplingService {
 				}
 			} else {
 
-				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file.getCoupling().getMethodList().get(i + 1)
-						.getLineNumber() - 1; j++) {
+				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file.getCoupling()
+						.getMethodList().get(i + 1).getLineNumber() - 1; j++) {
 
 					if (file.getLineSet().get(j).getLineContent()
 							.contains(file.getCoupling().getMethodList().get(i).getLineContent())) {
@@ -116,21 +154,25 @@ public class CouplingServiceImp implements CouplingService {
 		for (int i = 0; i < file.getCoupling().getMethodList().size(); i++) {
 			if (i == file.getCoupling().getMethodList().size() - 1) {
 				boolean no_recursive = true;
-				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file.getLastIndex(); j++) {
+				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file
+						.getLastIndex(); j++) {
 
 					if (file.getLineSet().get(j).getLineContent()
 							.contains(file.getCoupling().getMethodList().get(i).getLineContent())) {
 						no_recursive = false;
 					}
+
 				}
+
 				if (no_recursive) {
 					regularMethodSet.add(new Line(file.getCoupling().getMethodList().get(i).getLineNumber(),
 							file.getCoupling().getMethodList().get(i).getLineContent()));
 				}
+
 			} else {
 				boolean no_recursive = true;
-				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file.getCoupling().getMethodList().get(i + 1)
-						.getLineNumber() - 1; j++) {
+				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file.getCoupling()
+						.getMethodList().get(i + 1).getLineNumber() - 1; j++) {
 
 					if (file.getLineSet().get(j).getLineContent()
 							.contains(file.getCoupling().getMethodList().get(i).getLineContent())) {
@@ -138,12 +180,13 @@ public class CouplingServiceImp implements CouplingService {
 					}
 
 				}
+
 				if (no_recursive) {
 					regularMethodSet.add(new Line(file.getCoupling().getMethodList().get(i).getLineNumber(),
 							file.getCoupling().getMethodList().get(i).getLineContent()));
 				}
-			}
 
+			}
 		}
 		file.getCoupling().setRegularMethods(regularMethodSet);
 
@@ -158,7 +201,8 @@ public class CouplingServiceImp implements CouplingService {
 		for (int i = 0; i < file.getCoupling().getMethodList().size(); i++) {
 			if (i == file.getCoupling().getMethodList().size() - 1) {
 				boolean is_recursive = false;
-				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file.getLastIndex(); j++) {
+				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file
+						.getLastIndex(); j++) {
 					if (file.getLineSet().get(j).getLineContent()
 							.contains(file.getCoupling().getMethodList().get(i).getLineContent())) {
 						is_recursive = true;
@@ -172,8 +216,8 @@ public class CouplingServiceImp implements CouplingService {
 				is_recursive = false;
 			} else {
 				boolean is_recursive = false;
-				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file.getCoupling().getMethodList().get(i + 1)
-						.getLineNumber() - 1; j++) {
+				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file.getCoupling()
+						.getMethodList().get(i + 1).getLineNumber() - 1; j++) {
 					if (file.getLineSet().get(j).getLineContent()
 							.contains(file.getCoupling().getMethodList().get(i).getLineContent())) {
 						is_recursive = true;
@@ -195,8 +239,68 @@ public class CouplingServiceImp implements CouplingService {
 	@Override
 	public void getRecInReg(CustomFile file) {
 
-		
-		
+		ArrayList<Line> recInReg = new ArrayList<Line>();
+
+		for (int i = 0; i < file.getCoupling().getRegularMethods().size(); i++) {
+
+			if (i == file.getCoupling().getRegularMethods().size() - 1) {
+				boolean isAMethod = false;
+				for (int j = file.getCoupling().getRegularMethods().get(i).getLineNumber(); j < file
+						.getLastIndex(); j++) {
+
+					if (isAMethod(file.getLineSet().get(j))) {
+						break;
+					} else {
+
+						for (Line line : file.getCoupling().getRecursiveMethods()) {
+							if (file.getLineSet().get(j).getLineContent().contains(line.getLineContent())) {
+								recInReg.add(line);
+							}
+						}
+
+					}
+
+				}
+
+			} else {
+
+				for (int j = file.getCoupling().getRegularMethods().get(i).getLineNumber(); j < file.getCoupling()
+						.getRegularMethods().get(i + 1).getLineNumber() - 1; j++) {
+
+					for (Line line : file.getCoupling().getRecursiveMethods()) {
+						if (file.getLineSet().get(j).getLineContent().contains(line.getLineContent())) {
+							recInReg.add(line);
+						}
+					}
+
+				}
+
+			}
+
+		}
+		file.getCoupling().setRecursiveInRegularMethods(recInReg);
 	}
 
+	@Override
+	public void getRecInRec(CustomFile file) {
+
+		ArrayList<Line> recInRec = new ArrayList<Line>();
+
+		for(int i = 0; i < file.getCoupling().getRecursiveMethods().size()-1; i++) {
+			
+			if(i == file.getCoupling().getRecursiveMethods().size()-1) {
+				
+			}else {
+				
+				for(int j = file.getCoupling().getRecursiveMethods().get(i).getLineNumber(); j < file.getCoupling().getRecursiveMethods().get(i+1).getLineNumber()-1; j++) {
+					
+					
+					
+				}
+				
+			}
+			
+		}
+
+	}
 }

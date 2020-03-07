@@ -55,7 +55,5 @@ public class CustomFile {
 	public void setCoupling(Coupling coupling) {
 		this.coupling = coupling;
 	}
-	
-	
 
 }

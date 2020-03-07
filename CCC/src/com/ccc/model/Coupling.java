@@ -37,11 +37,13 @@ public class Coupling {
 	private int Nrmrgvd;
 	
 	private ArrayList<Line> MethodList;
+	private ArrayList<Line> methodSetFull;
 	private ArrayList<Line> calledMethodList;
 	private ArrayList<Line> regularMethods;
 	private ArrayList<Line> recursiveMethods;
 	private ArrayList<Line> regularInRegularMethods;
 	private ArrayList<Line> recursiveInRegularMethods;
+	private ArrayList<Line> recursiveInRecursiveMethods;
 	
 	
 	
@@ -52,6 +54,7 @@ public class Coupling {
 		this.regularMethods = null;
 		this.recursiveMethods = null;
 		this.regularInRegularMethods = null;
+		this.methodSetFull = null;
 	}
 
 	public Line getLine() {
@@ -283,4 +286,22 @@ public class Coupling {
 		return recursiveInRegularMethods;
 	}
 
+	public ArrayList<Line> getMethodSetFull() {
+		return methodSetFull;
+	}
+
+	public void setMethodSetFull(ArrayList<Line> methodSetFull) {
+		this.methodSetFull = methodSetFull;
+	}
+
+	public ArrayList<Line> getRecursiveInRecursiveMethods() {
+		return recursiveInRecursiveMethods;
+	}
+
+	public void setRecursiveInRecursiveMethods(ArrayList<Line> recursiveInRecursiveMethods) {
+		this.recursiveInRecursiveMethods = recursiveInRecursiveMethods;
+	}
+
+	
+	
 }

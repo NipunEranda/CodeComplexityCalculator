@@ -51,8 +51,30 @@ public class CouplingServiceImp implements CouplingService {
 				}
 			}
 		}
-		file.setMethodList(methodSet);
+		file.getCoupling().setMethodList(methodSet);
 	}
+	
+	/*@Override
+	public void setlineEndNumbers(CustomFile file) {
+
+		for (int i = 0; i < file.getCoupling().getMethodList().size(); i++) {
+			if (i == file.getCoupling().getMethodList().size() - 1) {
+
+				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber(); j < file.getLastIndex(); ++j) {
+					if (!file.getLineSet().get(j).getLineContent().equalsIgnoreCase("")) {
+						file.getCoupling().getMethodList().get(i).setEndLineNumber(j+1);
+					}
+				}
+			} else {
+				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber()-1; j < file.getCoupling()
+						.getMethodList().get(i + 1).getLineNumber()-1; ++j) {
+					if (!file.getLineSet().get(j).getLineContent().equalsIgnoreCase("")) {
+						file.getCoupling().getMethodList().get(i).setEndLineNumber(j);
+					}
+				}
+			}
+		}
+	}*/
 
 	@Override
 	public void getCalledMethodSet(CustomFile file) {
@@ -61,14 +83,14 @@ public class CouplingServiceImp implements CouplingService {
 
 		for (Line line : file.getLineSet()) {
 
-			for (Line method : file.getMethodList()) {
+			for (Line method : file.getCoupling().getMethodList()) {
 				if (line.getLineContent().contains("." + method.getLineContent())) {
 					calledMethodSet.add(method);
 				}
 			}
 
 		}
-		file.setCalledMethodList(calledMethodSet);
+		file.getCoupling().setCalledMethodList(calledMethodSet);
 	}
 
 	// Senario 1
@@ -77,27 +99,28 @@ public class CouplingServiceImp implements CouplingService {
 
 		ArrayList<Line> recursiveMethodSet = new ArrayList<Line>();
 
-		for (int i = 0; i < file.getMethodList().size(); i++) {
+		for (int i = 0; i < file.getCoupling().getMethodList().size(); i++) {
 
-			if (i == file.getMethodList().size() - 1) {
-				for (int j = file.getMethodList().get(i).getLineNumber() + 1; j < file.getLastIndex(); j++) {
+			if (i == file.getCoupling().getMethodList().size() - 1) {
+				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file
+						.getLastIndex(); j++) {
 
 					if (file.getLineSet().get(j).getLineContent()
-							.contains(file.getMethodList().get(i).getLineContent())) {
-						recursiveMethodSet.add(new Line(file.getMethodList().get(i).getLineNumber(),
-								file.getMethodList().get(i).getLineContent()));
+							.contains(file.getCoupling().getMethodList().get(i).getLineContent())) {
+						recursiveMethodSet.add(new Line(file.getCoupling().getMethodList().get(i).getLineNumber(),
+								file.getCoupling().getMethodList().get(i).getLineContent()));
 					}
 
 				}
 			} else {
 
-				for (int j = file.getMethodList().get(i).getLineNumber() + 1; j < file.getMethodList().get(i + 1)
-						.getLineNumber() - 1; j++) {
+				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file.getCoupling()
+						.getMethodList().get(i + 1).getLineNumber() - 1; j++) {
 
 					if (file.getLineSet().get(j).getLineContent()
-							.contains(file.getMethodList().get(i).getLineContent())) {
-						recursiveMethodSet.add(new Line(file.getMethodList().get(i).getLineNumber(),
-								file.getMethodList().get(i).getLineContent()));
+							.contains(file.getCoupling().getMethodList().get(i).getLineContent())) {
+						recursiveMethodSet.add(new Line(file.getCoupling().getMethodList().get(i).getLineNumber(),
+								file.getCoupling().getMethodList().get(i).getLineContent()));
 					}
 
 				}
@@ -105,61 +128,109 @@ public class CouplingServiceImp implements CouplingService {
 			}
 
 		}
-		file.setRecursiveMethods(recursiveMethodSet);
+		file.getCoupling().setRecursiveMethods(recursiveMethodSet);
 	}
 
 	@Override
 	public void getRegularMethods(CustomFile file) {
 
-		ArrayList<Line> regularMethods = new ArrayList<Line>();
+		ArrayList<Line> regularMethodSet = new ArrayList<Line>();
 
-		for (Line alLine : file.getMethodList()) {
+		for (int i = 0; i < file.getCoupling().getMethodList().size(); i++) {
+			if (i == file.getCoupling().getMethodList().size() - 1) {
+				boolean no_recursive = true;
+				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file
+						.getLastIndex(); j++) {
 
-			for (Line recLine : file.getRecursiveMethods()) {
-				if (alLine.getLineNumber() != recLine.getLineNumber()) {
-					regularMethods.add(alLine);
+					if (file.getLineSet().get(j).getLineContent()
+							.contains(file.getCoupling().getMethodList().get(i).getLineContent())) {
+						no_recursive = false;
+					}
+
 				}
+
+				if (no_recursive) {
+					regularMethodSet.add(new Line(file.getCoupling().getMethodList().get(i).getLineNumber(),
+							file.getCoupling().getMethodList().get(i).getLineContent()));
+				}
+
+			} else {
+				boolean no_recursive = true;
+				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber() + 1; j < file.getCoupling()
+						.getMethodList().get(i + 1).getLineNumber() - 1; j++) {
+
+					if (file.getLineSet().get(j).getLineContent()
+							.contains(file.getCoupling().getMethodList().get(i).getLineContent())) {
+						no_recursive = false;
+					}
+
+				}
+
+				if (no_recursive) {
+					regularMethodSet.add(new Line(file.getCoupling().getMethodList().get(i).getLineNumber(),
+							file.getCoupling().getMethodList().get(i).getLineContent()));
+				}
+
 			}
 		}
-		file.setRegularMethods(regularMethods);
+		file.getCoupling().setRegularMethods(regularMethodSet);
+
 	}
 
 	// Senario 2
 	@Override
-	public void getRegToReg(CustomFile file) {
+	public void getRegInReg(CustomFile file) {
 
-		for (int i = 0; i < file.getMethodList().size(); i++) {
+		ArrayList<Line> regInReg = new ArrayList<Line>();
 
-			if (i == file.getMethodList().size() - 1) {
-				for (int j = file.getMethodList().get(i).getLineNumber() - 1; j < file.getLastIndex()-1; j++) {
-
-					for (Line line : file.getMethodList()) {
-						if (!line.getLineContent().equalsIgnoreCase(file.getMethodList().get(i).getLineContent())) {
-							if (file.getLineSet().get(j).getLineContent().contains(line.getLineContent())) {
-								System.out.println(file.getLineSet().get(j).getLineContent());
-							}
-						}
+		for (int i = 0; i < file.getCoupling().getMethodList().size(); i++) {
+			if (i == file.getCoupling().getMethodList().size() - 1) {
+				boolean is_recursive = false;
+				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber()+1; j < file
+						.getLastIndex(); j++) {
+					if (file.getLineSet().get(j).getLineContent()
+							.contains(file.getCoupling().getMethodList().get(i).getLineContent())) {
+						is_recursive = true;
 					}
-
 				}
+				if (is_recursive == true) {
+					continue;
+				} else {
+					regInReg.add(file.getCoupling().getMethodList().get(i));
+				}
+				is_recursive = false;
 			} else {
-
-				for (int j = file.getMethodList().get(i).getLineNumber() - 1; j < file.getMethodList().get(i + 1)
-						.getLineNumber() - 1; j++) {
-
-					for (Line line : file.getMethodList()) {
-						if (!line.getLineContent().equalsIgnoreCase(file.getMethodList().get(i).getLineContent())) {
-							if (file.getLineSet().get(j).getLineContent().contains(line.getLineContent())) {
-								System.out.println(file.getLineSet().get(j).getLineContent());
-							}
-						}
+				boolean is_recursive = false;
+				for (int j = file.getCoupling().getMethodList().get(i).getLineNumber()+1; j < file.getCoupling()
+						.getMethodList().get(i + 1).getLineNumber() - 1; j++) {
+					if (file.getLineSet().get(j).getLineContent()
+							.contains(file.getCoupling().getMethodList().get(i).getLineContent())) {
+						is_recursive = true;
 					}
-
 				}
-
+				if (is_recursive == true) {
+					continue;
+				} else {
+					regInReg.add(file.getCoupling().getMethodList().get(i));
+				}
+				is_recursive = false;
 			}
+		}
+		file.getCoupling().setRegularInRegularMethods(regInReg);
+
+	}
+
+	// Senario 4
+	@Override
+	public void getRecInReg(CustomFile file) {
+
+		for (int i = file.getCoupling().getRegularMethods().get(0).getLineNumber(); i < file.getCoupling()
+				.getRegularMethods().size(); i++) {
+			System.out.println(i);
 		}
 
 	}
+
+	
 
 }

@@ -55,17 +55,14 @@ public class Main {
 				CouplingService couplingService = new CouplingServiceImp();
 				
 				couplingService.getMethodSet(file);
+				couplingService.getMethodListFull(file);
 				couplingService.getCalledMethodSet(file);
 				couplingService.getRecursiveMethods(file);
 				couplingService.getRegularMethods(file);
 				couplingService.getRegInReg(file);
 				couplingService.getRecInReg(file);
-				
-				for(Line line : file.getCoupling().getRegularInRegularMethods()) {
-					System.out.println(line.getLineContent());
-				}
+				couplingService.getRecInRec(file);
 
-				
 				fileReadService.closeFile(fileRead);
 			}
 		}
