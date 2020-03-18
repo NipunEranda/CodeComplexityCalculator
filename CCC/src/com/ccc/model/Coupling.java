@@ -39,7 +39,9 @@ public class Coupling {
 	private ArrayList<Line> MethodList;
 	private ArrayList<Line> methodSetFull;
 	private ArrayList<Line> calledMethodList;
-	private ArrayList<Line> globalVariableList;
+	private ArrayList<Line> globalVariableSet;
+	private ArrayList<Line> globalVariableListInReg;
+	private ArrayList<Line> globalVariableListInRec;
 	private ArrayList<Line> regularMethods;
 	private ArrayList<Line> recursiveMethods;
 	private ArrayList<Line> regularInRegularMethods;
@@ -251,12 +253,28 @@ public class Coupling {
 		this.calledMethodList = new ArrayList<Line>(calledMethodList);
 	}
 
-	public ArrayList<Line> getGlobalVariableList() {
-		return globalVariableList;
+	public ArrayList<Line> getGlobalVariableSet() {
+		return globalVariableSet;
 	}
 
-	public void setGlobalVariableList(ArrayList<Line> globalVariableList) {
-		this.globalVariableList = globalVariableList;
+	public void setGlobalVariableSet(ArrayList<Line> globalVariableSet) {
+		this.globalVariableSet = globalVariableSet;
+	}
+
+	public ArrayList<Line> getGlobalVariableListInReg() {
+		return globalVariableListInReg;
+	}
+
+	public void setGlobalVariableListInReg(ArrayList<Line> globalVariableList) {
+		this.globalVariableListInReg = globalVariableList;
+	}
+
+	public ArrayList<Line> getGlobalVariableListInRec() {
+		return globalVariableListInRec;
+	}
+
+	public void setGlobalVariableListInRec(ArrayList<Line> globalVariableListInRec) {
+		this.globalVariableListInRec = globalVariableListInRec;
 	}
 
 	public void setRegularMethods(ArrayList<Line> regularMethods) {

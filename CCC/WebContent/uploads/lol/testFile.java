@@ -4,7 +4,6 @@ public class Maths2{
 	
 	public static void main(String[] args){
 		Maths2 m2 = new Maths2();
-		Maths1 m1 = new Maths1();
 		m2.answer();
 	}
 	
@@ -22,8 +21,14 @@ public class Maths2{
 			return getCube(num2-1) + 3 * (getSqr(num2)) - 3 * num2 + 1;
 	}
 	
+	//regular method calling another regular method
+	public double getCube (double num3){
+		return getSqr(double num1);
+	}
+	
 	public void answer(){
 		Maths2 m1 = new Maths();
+		
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter a number : ");
 		num = input.nextInt();
@@ -33,11 +38,3 @@ public class Maths2{
 	System.out.println("Squared value of " + num + "is " + n2);
 	System.out.println("Cube value of " + num + "is " + m1.getCube(num)); 
 }
-
-public double getlqr(double num1){
-		answer();
-		if(num1 == 0)
-			return 0;
-		else
-			return getlqr(num1-1) + (2 * num1) - 1;
-	}

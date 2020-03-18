@@ -1,10 +1,9 @@
 import java.util.Scanner;
-public class Maths2{
+public class Maths1{
 	double num = 0.0;
 	
 	public static void main(String[] args){
 		Maths2 m2 = new Maths2();
-		Maths1 m1 = new Maths1();
 		m2.answer();
 	}
 	

@@ -33,6 +33,8 @@ public class Main {
 
 	public void run() {
 
+		CouplingService couplingService = new CouplingServiceImp();
+		
 		for (CustomFile file : this.fileList) {
 
 			if (!(file.getFileName().contains("java") || file.getFileName().contains("cpp"))) {
@@ -45,20 +47,18 @@ public class Main {
 					fileType = "cpp";
 				}
 
-				
 				FileRead fileRead = new FileRead(file.getFileName());
 				FileReadService fileReadService = new FileReadServiceImp();
 
 				fileReadService.openFile(fileRead, file);
 				fileReadService.readFile(fileRead, file);
 				
-				CouplingService couplingService = new CouplingServiceImp();
-				couplingService.proceed(file);
-
-
+				couplingService.process1(file);
 				fileReadService.closeFile(fileRead);
 			}
 		}
+		couplingService.process2(this.fileList);
+		
 	}
 
 }
