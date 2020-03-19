@@ -591,21 +591,130 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
-	public void getRegInReg_DF(ArrayList<CustomFile> fileList) {
+	public void getCalledMethodSet_DF(CustomFile ifile, ArrayList<CustomFile> fileList) {
+		ArrayList<Line> objectList = new ArrayList<>();
+		ArrayList<Line> calledMethodList_DF = new ArrayList<>();
+		for (CustomFile file : fileList) {
 
-		for(CustomFile file1 : fileList) {
+			if (!file.getFileName().equalsIgnoreCase(ifile.getFileName())) {
+				for (Line line : ifile.getLineSet()) {
+					if (line.getLineContent().contains(file.getFileName().split("\\.")[0])) {
+
+						if (line.getLineContent().contains("new")) {
+							line.setFileName(file);
+							objectList.add(line);
+						}
+
+					}
+
+					if (objectList.size() > 0) {
+						for (Line obj : objectList) {
+
+							if (line.getLineContent().contains(obj.getLineContent().split(" ")[1])
+									&& line.getLineContent().contains(".") && line.getLineContent().contains(";")) {
+
+								calledMethodList_DF.add(line);
+							}
+
+						}
+					}
+
+				}
+				ifile.getCoupling().setCalledMethodList_DF(calledMethodList_DF);
+			}
+		}
+	}
+
+	@Override
+	public void getMethods_DF(ArrayList<CustomFile> fileList) {
+
+		for (CustomFile file : fileList) {
+			ArrayList<Line> inReg = new ArrayList<>();
+			ArrayList<Line> inRec = new ArrayList<>();
+			for (Line line : file.getCoupling().getCalledMethodList_DF()) {
+
+				for (Line line_reg : file.getCoupling().getRegularMethods()) {
+
+					for (Line line_end : file.getCoupling().getMethodList()) {
+
+						if (line_end.getLineNumber() == line_reg.getLineNumber()) {
+
+							if (line.getLineNumber() > line_reg.getLineNumber()
+									&& line.getLineNumber() < line_end.getEndLineNumber()) {
+								inReg.add(line);
+							}
+
+						}
+
+					}
+
+				}
+
+				for (Line line_rec : file.getCoupling().getRecursiveMethods()) {
+
+					for (Line line_end : file.getCoupling().getMethodList()) {
+
+						if (line_end.getLineNumber() == line_rec.getLineNumber()) {
+
+							if (line.getLineNumber() > line_rec.getLineNumber()
+									&& line.getLineNumber() < line_end.getEndLineNumber()) {
+								inRec.add(line);
+							}
+
+						}
+
+					}
+
+				}
+
+			}
+			file.getCoupling().setInReg_DF(inReg);
+			file.getCoupling().setInRec_DF(inRec);
+
+		}
+
+	}
+	
+	@Override
+	public void getRegInReg_DF(ArrayList<CustomFile> fileList) {
+		
+		for(CustomFile file : fileList) {
+			ArrayList<Line> regInReg_DF = new ArrayList<>();
+			System.out.println(file.getFileName());
 			
-			for(CustomFile file : fileList) {
+			for(Line line_reg : file.getCoupling().getRegularMethods()) {
 				
-				if(file.getFileName() == file1.getFileName()) {
-					System.out.println(file.getFileName());
-				}else {
-					System.out.println(file.getFileName());
+				for(Line line : file.getCoupling().getInReg_DF()) {
+					
+					if(line.getLineContent().contains(line_reg.getLineContent())) {
+						//System.out.println(line.getLineNumber() + ", " + line.getLineContent());
+						regInReg_DF.add(line);
+						break;
+					}
+					
 				}
 				
 			}
 			
+			file.getCoupling().setRegularInRegularMethods_DF(regInReg_DF);
 		}
+	}
+
+	@Override
+	public void getRecInReg_DF(ArrayList<CustomFile> fileList) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getRecInRec_DF(ArrayList<CustomFile> fileList) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getRegInRec_DF(ArrayList<CustomFile> fileList) {
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -625,12 +734,19 @@ public class CouplingServiceImp implements CouplingService {
 		getGlobalVariableListInReg(file);
 		getGlobalVariableListInRec(file);
 	}
+	
+	
 
 	@Override
 	public void process2(ArrayList<CustomFile> fileList) {
 
-			getRegInReg_DF(fileList);
+		for (CustomFile file : fileList) {
+			getCalledMethodSet_DF(file, fileList);
+		}
 
+		getMethods_DF(fileList);
+		getRegInReg_DF(fileList);
+		
 	}
 
 }

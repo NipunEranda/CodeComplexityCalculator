@@ -58,7 +58,7 @@ public class Main {
 			}
 		}
 		couplingService.process2(this.fileList);
-		
+	
 	}
 
 }

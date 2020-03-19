@@ -39,6 +39,7 @@ public class Coupling {
 	private ArrayList<Line> MethodList;
 	private ArrayList<Line> methodSetFull;
 	private ArrayList<Line> calledMethodList;
+	private ArrayList<Line> calledMethodList_DF;
 	private ArrayList<Line> globalVariableSet;
 	private ArrayList<Line> globalVariableListInReg;
 	private ArrayList<Line> globalVariableListInRec;
@@ -48,6 +49,13 @@ public class Coupling {
 	private ArrayList<Line> recursiveInRegularMethods;
 	private ArrayList<Line> recursiveInRecursiveMethods;
 	private ArrayList<Line> regularInRecursiveMethods;
+	
+	private ArrayList<Line> inReg_DF;
+	private ArrayList<Line> inRec_DF;
+	private ArrayList<Line> regularInRegularMethods_DF;
+	private ArrayList<Line> recursiveInRegularMethods_DF;
+	private ArrayList<Line> recursiveInRecursiveMethods_DF;
+	private ArrayList<Line> regularInRecursiveMethods_DF;
 	
 	
 	
@@ -342,6 +350,60 @@ public class Coupling {
 		this.regularInRecursiveMethods = regularInRecursiveMethods;
 	}
 
+	public ArrayList<Line> getCalledMethodList_DF() {
+		return calledMethodList_DF;
+	}
+
+	public void setCalledMethodList_DF(ArrayList<Line> calledMethodList_DF) {
+		this.calledMethodList_DF = calledMethodList_DF;
+	}
+
+	public ArrayList<Line> getRegularInRegularMethods_DF() {
+		return regularInRegularMethods_DF;
+	}
+
+	public void setRegularInRegularMethods_DF(ArrayList<Line> regularInRegularMethods_DF) {
+		this.regularInRegularMethods_DF = regularInRegularMethods_DF;
+	}
 	
+	public ArrayList<Line> getRecursiveInRegularMethods_DF() {
+		return recursiveInRegularMethods_DF;
+	}
+
+	public void setRecursiveInRegularMethods_DF(ArrayList<Line> recursiveInRegularMethods_DF) {
+		this.recursiveInRegularMethods_DF = recursiveInRegularMethods_DF;
+	}
+
+	public ArrayList<Line> getRecursiveInRecursiveMethods_DF() {
+		return recursiveInRecursiveMethods_DF;
+	}
+
+	public void setRecursiveInRecursiveMethods_DF(ArrayList<Line> recursiveInRecursiveMethods_DF) {
+		this.recursiveInRecursiveMethods_DF = recursiveInRecursiveMethods_DF;
+	}
+
+	public ArrayList<Line> getRegularInRecursiveMethods_DF() {
+		return regularInRecursiveMethods_DF;
+	}
+
+	public void setRegularInRecursiveMethods_DF(ArrayList<Line> regularInRecursiveMethods_DF) {
+		this.regularInRecursiveMethods_DF = regularInRecursiveMethods_DF;
+	}
+
+	public ArrayList<Line> getInReg_DF() {
+		return inReg_DF;
+	}
+
+	public void setInReg_DF(ArrayList<Line> inReg_DF) {
+		this.inReg_DF = inReg_DF;
+	}
+
+	public ArrayList<Line> getInRec_DF() {
+		return inRec_DF;
+	}
+
+	public void setInRec_DF(ArrayList<Line> inRec_DF) {
+		this.inRec_DF = inRec_DF;
+	}
 	
 }
