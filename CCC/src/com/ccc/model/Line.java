@@ -3,22 +3,30 @@ package com.ccc.model;
 public class Line {
 	
 	private CustomFile file;
+	private String fileName;
 	private int lineNumber;
 	private String lineContent;
 	private int endLineNumber;
+	private String objName;
 	
 	public Line(int lineNumber, String lineContent) {
 		this.lineNumber = lineNumber;
 		this.lineContent = lineContent;
 	}
 	
+	public String getFileName() {
+		return fileName;
+	}
 	
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
 	public CustomFile getFile() {
 		return file;
 	}
 
-	public void setFileName(CustomFile file) {
+	public void setFile(CustomFile file) {
 		this.file = file;
 	}
 
@@ -44,6 +52,14 @@ public class Line {
 
 	public void setEndLineNumber(int endLineNumber) {
 		this.endLineNumber = endLineNumber;
+	}
+
+	public String getObjName() {
+		return objName;
+	}
+
+	public void setObjName(String objName) {
+		this.objName = objName;
 	}
 	
 

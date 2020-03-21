@@ -1,5 +1,6 @@
 package com.ccc.services;
 
+import java.nio.channels.FileLock;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,8 @@ import com.ccc.model.CustomFile;
 import com.ccc.model.FileRead;
 import com.ccc.model.Line;
 import com.ccc.util.LineArrayListToArray;
+
+import sun.nio.ch.FileKey;
 
 public class CouplingServiceImp implements CouplingService {
 
@@ -595,13 +598,11 @@ public class CouplingServiceImp implements CouplingService {
 		ArrayList<Line> objectList = new ArrayList<>();
 		ArrayList<Line> calledMethodList_DF = new ArrayList<>();
 		for (CustomFile file : fileList) {
-
 			if (!file.getFileName().equalsIgnoreCase(ifile.getFileName())) {
 				for (Line line : ifile.getLineSet()) {
 					if (line.getLineContent().contains(file.getFileName().split("\\.")[0])) {
 
 						if (line.getLineContent().contains("new")) {
-							line.setFileName(file);
 							objectList.add(line);
 						}
 
@@ -612,7 +613,9 @@ public class CouplingServiceImp implements CouplingService {
 
 							if (line.getLineContent().contains(obj.getLineContent().split(" ")[1])
 									&& line.getLineContent().contains(".") && line.getLineContent().contains(";")) {
-
+								line.setFileName(obj.getLineContent().split(" ")[0]);
+								line.setObjName(obj.getLineContent().split(" ")[1]);
+								line.setFile(file);
 								calledMethodList_DF.add(line);
 							}
 
@@ -623,6 +626,7 @@ public class CouplingServiceImp implements CouplingService {
 				ifile.getCoupling().setCalledMethodList_DF(calledMethodList_DF);
 			}
 		}
+
 	}
 
 	@Override
@@ -674,48 +678,77 @@ public class CouplingServiceImp implements CouplingService {
 		}
 
 	}
-	
+
 	@Override
 	public void getRegInReg_DF(ArrayList<CustomFile> fileList) {
-		
-		for(CustomFile file : fileList) {
+		for (CustomFile file : fileList) {
 			ArrayList<Line> regInReg_DF = new ArrayList<>();
-			System.out.println(file.getFileName());
-			
-			for(Line line_reg : file.getCoupling().getRegularMethods()) {
-				
-				for(Line line : file.getCoupling().getInReg_DF()) {
-					
-					if(line.getLineContent().contains(line_reg.getLineContent())) {
-						//System.out.println(line.getLineNumber() + ", " + line.getLineContent());
+			for (Line line : file.getCoupling().getInReg_DF()) {
+
+				for (Line line_reg : line.getFile().getCoupling().getRegularMethods()) {
+
+					if (line.getLineContent().contains(line_reg.getLineContent())) {
 						regInReg_DF.add(line);
-						break;
 					}
-					
+
 				}
-				
 			}
-			
 			file.getCoupling().setRegularInRegularMethods_DF(regInReg_DF);
 		}
 	}
 
 	@Override
 	public void getRecInReg_DF(ArrayList<CustomFile> fileList) {
-		// TODO Auto-generated method stub
-		
+		for (CustomFile file : fileList) {
+			ArrayList<Line> recInReg_DF = new ArrayList<>();
+			for (Line line : file.getCoupling().getInReg_DF()) {
+
+				for (Line line_rec : line.getFile().getCoupling().getRecursiveMethods()) {
+
+					if (line.getLineContent().contains(line_rec.getLineContent())) {
+						recInReg_DF.add(line);
+					}
+
+				}
+			}
+			file.getCoupling().setRecursiveInRegularMethods_DF(recInReg_DF);
+		}
 	}
 
 	@Override
 	public void getRecInRec_DF(ArrayList<CustomFile> fileList) {
-		// TODO Auto-generated method stub
-		
+		for (CustomFile file : fileList) {
+			ArrayList<Line> recInRec_DF = new ArrayList<>();
+			for (Line line : file.getCoupling().getInRec_DF()) {
+
+				for (Line line_rec : line.getFile().getCoupling().getRecursiveMethods()) {
+
+					if (line.getLineContent().contains(line_rec.getLineContent())) {
+						recInRec_DF.add(line);
+					}
+
+				}
+			}
+			file.getCoupling().setRecursiveInRecursiveMethods_DF(recInRec_DF);
+		}
 	}
 
 	@Override
 	public void getRegInRec_DF(ArrayList<CustomFile> fileList) {
-		// TODO Auto-generated method stub
-		
+		for (CustomFile file : fileList) {
+			ArrayList<Line> regInRec_DF = new ArrayList<>();
+			for (Line line : file.getCoupling().getInRec_DF()) {
+
+				for (Line line_reg : line.getFile().getCoupling().getRegularMethods()) {
+
+					if (line.getLineContent().contains(line_reg.getLineContent())) {
+						regInRec_DF.add(line);
+					}
+
+				}
+			}
+			file.getCoupling().setRegularInRecursiveMethods_DF(regInRec_DF);
+		}
 	}
 
 	@Override
@@ -734,8 +767,6 @@ public class CouplingServiceImp implements CouplingService {
 		getGlobalVariableListInReg(file);
 		getGlobalVariableListInRec(file);
 	}
-	
-	
 
 	@Override
 	public void process2(ArrayList<CustomFile> fileList) {
@@ -746,6 +777,10 @@ public class CouplingServiceImp implements CouplingService {
 
 		getMethods_DF(fileList);
 		getRegInReg_DF(fileList);
+		getRecInReg_DF(fileList);
+		getRecInRec_DF(fileList);
+		getRegInRec_DF(fileList);
+
 		
 	}
 

@@ -3,13 +3,14 @@ public class Maths1{
 	double num = 0.0;
 	
 	public static void main(String[] args){
-		Maths2 m2 = new Maths2();
+		Maths1 m2 = new Maths1();
 		m2.answer();
 	}
 	
 	public double getSqr(double num1){
-		Maths2 m2 = new Maths2();
-		m2.getCube();
+		Maths2 m5 = new Maths2();
+		m5.getCube();
+		m5.answer();
 		if(num1 == 0)
 			return 0;
 		else
@@ -17,8 +18,9 @@ public class Maths1{
 	}
 	
 	public double getCube(double num2){
-		Maths2 m2 = new Maths2();
-		m2.getSqr();
+		Maths2 m3 = new Maths2();
+		m3.answer();
+		m3.getSqr();
 		if(num2 == 0)
 			return 0;
 		else
@@ -26,8 +28,10 @@ public class Maths1{
 	}
 	
 	public void answer(){
-		Maths2 m2 = new Maths2();
-		m2.getlqr();
+		Maths1 m1 = new Maths1();
+		Maths2 m4 = new Maths2();
+		m4.getSqr();
+		m4.printSomething2();
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter a number : ");
 		num = input.nextInt();
@@ -38,11 +42,15 @@ public class Maths1{
 	System.out.println("Cube value of " + num + "is " + m1.getCube(num)); 
 }
 
+	public void printSomething1(){
+		System.out.println("Hello");
+	}
+
+
 public double getlqr(double num1){
-		Maths2 m2 = new Maths2();
-		m2.answer();
+		answer();
 		if(num1 == 0)
 			return 0;
 		else
-			return getSqr(num1-1) + (2 * num1) - 1;
+			return getlqr(num1-1) + (2 * num1) - 1;
 	}

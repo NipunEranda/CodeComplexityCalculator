@@ -14,7 +14,7 @@ public class Main {
 	private ArrayList<CustomFile> fileList = new ArrayList<CustomFile>();
 	private String fileType = "";
 	public static String WEBCONTENTDIR = "git/CodeComplexityCalculator/CCC/WebContent/";
-	
+
 	public ArrayList<CustomFile> getFileList() {
 		return fileList;
 	}
@@ -34,7 +34,7 @@ public class Main {
 	public void run() {
 
 		CouplingService couplingService = new CouplingServiceImp();
-		
+
 		for (CustomFile file : this.fileList) {
 
 			if (!(file.getFileName().contains("java") || file.getFileName().contains("cpp"))) {
@@ -52,13 +52,14 @@ public class Main {
 
 				fileReadService.openFile(fileRead, file);
 				fileReadService.readFile(fileRead, file);
-				
+
 				couplingService.process1(file);
 				fileReadService.closeFile(fileRead);
 			}
 		}
-		couplingService.process2(this.fileList);
-	
+		if (this.fileList.size() > 1) {
+			couplingService.process2(this.fileList);
+		}
 	}
 
 }

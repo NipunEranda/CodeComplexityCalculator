@@ -3,12 +3,14 @@ public class Maths2{
 	double num = 0.0;
 	
 	public static void main(String[] args){
-		Maths1 m1 = new Maths1();
-		m1.answer();
+		Maths2 m2 = new Maths2();
+		m2.answer();
 	}
 	
 	public double getSqr(double num1){
-		m1.getCube();
+		Maths1 m5 = new Maths1();
+		m5.getCube();
+		m5.answer();
 		if(num1 == 0)
 			return 0;
 		else
@@ -16,7 +18,9 @@ public class Maths2{
 	}
 	
 	public double getCube(double num2){
-		m1.getSqr();
+		Maths1 m3 = new Maths1();
+		m3.answer();
+		m3.getSqr();
 		if(num2 == 0)
 			return 0;
 		else
@@ -24,8 +28,10 @@ public class Maths2{
 	}
 	
 	public void answer(){
-		Maths2 m1 = new Maths();
-		m1.getlqr();
+		Maths1 m4 = new Maths1();
+		Maths2 m1 = new Maths2();
+		m4.getCube();
+		m4.printSomething1();
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter a number : ");
 		num = input.nextInt();
@@ -36,11 +42,14 @@ public class Maths2{
 	System.out.println("Cube value of " + num + "is " + m1.getCube(num)); 
 }
 
+	public void printSomething2(){
+		System.out.println("Hello");
+	}
+
 public double getlqr(double num1){
-		Maths1 m1 = new Maths1();
-		m1.answer();
+		answer();
 		if(num1 == 0)
 			return 0;
 		else
-			return getSqr(num1-1) + (2 * num1) - 1;
+			return getlqr(num1-1) + (2 * num1) - 1;
 	}
