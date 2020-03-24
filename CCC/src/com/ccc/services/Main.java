@@ -7,7 +7,7 @@ import org.apache.commons.fileupload.FileItem;
 import com.ccc.model.CustomFile;
 import com.ccc.model.FileRead;
 import com.ccc.model.Line;
-import com.ccc.util.RemoveDuplicateMethods;
+import com.ccc.util.RemoveDuplicates;
 
 public class Main {
 

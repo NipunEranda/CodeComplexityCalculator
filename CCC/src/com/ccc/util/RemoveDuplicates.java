@@ -6,7 +6,7 @@ import java.util.LinkedHashSet;
 
 import com.ccc.model.Line;
  
-public class RemoveDuplicateMethods 
+public class RemoveDuplicates 
 {
     public ArrayList<Line> initiate(ArrayList<Line> lineSet) {
  

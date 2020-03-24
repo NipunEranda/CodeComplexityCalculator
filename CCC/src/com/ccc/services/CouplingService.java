@@ -30,6 +30,9 @@ public interface CouplingService {
 	public void getRecInReg_DF(ArrayList<CustomFile> fileList);
 	public void getRecInRec_DF(ArrayList<CustomFile> fileList);
 	public void getRegInRec_DF(ArrayList<CustomFile> fileList);
+	public void getGlobalVariableList_DF(CustomFile ifile, ArrayList<CustomFile> fileList);
+	public void getGlobalVariableListInReg_DF(ArrayList<CustomFile> fileList);
+	public void getGlobalVariableListInRec_DF(ArrayList<CustomFile> fileList);
 	
 	public void process1(CustomFile file);
 	public void process2(ArrayList<CustomFile> fileList);

@@ -50,12 +50,16 @@ public class Coupling {
 	private ArrayList<Line> recursiveInRecursiveMethods;
 	private ArrayList<Line> regularInRecursiveMethods;
 	
+	private ArrayList<Line> objectList;
 	private ArrayList<Line> inReg_DF;
 	private ArrayList<Line> inRec_DF;
 	private ArrayList<Line> regularInRegularMethods_DF;
 	private ArrayList<Line> recursiveInRegularMethods_DF;
 	private ArrayList<Line> recursiveInRecursiveMethods_DF;
 	private ArrayList<Line> regularInRecursiveMethods_DF;
+	private ArrayList<Line> globalVariableList_DF;
+	private ArrayList<Line> globalVariableListInReg_DF;
+	private ArrayList<Line> globalVariableListInRec_DF;
 	
 	
 	
@@ -390,6 +394,14 @@ public class Coupling {
 		this.regularInRecursiveMethods_DF = regularInRecursiveMethods_DF;
 	}
 
+	public ArrayList<Line> getObjectList() {
+		return objectList;
+	}
+
+	public void setObjectList(ArrayList<Line> objectList) {
+		this.objectList = objectList;
+	}
+
 	public ArrayList<Line> getInReg_DF() {
 		return inReg_DF;
 	}
@@ -404,6 +416,30 @@ public class Coupling {
 
 	public void setInRec_DF(ArrayList<Line> inRec_DF) {
 		this.inRec_DF = inRec_DF;
+	}
+
+	public ArrayList<Line> getGlobalVariableList_DF() {
+		return globalVariableList_DF;
+	}
+
+	public void setGlobalVariableList_DF(ArrayList<Line> globalVariableList_DF) {
+		this.globalVariableList_DF = globalVariableList_DF;
+	}
+
+	public ArrayList<Line> getGlobalVariableListInReg_DF() {
+		return globalVariableListInReg_DF;
+	}
+
+	public void setGlobalVariableListInReg_DF(ArrayList<Line> globalVariableListInReg_DF) {
+		this.globalVariableListInReg_DF = globalVariableListInReg_DF;
+	}
+
+	public ArrayList<Line> getGlobalVariableListInRec_DF() {
+		return globalVariableListInRec_DF;
+	}
+
+	public void setGlobalVariableListInRec_DF(ArrayList<Line> globalVariableListInRec_DF) {
+		this.globalVariableListInRec_DF = globalVariableListInRec_DF;
 	}
 	
 }

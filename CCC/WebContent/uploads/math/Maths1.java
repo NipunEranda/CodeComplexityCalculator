@@ -21,6 +21,7 @@ public class Maths1{
 		Maths2 m3 = new Maths2();
 		m3.answer();
 		m3.getSqr();
+		m3.num = 0;
 		if(num2 == 0)
 			return 0;
 		else
@@ -35,6 +36,7 @@ public class Maths1{
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter a number : ");
 		num = input.nextInt();
+		m4.num = 0;
 	
 	double n2 = m1.getSqr(num);
 	

@@ -11,6 +11,7 @@ public class Maths2{
 		Maths1 m5 = new Maths1();
 		m5.getCube();
 		m5.answer();
+		m5.num = 0;
 		if(num1 == 0)
 			return 0;
 		else
@@ -21,6 +22,7 @@ public class Maths2{
 		Maths1 m3 = new Maths1();
 		m3.answer();
 		m3.getSqr();
+		m3.num = 0;
 		if(num2 == 0)
 			return 0;
 		else

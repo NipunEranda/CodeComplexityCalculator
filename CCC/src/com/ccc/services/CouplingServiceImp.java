@@ -601,12 +601,15 @@ public class CouplingServiceImp implements CouplingService {
 			if (!file.getFileName().equalsIgnoreCase(ifile.getFileName())) {
 				for (Line line : ifile.getLineSet()) {
 					if (line.getLineContent().contains(file.getFileName().split("\\.")[0])) {
-
 						if (line.getLineContent().contains("new")) {
+							line.setFileName(line.getLineContent().split(" ")[0]);
+							line.setObjName(line.getLineContent().split(" ")[1]);
+							line.setFile(file);
 							objectList.add(line);
 						}
 
 					}
+					ifile.getCoupling().setObjectList(objectList);
 
 					if (objectList.size() > 0) {
 						for (Line obj : objectList) {
@@ -752,6 +755,101 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
+	public void getGlobalVariableList_DF(CustomFile ifile, ArrayList<CustomFile> fileList) {
+		ArrayList<Line> globalVariableList_DF = new ArrayList<>();
+		for (CustomFile file : fileList) {
+
+			if (!file.getFileName().equalsIgnoreCase(ifile.getFileName())) {
+
+				for (Line line : ifile.getCoupling().getObjectList()) {
+
+					if (line.getFile().getFileName().equalsIgnoreCase(file.getFileName())) {
+
+						for (Line line_gVariable : file.getCoupling().getGlobalVariableSet()) {
+
+							for (Line lineset : ifile.getLineSet()) {
+
+								if (lineset.getLineContent()
+										.contains(line.getObjName() + "." + line_gVariable.getLineContent())) {
+									lineset.setFile(file);
+									lineset.setObjName(line.getObjName());
+									globalVariableList_DF.add(lineset);
+								}
+
+							}
+
+						}
+
+					}
+
+				}
+			}
+
+		}
+		ifile.getCoupling().setGlobalVariableList_DF(globalVariableList_DF);
+
+	}
+
+	@Override
+	public void getGlobalVariableListInReg_DF(ArrayList<CustomFile> fileList) {
+		ArrayList<Line> globalVariableListInReg_DF = new ArrayList<>();
+		for (CustomFile file : fileList) {
+			System.out.println(file.getFileName());
+
+			for (Line line : file.getCoupling().getGlobalVariableList_DF()) {
+				
+				for (Line line_reg : file.getCoupling().getRegularMethods()) {
+
+					for (Line line_end : file.getCoupling().getMethodList()) {
+
+						if (line_end.getLineNumber() == line_reg.getLineNumber()) {
+
+							if (line.getLineNumber() > line_reg.getLineNumber()
+									&& line.getLineNumber() < line_end.getEndLineNumber()) {
+								globalVariableListInReg_DF.add(line);
+							}
+
+						}
+
+					}
+				}
+
+			}
+			file.getCoupling().setGlobalVariableListInReg_DF(globalVariableListInReg_DF);
+		}
+	}
+
+	@Override
+	public void getGlobalVariableListInRec_DF(ArrayList<CustomFile> fileList) {
+		ArrayList<Line> globalVariableListInRec_DF = new ArrayList<>();
+		for (CustomFile file : fileList) {
+			System.out.println(file.getFileName());
+
+			for (Line line : file.getCoupling().getGlobalVariableList_DF()) {
+				
+				for (Line line_rec : file.getCoupling().getRecursiveMethods()) {
+
+					for (Line line_end : file.getCoupling().getMethodList()) {
+
+						if (line_end.getLineNumber() == line_rec.getLineNumber()) {
+
+							if (line.getLineNumber() > line_rec.getLineNumber()
+									&& line.getLineNumber() < line_end.getEndLineNumber()) {
+								System.out.println(line.getLineNumber() + ", " + line.getLineContent());
+								globalVariableListInRec_DF.add(line);
+							}
+
+						}
+
+					}
+				}
+
+			}
+			file.getCoupling().setGlobalVariableListInRec_DF(globalVariableListInRec_DF);
+		}
+	}
+
+	@Override
 	public void process1(CustomFile file) {
 		getMethodSet(file);
 		getMethodListFull(file);
@@ -773,6 +871,7 @@ public class CouplingServiceImp implements CouplingService {
 
 		for (CustomFile file : fileList) {
 			getCalledMethodSet_DF(file, fileList);
+			getGlobalVariableList_DF(file, fileList);
 		}
 
 		getMethods_DF(fileList);
@@ -780,8 +879,8 @@ public class CouplingServiceImp implements CouplingService {
 		getRecInReg_DF(fileList);
 		getRecInRec_DF(fileList);
 		getRegInRec_DF(fileList);
-
-		
+		getGlobalVariableListInReg_DF(fileList);
+		getGlobalVariableListInRec_DF(fileList);
 	}
 
 }
