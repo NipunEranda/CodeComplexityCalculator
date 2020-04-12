@@ -6,6 +6,7 @@ public class CustomFile {
 	
 	private String fileName;
 	private String filePath;
+	private String fileType;
 	private int lastIndex;
 	private ArrayList<Line> lineSet;
 	private Coupling coupling;
@@ -26,6 +27,14 @@ public class CustomFile {
 
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
+	}
+
+	public String getFileType() {
+		return fileType;
+	}
+
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
 	}
 
 	public void setFileName(String fileName) {

@@ -3,23 +3,23 @@ package com.ccc.model;
 import java.util.ArrayList;
 
 public class Coupling {
-	
+
 	private String fileName;
-	
-	private final int Wr = 2;
-	private final int Wmcms = 2;
-	private final int Wmcmd = 3;
-	private final int Wmcrms = 3;
-	private final int Wmcrmd = 4;
-	private final int Wrmcrms = 4;
-	private final int Wrmcrmd = 5;
-	private final int Wrmcms = 3;
-	private final int Wrmcmd = 4;
-	private final int Wmrgvs = 1;
-	private final int Wmrgvd = 2;
-	private final int Wrmrgvs = 1;
-	private final int Wrmrgvd = 2;
-	
+
+	private int Wr = 2;
+	private int Wmcms = 2;
+	private int Wmcmd = 3;
+	private int Wmcrms = 3;
+	private int Wmcrmd = 4;
+	private int Wrmcrms = 4;
+	private int Wrmcrmd = 5;
+	private int Wrmcms = 3;
+	private int Wrmcmd = 4;
+	private int Wmrgvs = 1;
+	private int Wmrgvd = 2;
+	private int Wrmrgvs = 1;
+	private int Wrmrgvd = 2;
+
 	private Line line;
 	private int[] lineWeight = new int[14];
 	private int Nr;
@@ -36,6 +36,21 @@ public class Coupling {
 	private int Nrmrgvs;
 	private int Nrmrgvd;
 	
+	private int totr;
+	private int totmcms;
+	private int totmcmd;
+	private int totmcrms;
+	private int totmcrmd;
+	private int totrmcrms;
+	private int totrmcrmd;
+	private int totrmcms;
+	private int totrmcmd;
+	private int totmrgvs;
+	private int totmrgvd;
+	private int totrmrgvs;
+	private int totrmrgvd;
+	private int finalValue;
+	
 	private ArrayList<Line> MethodList;
 	private ArrayList<Line> methodSetFull;
 	private ArrayList<Line> calledMethodList;
@@ -49,7 +64,7 @@ public class Coupling {
 	private ArrayList<Line> recursiveInRegularMethods;
 	private ArrayList<Line> recursiveInRecursiveMethods;
 	private ArrayList<Line> regularInRecursiveMethods;
-	
+
 	private ArrayList<Line> objectList;
 	private ArrayList<Line> inReg_DF;
 	private ArrayList<Line> inRec_DF;
@@ -60,9 +75,7 @@ public class Coupling {
 	private ArrayList<Line> globalVariableList_DF;
 	private ArrayList<Line> globalVariableListInReg_DF;
 	private ArrayList<Line> globalVariableListInRec_DF;
-	
-	
-	
+
 	public Coupling(String fileName) {
 		this.setFileName(fileName);
 		this.MethodList = null;
@@ -76,15 +89,15 @@ public class Coupling {
 	public Line getLine() {
 		return line;
 	}
-	
+
 	public int[] getLineWeight() {
 		return lineWeight;
 	}
-	
+
 	public void setLine(Line line) {
 		this.line = line;
 	}
-	
+
 	public void setLineWeight(int[] lineWeight) {
 		this.lineWeight = lineWeight;
 	}
@@ -139,6 +152,58 @@ public class Coupling {
 
 	public int getWrmrgvd() {
 		return Wrmrgvd;
+	}
+
+	public void setWr(int wr) {
+		Wr = wr;
+	}
+
+	public void setWmcms(int wmcms) {
+		Wmcms = wmcms;
+	}
+
+	public void setWmcmd(int wmcmd) {
+		Wmcmd = wmcmd;
+	}
+
+	public void setWmcrms(int wmcrms) {
+		Wmcrms = wmcrms;
+	}
+
+	public void setWmcrmd(int wmcrmd) {
+		Wmcrmd = wmcrmd;
+	}
+
+	public void setWrmcrms(int wrmcrms) {
+		Wrmcrms = wrmcrms;
+	}
+
+	public void setWrmcrmd(int wrmcrmd) {
+		Wrmcrmd = wrmcrmd;
+	}
+
+	public void setWrmcms(int wrmcms) {
+		Wrmcms = wrmcms;
+	}
+
+	public void setWrmcmd(int wrmcmd) {
+		Wrmcmd = wrmcmd;
+	}
+
+	public void setWmrgvs(int wmrgvs) {
+		Wmrgvs = wmrgvs;
+	}
+
+	public void setWmrgvd(int wmrgvd) {
+		Wmrgvd = wmrgvd;
+	}
+
+	public void setWrmrgvs(int wrmrgvs) {
+		Wrmrgvs = wrmrgvs;
+	}
+
+	public void setWrmrgvd(int wrmrgvd) {
+		Wrmrgvd = wrmrgvd;
 	}
 
 	public int getNr() {
@@ -245,6 +310,110 @@ public class Coupling {
 		Nrmrgvd = nrmrgvd;
 	}
 
+	public int getTotr() {
+		return totr;
+	}
+
+	public void setTotr(int totr) {
+		this.totr = totr;
+	}
+
+	public int getTotmcms() {
+		return totmcms;
+	}
+
+	public void setTotmcms(int totmcms) {
+		this.totmcms = totmcms;
+	}
+
+	public int getTotmcmd() {
+		return totmcmd;
+	}
+
+	public void setTotmcmd(int totmcmd) {
+		this.totmcmd = totmcmd;
+	}
+
+	public int getTotmcrms() {
+		return totmcrms;
+	}
+
+	public void setTotmcrms(int totmcrms) {
+		this.totmcrms = totmcrms;
+	}
+
+	public int getTotmcrmd() {
+		return totmcrmd;
+	}
+
+	public void setTotmcrmd(int totmcrmd) {
+		this.totmcrmd = totmcrmd;
+	}
+
+	public int getTotrmcrms() {
+		return totrmcrms;
+	}
+
+	public void setTotrmcrms(int totrmcrms) {
+		this.totrmcrms = totrmcrms;
+	}
+
+	public int getTotrmcrmd() {
+		return totrmcrmd;
+	}
+
+	public void setTotrmcrmd(int totrmcrmd) {
+		this.totrmcrmd = totrmcrmd;
+	}
+
+	public int getTotrmcms() {
+		return totrmcms;
+	}
+
+	public void setTotrmcms(int totrmcms) {
+		this.totrmcms = totrmcms;
+	}
+
+	public int getTotrmcmd() {
+		return totrmcmd;
+	}
+
+	public void setTotrmcmd(int totrmcmd) {
+		this.totrmcmd = totrmcmd;
+	}
+
+	public int getTotmrgvs() {
+		return totmrgvs;
+	}
+
+	public void setTotmrgvs(int totmrgvs) {
+		this.totmrgvs = totmrgvs;
+	}
+
+	public int getTotmrgvd() {
+		return totmrgvd;
+	}
+
+	public void setTotmrgvd(int totmrgvd) {
+		this.totmrgvd = totmrgvd;
+	}
+
+	public int getTotrmrgvs() {
+		return totrmrgvs;
+	}
+
+	public void setTotrmrgvs(int totrmrgvs) {
+		this.totrmrgvs = totrmrgvs;
+	}
+
+	public int getTotrmrgvd() {
+		return totrmrgvd;
+	}
+
+	public void setTotrmrgvd(int totrmrgvd) {
+		this.totrmrgvd = totrmrgvd;
+	}
+
 	public String getFileName() {
 		return fileName;
 	}
@@ -252,11 +421,11 @@ public class Coupling {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	
-	public void setEndLineNumber(int lineNumber ,int number) {
+
+	public void setEndLineNumber(int lineNumber, int number) {
 		this.MethodList.get(lineNumber).setEndLineNumber(number);
 	}
-	
+
 	public void setMethodList(ArrayList<Line> methodList) {
 		this.MethodList = new ArrayList<Line>(methodList);
 	}
@@ -305,24 +474,23 @@ public class Coupling {
 		this.recursiveInRegularMethods = recursiveInRegularMethods;
 	}
 
-	
-	public ArrayList<Line> getMethodList(){
+	public ArrayList<Line> getMethodList() {
 		return MethodList;
 	}
 
-	public ArrayList<Line> getCalledMethodList(){
+	public ArrayList<Line> getCalledMethodList() {
 		return calledMethodList;
 	}
 
-	public ArrayList<Line> getRegularMethods(){
+	public ArrayList<Line> getRegularMethods() {
 		return regularMethods;
 	}
-	
-	public ArrayList<Line> getRecursiveMethods(){
+
+	public ArrayList<Line> getRecursiveMethods() {
 		return recursiveMethods;
 	}
-	
-	public ArrayList<Line> getRegularInRegularMethods(){
+
+	public ArrayList<Line> getRegularInRegularMethods() {
 		return regularInRegularMethods;
 	}
 
@@ -369,7 +537,7 @@ public class Coupling {
 	public void setRegularInRegularMethods_DF(ArrayList<Line> regularInRegularMethods_DF) {
 		this.regularInRegularMethods_DF = regularInRegularMethods_DF;
 	}
-	
+
 	public ArrayList<Line> getRecursiveInRegularMethods_DF() {
 		return recursiveInRegularMethods_DF;
 	}
@@ -442,4 +610,41 @@ public class Coupling {
 		this.globalVariableListInRec_DF = globalVariableListInRec_DF;
 	}
 	
+	public void setFinalValue() {
+		
+		totr = Wr * Nr;
+		setTotr(totr);
+		totmcms = Wmcms * Nmcms;
+		setTotmcms(totmcms);
+		totmcmd = Wmcmd * Nmcmd;
+		setTotmcmd(totmcmd);
+		totmcrms = Wmcrms * Nmcrms;
+		setTotmcrms(totmcrms);
+		totmcrmd = Wmcrmd * Nmcrmd;
+		setTotmcrmd(totmcrmd);
+		totrmcrms = Wrmcrms * Nrmcrms;
+		setTotrmcrms(totrmcrms);
+		totrmcrmd = Wrmcrmd * Nrmcrmd;
+		setTotrmcrmd(totrmcrmd);
+		totrmcms = Wrmcms * Nrmcms;
+		setTotrmcms(totrmcms);
+		totrmcmd = Wrmcmd * Nrmcmd;
+		setTotrmcmd(totrmcmd);
+		totmrgvs = Wmrgvs * Nmrgvs;
+		setTotmrgvs(totmrgvs);
+		totmrgvd = Wmrgvd * Nmrgvd;
+		setTotmrgvd(totmrgvd);
+		totrmrgvs = Wrmrgvs * Nrmrgvs;
+		setTotmrgvs(totmrgvs);
+		totrmrgvd = Wrmrgvd * Nrmrgvd;
+		setTotrmrgvd(totrmrgvd);
+		
+		finalValue = totr + totmcms + totmcmd + totmcrms + totmcrmd + totrmcrms + totrmcrmd
+				 + totrmcms + totrmcmd + totmrgvs + totmrgvd + totrmrgvs + totrmrgvd;
+
+	}
+
+	public int getFinalValue() {
+		return finalValue;
+	}
 }

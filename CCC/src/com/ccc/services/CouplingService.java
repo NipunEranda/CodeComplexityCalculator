@@ -36,5 +36,6 @@ public interface CouplingService {
 	
 	public void process1(CustomFile file);
 	public void process2(ArrayList<CustomFile> fileList);
+	public void process3(ArrayList<CustomFile> fileList);
 
 }

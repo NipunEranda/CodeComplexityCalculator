@@ -794,10 +794,8 @@ public class CouplingServiceImp implements CouplingService {
 	public void getGlobalVariableListInReg_DF(ArrayList<CustomFile> fileList) {
 		ArrayList<Line> globalVariableListInReg_DF = new ArrayList<>();
 		for (CustomFile file : fileList) {
-			System.out.println(file.getFileName());
-
 			for (Line line : file.getCoupling().getGlobalVariableList_DF()) {
-				
+
 				for (Line line_reg : file.getCoupling().getRegularMethods()) {
 
 					for (Line line_end : file.getCoupling().getMethodList()) {
@@ -823,10 +821,8 @@ public class CouplingServiceImp implements CouplingService {
 	public void getGlobalVariableListInRec_DF(ArrayList<CustomFile> fileList) {
 		ArrayList<Line> globalVariableListInRec_DF = new ArrayList<>();
 		for (CustomFile file : fileList) {
-			System.out.println(file.getFileName());
-
 			for (Line line : file.getCoupling().getGlobalVariableList_DF()) {
-				
+
 				for (Line line_rec : file.getCoupling().getRecursiveMethods()) {
 
 					for (Line line_end : file.getCoupling().getMethodList()) {
@@ -835,7 +831,6 @@ public class CouplingServiceImp implements CouplingService {
 
 							if (line.getLineNumber() > line_rec.getLineNumber()
 									&& line.getLineNumber() < line_end.getEndLineNumber()) {
-								System.out.println(line.getLineNumber() + ", " + line.getLineContent());
 								globalVariableListInRec_DF.add(line);
 							}
 
@@ -881,6 +876,32 @@ public class CouplingServiceImp implements CouplingService {
 		getRegInRec_DF(fileList);
 		getGlobalVariableListInReg_DF(fileList);
 		getGlobalVariableListInRec_DF(fileList);
+
+	}
+	
+	@Override
+	public void process3(ArrayList<CustomFile> fileList) {
+		
+		for (CustomFile file : fileList) {
+			
+			file.getCoupling().setNr(file.getCoupling().getRecursiveMethods().size());
+			file.getCoupling().setNmcms(file.getCoupling().getRegularInRegularMethods().size());
+			file.getCoupling().setNmcmd(file.getCoupling().getRegularInRegularMethods_DF().size());
+			file.getCoupling().setNmcrms(file.getCoupling().getRecursiveInRegularMethods().size());
+			file.getCoupling().setNmcrmd(file.getCoupling().getRecursiveInRegularMethods_DF().size());
+			file.getCoupling().setNrmcrms(file.getCoupling().getRecursiveInRecursiveMethods().size());
+			file.getCoupling().setNrmcrmd(file.getCoupling().getRecursiveInRecursiveMethods_DF().size());
+			file.getCoupling().setNrmcms(file.getCoupling().getRegularInRecursiveMethods().size());
+			file.getCoupling().setNrmcmd(file.getCoupling().getRegularInRecursiveMethods_DF().size());
+			file.getCoupling().setNmrgvs(file.getCoupling().getGlobalVariableListInReg().size());
+			file.getCoupling().setNmrgvd(file.getCoupling().getGlobalVariableListInReg_DF().size());
+			file.getCoupling().setNrmrgvs(file.getCoupling().getGlobalVariableListInRec().size());
+			file.getCoupling().setNrmrgvd(file.getCoupling().getGlobalVariableListInRec_DF().size());
+			file.getCoupling().setFinalValue();
+			System.out.println(file.getCoupling().getFinalValue());
+			
+		}
+		
 	}
 
 }

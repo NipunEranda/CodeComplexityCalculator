@@ -11,6 +11,7 @@ import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -34,12 +35,12 @@ public class UploadServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		Main main = new Main();
+		boolean status = false;
 		if (ServletFileUpload.isMultipartContent(request)) {
 			try {
 				List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 				for (FileItem item : multiparts) {
-					Main main = new Main();
 					if (!item.isFormField()) {
 						String name = new File(item.getName()).getName();
 						if (name.contains(".zip")) {
@@ -81,8 +82,9 @@ public class UploadServlet extends HttpServlet {
 							main.getFileList().add(file);
 						}
 					}
-					main.run();
 				}
+				status = main.run();
+				
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				request.setAttribute("message", "File upload failed due to : " + ex);
@@ -91,7 +93,13 @@ public class UploadServlet extends HttpServlet {
 		} else {
 			request.setAttribute("message", "Sorry this servlet only handles file upload request.");
 		}
-		request.getRequestDispatcher("/fileupload.jsp").forward(request, response);
+		
+		if(status == true) {
+			request.setAttribute("mainObject", Main.getFileList());
+			request.getRequestDispatcher("resultpage.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
 
 	}
 

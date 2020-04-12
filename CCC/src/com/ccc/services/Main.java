@@ -11,18 +11,19 @@ import com.ccc.util.RemoveDuplicates;
 
 public class Main {
 
-	private ArrayList<CustomFile> fileList = new ArrayList<CustomFile>();
+	private boolean status;
+	private static ArrayList<CustomFile> fileList = new ArrayList<CustomFile>();
 	private String fileType = "";
 	public static String WEBCONTENTDIR = "git/CodeComplexityCalculator/CCC/WebContent/";
 
-	public ArrayList<CustomFile> getFileList() {
+	public static ArrayList<CustomFile> getFileList() {
 		return fileList;
 	}
 
 	public void setFileList(ArrayList<CustomFile> fileList) {
 		this.fileList = fileList;
 	}
-
+	
 	public String getFileType() {
 		return fileType;
 	}
@@ -31,7 +32,7 @@ public class Main {
 		this.fileType = fileType;
 	}
 
-	public void run() {
+	public boolean run() {
 
 		CouplingService couplingService = new CouplingServiceImp();
 
@@ -40,26 +41,40 @@ public class Main {
 			if (!(file.getFileName().contains("java") || file.getFileName().contains("cpp"))) {
 				System.out.println("Wrong file type");
 			} else {
+				try {
+					if (file.getFileName().contains("java")) {
+						fileType = "java";
+					} else {
+						fileType = "cpp";
+					}
+					file.setFileType(fileType);
+					FileRead fileRead = new FileRead(file.getFileName());
+					FileReadService fileReadService = new FileReadServiceImp();
 
-				if (file.getFileName().contains("java")) {
-					fileType = "java";
-				} else {
-					fileType = "cpp";
+					fileReadService.openFile(fileRead, file);
+					fileReadService.readFile(fileRead, file);
+					fileReadService.closeFile(fileRead);
+
+					couplingService.process1(file);
+					status = true;
+				} catch (Exception e) {
+					e.printStackTrace();
+					status = false;
 				}
-
-				FileRead fileRead = new FileRead(file.getFileName());
-				FileReadService fileReadService = new FileReadServiceImp();
-
-				fileReadService.openFile(fileRead, file);
-				fileReadService.readFile(fileRead, file);
-
-				couplingService.process1(file);
-				fileReadService.closeFile(fileRead);
 			}
 		}
+
 		if (this.fileList.size() > 1) {
-			couplingService.process2(this.fileList);
+			try {
+				couplingService.process2(this.fileList);
+				couplingService.process3(this.fileList);
+				status = true;
+			} catch (Exception e) {
+				status = false;
+				e.printStackTrace();
+			}
 		}
+		return status;
 	}
 
 }
