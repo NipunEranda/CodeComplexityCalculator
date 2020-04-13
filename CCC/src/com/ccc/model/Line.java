@@ -8,6 +8,7 @@ public class Line {
 	private String lineContent;
 	private int endLineNumber;
 	private String objName;
+	private int finalValue;
 	
 	public Line(int lineNumber, String lineContent) {
 		this.lineNumber = lineNumber;
@@ -61,6 +62,13 @@ public class Line {
 	public void setObjName(String objName) {
 		this.objName = objName;
 	}
-	
+
+	public int getFinalValue() {
+		return finalValue;
+	}
+
+	public void setFinalValue(int finalValue) {
+		this.finalValue = finalValue;
+	}
 
 }

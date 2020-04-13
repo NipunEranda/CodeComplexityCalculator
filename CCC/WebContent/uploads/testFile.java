@@ -15,6 +15,7 @@ public class Maths2{
 	}
 	
 	public double getCube(double num2){
+		num = input.nextInt();
 		if(num2 == 0)
 			return 0;
 		else
@@ -26,7 +27,7 @@ public class Maths2{
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter a number : ");
 		num = input.nextInt();
-	
+		lol();
 	double n2 = m1.getSqr(num);
 	
 	System.out.println("Squared value of " + num + "is " + n2);
@@ -40,3 +41,7 @@ public double getlqr(double num1){
 		else
 			return getlqr(num1-1) + (2 * num1) - 1;
 	}
+	
+public double lol(){
+	return 888.00;
+}

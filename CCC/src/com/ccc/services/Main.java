@@ -63,17 +63,16 @@ public class Main {
 				}
 			}
 		}
-
 		if (this.fileList.size() > 1) {
 			try {
 				couplingService.process2(this.fileList);
-				couplingService.process3(this.fileList);
 				status = true;
 			} catch (Exception e) {
 				status = false;
 				e.printStackTrace();
 			}
 		}
+		couplingService.process3(this.fileList);
 		return status;
 	}
 
