@@ -12,11 +12,12 @@ import com.ccc.util.RemoveDuplicates;
 public class Main {
 
 	private boolean status;
-	private static ArrayList<CustomFile> fileList = new ArrayList<CustomFile>();
+	private ArrayList<CustomFile> fileList = new ArrayList<CustomFile>();
 	private String fileType = "";
 	public static String WEBCONTENTDIR = "git/CodeComplexityCalculator/CCC/WebContent/";
+	//public static String WEBCONTENTDIR = "/opt/tomcat/webapps/ROOT/";
 
-	public static ArrayList<CustomFile> getFileList() {
+	public ArrayList<CustomFile> getFileList() {
 		return fileList;
 	}
 

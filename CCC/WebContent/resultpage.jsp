@@ -21,6 +21,7 @@
 
 		<%
 			for (CustomFile file : main) {
+				int[] sum = new int[13];
 		%>
 		<center>
 			<h3>
@@ -35,33 +36,33 @@
 				<th>Line No</th>
 				<th>Program Statement</th>
 				<th>Nr</th>
-				<!-- A recursive call -->
+				<!--col1 A recursive call -->
 				<th>Nmcms</th>
-				<!-- A regular method calling another regular method in the same file done-->
+				<!--col2 A regular method calling another regular method in the same file done-->
 				<th>Nmcmd</th>
-				<!-- A regular method calling another regular method in a different file done-->
+				<!--col3 A regular method calling another regular method in a different file done-->
 				<th>Nmcrms</th>
-				<!-- A regular method calling a recursive method in the same file done-->
+				<!--col4 A regular method calling a recursive method in the same file done-->
 				<th>Nmcrmd</th>
-				<!-- A regular method calling a recursive method in a different file done-->
+				<!--col5 A regular method calling a recursive method in a different file done-->
 				<th>Nrmcrms</th>
-				<!-- A recursive method calling another recursive method in the same file done-->
+				<!--col6 A recursive method calling another recursive method in the same file done-->
 				<th>Nrmcrmd</th>
-				<!-- A recursive method calling another recursive method in a different file done-->
+				<!--col7 A recursive method calling another recursive method in a different file done-->
 				<th>Nrmcms</th>
-				<!-- A recursive method calling a regular method in the same file done-->
+				<!--col8 A recursive method calling a regular method in the same file done-->
 				<th>Nrmcmd</th>
-				<!-- A recursive method calling a regular method in a different file done-->
+				<!--col9 A recursive method calling a regular method in a different file done-->
 				<th>Nmrgvs</th>
-				<!-- A regular method referencing a global variable in the same file done-->
+				<!--col10 A regular method referencing a global variable in the same file done-->
 				<th>Nmrgvd</th>
-				<!-- A regular method referencing a global variable in a different file done-->
+				<!--col11 A regular method referencing a global variable in a different file done-->
 				<th>Nrmrgvs</th>
-				<!-- A recursive method referencing a global variable in the same file -->
+				<!--col2 A recursive method referencing a global variable in the same file -->
 				<th>Nrmrgvd</th>
-				<!-- A recursive method referencing a global variable in a different file -->
+				<!--col13 A recursive method referencing a global variable in a different file -->
 				<th>Ccp</th>
-				<!-- total -->
+				<!--col14 total -->
 			</tr>
 			<%
 				int count = 0;
@@ -69,19 +70,20 @@
 			%>
 			<tr>
 				<%
-					int col1;
-					int col2;
-					int col3;
-					int col4;
-					int col5;
-					int col6;
-					int col7;
-					int col8;
-					int col9;
-					int col10;
-					int col11;
-					int col12;
-					int col13;
+					int col1 = 0;
+					int col2 = 0;
+					int col3 = 0;
+					int col4 = 0;
+					int col5 = 0;
+					int col6 = 0;
+					int col7 = 0;
+					int col8 = 0;
+					int col9 = 0;
+					int col10 = 0;
+					int col11 = 0;
+					int col12 = 0;
+					int col13 = 0;
+					int col14 = 0;
 				%>
 				<td>
 					<%
@@ -95,152 +97,94 @@
 				</td>
 				<td>
 					<%
-						count = 0;
-								for (Line regLine : file.getCoupling().getRecursiveMethodCalls()) {
-									if (regLine.getLineNumber() == line.getLineNumber()) {
-										count++;
-									}
-								}
-								out.print(count);
+						out.print(line.getSum()[0]);
 					%>
 				</td>
 				<td>
 					<%
-						count = 0;
-								for (Line regLine : file.getCoupling().getRegularInRegularMethods()) {
-									if (regLine.getLineNumber() == line.getLineNumber()) {
-										count++;
-									}
-								}
-								out.print(count);
+						out.print(line.getSum()[1]);
 					%>
 				</td>
 				<td>
 					<%
-						count = 0;
-								for (Line regLine : file.getCoupling().getRegularInRegularMethods_DF()) {
-									if (regLine.getLineNumber() == line.getLineNumber()) {
-										count++;
-									}
-								}
-								out.print(count);
+						out.print(line.getSum()[2]);
 					%>
 				</td>
 				<td>
 					<%
-						count = 0;
-								for (Line regLine : file.getCoupling().getRecursiveInRegularMethods()) {
-									if (regLine.getLineNumber() == line.getLineNumber()) {
-										count++;
-									}
-								}
-								out.print(count);
+						out.print(line.getSum()[3]);
 					%>
 				</td>
 				<td>
 					<%
-						count = 0;
-								for (Line regLine : file.getCoupling().getRecursiveInRegularMethods_DF()) {
-									if (regLine.getLineNumber() == line.getLineNumber()) {
-										count++;
-									}
-								}
-								out.print(count);
+						out.print(line.getSum()[4]);
 					%>
 				</td>
 				<td>
 					<%
-						count = 0;
-								for (Line regLine : file.getCoupling().getRecursiveInRecursiveMethods()) {
-									if (regLine.getLineNumber() == line.getLineNumber()) {
-										count++;
-									}
-								}
-								out.print(count);
+						out.print(line.getSum()[5]);
 					%>
 				</td>
 				<td>
 					<%
-						count = 0;
-								for (Line regLine : file.getCoupling().getRecursiveInRecursiveMethods_DF()) {
-									if (regLine.getLineNumber() == line.getLineNumber()) {
-										count++;
-									}
-								}
-								out.print(count);
+						out.print(line.getSum()[6]);
 					%>
 				</td>
 				<td>
 					<%
-						count = 0;
-								for (Line regLine : file.getCoupling().getRegularInRecursiveMethods()) {
-									if (regLine.getLineNumber() == line.getLineNumber()) {
-										count++;
-									}
-								}
-								out.print(count);
+						out.print(line.getSum()[7]);
 					%>
 				</td>
 				<td>
 					<%
-						count = 0;
-								for (Line regLine : file.getCoupling().getRegularInRecursiveMethods_DF()) {
-									if (regLine.getLineNumber() == line.getLineNumber()) {
-										count++;
-									}
-								}
-								out.print(count);
+						out.print(line.getSum()[8]);
 					%>
 				</td>
 				<td>
 					<%
-						count = 0;
-								for (Line regLine : file.getCoupling().getGlobalVariableListInReg()) {
-									if (regLine.getLineNumber() == line.getLineNumber()) {
-										count++;
-									}
-								}
-								out.print(count);
+						out.print(line.getSum()[9]);
 					%>
 				</td>
 				<td>
 					<%
-						count = 0;
-								for (Line regLine : file.getCoupling().getGlobalVariableListInReg_DF()) {
-									if (regLine.getLineNumber() == line.getLineNumber()) {
-										count++;
-									}
-								}
-								out.print(count);
+						out.print(line.getSum()[10]);
 					%>
 				</td>
 				<td>
 					<%
-						count = 0;
-								for (Line regLine : file.getCoupling().getGlobalVariableListInRec()) {
-									if (regLine.getLineNumber() == line.getLineNumber()) {
-										count++;
-									}
-								}
-								out.print(count);
+						out.print(line.getSum()[11]);
 					%>
 				</td>
 				<td>
 					<%
-						count = 0;
-								for (Line regLine : file.getCoupling().getGlobalVariableListInRec_DF()) {
-									if (regLine.getLineNumber() == line.getLineNumber()) {
-										count++;
-									}
-								}
-								out.print(count);
+						out.print(line.getSum()[12]);
 					%>
 				</td>
-				<td></td>
+				<td>
+				<% out.print(line.getFinalValue()); %>
+				</td>
 			</tr>
 			<%
 				}
 			%>
+			<tr>
+			<td></td>
+			<td></td>
+			<td><% out.print(file.getCoupling().getSum()[0]); %></td>
+			<td><% out.print(file.getCoupling().getSum()[1]); %></td>
+			<td><% out.print(file.getCoupling().getSum()[2]); %></td>
+			<td><% out.print(file.getCoupling().getSum()[3]); %></td>
+			<td><% out.print(file.getCoupling().getSum()[4]); %></td>
+			<td><% out.print(file.getCoupling().getSum()[5]); %></td>
+			<td><% out.print(file.getCoupling().getSum()[6]); %></td>
+			<td><% out.print(file.getCoupling().getSum()[7]); %></td>
+			<td><% out.print(file.getCoupling().getSum()[8]); %></td>
+			<td><% out.print(file.getCoupling().getSum()[9]); %></td>
+			<td><% out.print(file.getCoupling().getSum()[10]); %></td>
+			<td><% out.print(file.getCoupling().getSum()[11]); %></td>
+			<td><% out.print(file.getCoupling().getSum()[12]); %></td>
+			<td><% out.print(file.getCoupling().getFinalValue()); %></td>
+			</tr>
 		</table>
 		<%
 			}

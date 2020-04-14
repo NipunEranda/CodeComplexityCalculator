@@ -49,6 +49,7 @@ public class Coupling {
 	private int totmrgvd;
 	private int totrmrgvs;
 	private int totrmrgvd;
+	private int[] sum;
 	private int finalValue;
 	
 	private ArrayList<Line> MethodList;
@@ -85,6 +86,7 @@ public class Coupling {
 		this.recursiveMethods = null;
 		this.regularInRegularMethods = null;
 		this.methodSetFull = null;
+		this.sum = new int[13];
 	}
 
 	public Line getLine() {
@@ -655,5 +657,13 @@ public class Coupling {
 
 	public int getFinalValue() {
 		return finalValue;
+	}
+	
+	public void setSum(int[] sum) {
+		this.sum = sum;
+	}
+	
+	public int[] getSum() {
+		return this.sum;
 	}
 }

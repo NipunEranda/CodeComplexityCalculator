@@ -30,11 +30,11 @@ import org.apache.commons.io.FileUtils;
  */
 @WebServlet("/UploadServlet")
 public class UploadServlet extends HttpServlet {
-	private final String UPLOAD_DIRECTORY = Main.WEBCONTENTDIR + "uploads/";
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String UPLOAD_DIRECTORY = Main.WEBCONTENTDIR + "uploads/";
 		Main main = new Main();
 		boolean status = false;
 		if (ServletFileUpload.isMultipartContent(request)) {
@@ -61,14 +61,16 @@ public class UploadServlet extends HttpServlet {
 								File folder = new File(UPLOAD_DIRECTORY + name.split("\\.")[0]);
 								File[] listOfFiles = folder.listFiles();
 
+								ArrayList<CustomFile> fileList = new ArrayList<>();
+								
 								for (int i = 0; i < listOfFiles.length; i++) {
 									if (listOfFiles[i].isFile()) {
 										CustomFile codeFile = new CustomFile(listOfFiles[i].getName());
 										codeFile.setFilePath(UPLOAD_DIRECTORY + name.split("\\.")[0] + "/");
-										main.getFileList().add(codeFile);
+										fileList.add(codeFile);
 									}
 								}
-
+								main.setFileList(fileList);
 							} catch (Exception ex) {
 								ex.printStackTrace();
 							}
@@ -95,7 +97,7 @@ public class UploadServlet extends HttpServlet {
 		}
 		
 		if(status == true) {
-			request.setAttribute("mainObject", Main.getFileList());
+			request.setAttribute("mainObject", main.getFileList());
 			request.getRequestDispatcher("resultpage.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("index.jsp").forward(request, response);

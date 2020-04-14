@@ -8,11 +8,15 @@ public class Line {
 	private String lineContent;
 	private int endLineNumber;
 	private String objName;
+	private int[] colValues;
+	private int[] sum;
 	private int finalValue;
 	
 	public Line(int lineNumber, String lineContent) {
 		this.lineNumber = lineNumber;
 		this.lineContent = lineContent;
+		this.colValues = new int[13];
+		this.sum = new int[13];
 	}
 	
 	public String getFileName() {
@@ -67,8 +71,28 @@ public class Line {
 		return finalValue;
 	}
 
-	public void setFinalValue(int finalValue) {
-		this.finalValue = finalValue;
+	public void setFinalValue() {
+		int sum = 0;
+		for(int x : this.colValues) {
+			sum += x;
+		}
+		this.finalValue = sum;
 	}
 
+	public int[] getColValues() {
+		return colValues;
+	}
+
+	public void setColValues(int index, int value) {
+		this.colValues[index] = value;
+	}
+
+	public int[] getSum() {
+		return sum;
+	}
+
+	public void setSum(int index, int value) {
+		this.sum[index] = value;
+	}
+	
 }

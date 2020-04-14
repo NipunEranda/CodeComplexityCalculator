@@ -694,7 +694,7 @@ public class CouplingServiceImp implements CouplingService {
 
 	@Override
 	public void getGlobalVariableListInRec_DF(ArrayList<CustomFile> fileList) {
-		
+
 		for (CustomFile file : fileList) {
 			ArrayList<Line> globalVariableListInRec_DF = new ArrayList<>();
 			for (Line recLine : file.getCoupling().getRecursiveMethods()) {
@@ -729,6 +729,21 @@ public class CouplingServiceImp implements CouplingService {
 		getRegInRec(file);
 		getGlobalVariableListInReg(file);
 		getGlobalVariableListInRec(file);
+
+		file.getCoupling().setNr(file.getCoupling().getRecursiveMethodCalls().size());
+		file.getCoupling().setNmcms(file.getCoupling().getRegularInRegularMethods().size());
+		file.getCoupling().setNmcmd(0);
+		file.getCoupling().setNmcrms(file.getCoupling().getRecursiveInRegularMethods().size());
+		file.getCoupling().setNmcrmd(0);
+		file.getCoupling().setNrmcrms(file.getCoupling().getRecursiveInRecursiveMethods().size());
+		file.getCoupling().setNrmcrmd(0);
+		file.getCoupling().setNrmcms(file.getCoupling().getRegularInRecursiveMethods().size());
+		file.getCoupling().setNrmcmd(0);
+		file.getCoupling().setNmrgvs(file.getCoupling().getGlobalVariableListInReg().size());
+		file.getCoupling().setNmrgvd(0);
+		file.getCoupling().setNrmrgvs(file.getCoupling().getGlobalVariableListInRec().size());
+		file.getCoupling().setNrmrgvd(0);
+		file.getCoupling().setFinalValue();
 	}
 
 	@Override
@@ -747,50 +762,212 @@ public class CouplingServiceImp implements CouplingService {
 		getGlobalVariableListInReg_DF(fileList);
 		getGlobalVariableListInRec_DF(fileList);
 
+		for (CustomFile file : fileList) {
+
+			file.getCoupling().setNr(file.getCoupling().getRecursiveMethodCalls().size());
+			file.getCoupling().setNmcms(file.getCoupling().getRegularInRegularMethods().size());
+			file.getCoupling().setNmcmd(file.getCoupling().getRegularInRegularMethods_DF().size());
+			file.getCoupling().setNmcrms(file.getCoupling().getRecursiveInRegularMethods().size());
+			file.getCoupling().setNmcrmd(file.getCoupling().getRecursiveInRegularMethods_DF().size());
+			file.getCoupling().setNrmcrms(file.getCoupling().getRecursiveInRecursiveMethods().size());
+			file.getCoupling().setNrmcrmd(file.getCoupling().getRecursiveInRecursiveMethods_DF().size());
+			file.getCoupling().setNrmcms(file.getCoupling().getRegularInRecursiveMethods().size());
+			file.getCoupling().setNrmcmd(file.getCoupling().getRegularInRecursiveMethods_DF().size());
+			file.getCoupling().setNmrgvs(file.getCoupling().getGlobalVariableListInReg().size());
+			file.getCoupling().setNmrgvd(file.getCoupling().getGlobalVariableListInReg_DF().size());
+			file.getCoupling().setNrmrgvs(file.getCoupling().getGlobalVariableListInRec().size());
+			file.getCoupling().setNrmrgvd(file.getCoupling().getGlobalVariableListInRec_DF().size());
+			file.getCoupling().setFinalValue();
+
+		}
+
 	}
 
 	@Override
 	public void process3(ArrayList<CustomFile> fileList) {
 
-		if (fileList.size() > 1) {
-			for (CustomFile file : fileList) {
+		int count = 0;
+		CustomFile resultFile = new CustomFile("resultFile");
+		ArrayList<Line> resultLineSet = new ArrayList<>();
 
-				file.getCoupling().setNr(file.getCoupling().getRecursiveMethodCalls().size());
-				file.getCoupling().setNmcms(file.getCoupling().getRegularInRegularMethods().size());
-				file.getCoupling().setNmcmd(file.getCoupling().getRegularInRegularMethods_DF().size());
-				file.getCoupling().setNmcrms(file.getCoupling().getRecursiveInRegularMethods().size());
-				file.getCoupling().setNmcrmd(file.getCoupling().getRecursiveInRegularMethods_DF().size());
-				file.getCoupling().setNrmcrms(file.getCoupling().getRecursiveInRecursiveMethods().size());
-				file.getCoupling().setNrmcrmd(file.getCoupling().getRecursiveInRecursiveMethods_DF().size());
-				file.getCoupling().setNrmcms(file.getCoupling().getRegularInRecursiveMethods().size());
-				file.getCoupling().setNrmcmd(file.getCoupling().getRegularInRecursiveMethods_DF().size());
-				file.getCoupling().setNmrgvs(file.getCoupling().getGlobalVariableListInReg().size());
-				file.getCoupling().setNmrgvd(file.getCoupling().getGlobalVariableListInReg_DF().size());
-				file.getCoupling().setNrmrgvs(file.getCoupling().getGlobalVariableListInRec().size());
-				file.getCoupling().setNrmrgvd(file.getCoupling().getGlobalVariableListInRec_DF().size());
-				file.getCoupling().setFinalValue();
+		for (CustomFile file : fileList) {
+			int[] sum = new int[13];
+			for (Line line : file.getLineSet()) {
 
+				// col1
+				count = 0;
+				for (Line regLine : file.getCoupling().getRecursiveMethodCalls()) {
+					if (regLine.getLineNumber() == line.getLineNumber()) {
+						count++;
+					}
+				}
+
+				line.setSum(0, count);
+				line.setColValues(0, count * file.getCoupling().getWr());
+
+				// col2
+				count = 0;
+				for (Line regLine : file.getCoupling().getRegularInRegularMethods()) {
+					if (regLine.getLineNumber() == line.getLineNumber()) {
+						count++;
+					}
+				}
+
+				line.setSum(1, count);
+				line.setColValues(1, count * file.getCoupling().getWmcms());
+
+				// col3
+				if (fileList.size() > 1) {
+					count = 0;
+					for (Line regLine : file.getCoupling().getRegularInRegularMethods_DF()) {
+						if (regLine.getLineNumber() == line.getLineNumber()) {
+							count++;
+						}
+					}
+					line.setSum(2, count);
+					line.setColValues(2, count * file.getCoupling().getWmcmd());
+				} else {
+					line.setSum(2, 0);
+					line.setColValues(2, 0);
+				}
+
+				// col4
+				count = 0;
+				for (Line regLine : file.getCoupling().getRecursiveInRegularMethods()) {
+					if (regLine.getLineNumber() == line.getLineNumber()) {
+						count++;
+					}
+				}
+				line.setSum(3, count);
+				line.setColValues(3, count * file.getCoupling().getWmcrms());
+
+				// col5
+				if (fileList.size() > 1) {
+					count = 0;
+					for (Line regLine : file.getCoupling().getRecursiveInRegularMethods_DF()) {
+						if (regLine.getLineNumber() == line.getLineNumber()) {
+							count++;
+						}
+					}
+					line.setSum(4, count);
+					line.setColValues(4, count * file.getCoupling().getWmcrmd());
+				} else {
+					line.setSum(2, 0);
+					line.setColValues(2, 0);
+				}
+
+				// col6
+				count = 0;
+				for (Line regLine : file.getCoupling().getRecursiveInRecursiveMethods()) {
+					if (regLine.getLineNumber() == line.getLineNumber()) {
+						count++;
+					}
+				}
+				line.setSum(5, count);
+				line.setColValues(5, count * file.getCoupling().getWrmcrms());
+
+				// col7
+				if (fileList.size() > 1) {
+					count = 0;
+					for (Line regLine : file.getCoupling().getRecursiveInRecursiveMethods_DF()) {
+						if (regLine.getLineNumber() == line.getLineNumber()) {
+							count++;
+						}
+					}
+					line.setSum(6, count);
+					line.setColValues(6, count * file.getCoupling().getWrmcrmd());
+				} else {
+					line.setSum(2, 0);
+					line.setColValues(2, 0);
+				}
+
+				// col8
+				count = 0;
+				for (Line regLine : file.getCoupling().getRegularInRecursiveMethods()) {
+					if (regLine.getLineNumber() == line.getLineNumber()) {
+						count++;
+					}
+				}
+				line.setSum(7, count);
+				line.setColValues(7, count * file.getCoupling().getWrmcms());
+
+				// col9
+				if (fileList.size() > 1) {
+					count = 0;
+					for (Line regLine : file.getCoupling().getRegularInRecursiveMethods_DF()) {
+						if (regLine.getLineNumber() == line.getLineNumber()) {
+							count++;
+						}
+					}
+					line.setSum(8, count);
+					line.setColValues(8, count * file.getCoupling().getWrmcmd());
+				} else {
+					line.setSum(2, 0);
+					line.setColValues(2, 0);
+				}
+
+				// col10
+				count = 0;
+				for (Line regLine : file.getCoupling().getGlobalVariableListInReg()) {
+					if (regLine.getLineNumber() == line.getLineNumber()) {
+						count++;
+					}
+				}
+				line.setSum(9, count);
+				line.setColValues(9, count * file.getCoupling().getWmrgvs());
+
+				// col11
+				if (fileList.size() > 1) {
+					count = 0;
+					for (Line regLine : file.getCoupling().getGlobalVariableListInReg_DF()) {
+						if (regLine.getLineNumber() == line.getLineNumber()) {
+							count++;
+						}
+					}
+					line.setSum(10, count);
+					line.setColValues(10, count * file.getCoupling().getWmrgvd());
+				} else {
+					line.setSum(2, 0);
+					line.setColValues(2, 0);
+				}
+
+				// col12
+				count = 0;
+				for (Line regLine : file.getCoupling().getGlobalVariableListInRec()) {
+					if (regLine.getLineNumber() == line.getLineNumber()) {
+						count++;
+					}
+				}
+				line.setSum(11, count);
+				line.setColValues(11, count * file.getCoupling().getWrmrgvs());
+
+				// col13
+				count = 0;
+				if (fileList.size() > 1) {
+					for (Line regLine : file.getCoupling().getGlobalVariableListInRec_DF()) {
+						if (regLine.getLineNumber() == line.getLineNumber()) {
+							count++;
+						}
+					}
+					line.setSum(12, count);
+					line.setColValues(12, count * file.getCoupling().getWrmrgvd());
+				} else {
+					line.setSum(2, 0);
+					line.setColValues(2, 0);
+				}
+				line.setFinalValue();
+				
 			}
 
-		} else {
-			fileList.get(0).getCoupling().setNr(fileList.get(0).getCoupling().getRecursiveMethodCalls().size());
-			fileList.get(0).getCoupling().setNmcms(fileList.get(0).getCoupling().getRegularInRegularMethods().size());
-			fileList.get(0).getCoupling().setNmcmd(0);
-			fileList.get(0).getCoupling()
-					.setNmcrms(fileList.get(0).getCoupling().getRecursiveInRegularMethods().size());
-			fileList.get(0).getCoupling().setNmcrmd(0);
-			fileList.get(0).getCoupling()
-					.setNrmcrms(fileList.get(0).getCoupling().getRecursiveInRecursiveMethods().size());
-			fileList.get(0).getCoupling().setNrmcrmd(0);
-			fileList.get(0).getCoupling()
-					.setNrmcms(fileList.get(0).getCoupling().getRegularInRecursiveMethods().size());
-			fileList.get(0).getCoupling().setNrmcmd(0);
-			fileList.get(0).getCoupling().setNmrgvs(fileList.get(0).getCoupling().getGlobalVariableListInReg().size());
-			fileList.get(0).getCoupling().setNmrgvd(0);
-			fileList.get(0).getCoupling().setNrmrgvs(fileList.get(0).getCoupling().getGlobalVariableListInRec().size());
-			fileList.get(0).getCoupling().setNrmrgvd(0);
-			fileList.get(0).getCoupling().setFinalValue();
-
+			for(Line line : file.getLineSet()) {
+				
+				for(int i = 0; i < line.getSum().length; i++) {
+					sum[i] += line.getSum()[i];
+				}
+				
+			}
+			file.getCoupling().setSum(sum);
 		}
+
 	}
 }
