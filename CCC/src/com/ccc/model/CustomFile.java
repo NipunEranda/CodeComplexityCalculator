@@ -10,11 +10,13 @@ public class CustomFile {
 	private int lastIndex;
 	private ArrayList<Line> lineSet;
 	private Coupling coupling;
+	private Size sizeing;
 	
 	public CustomFile(String fileName) {
 		this.fileName = fileName;
 		this.lineSet = null;
 		this.coupling = new Coupling(fileName);
+		this.sizeing = new Size(fileName);
 	}
 
 	public String getFileName() {
@@ -65,4 +67,13 @@ public class CustomFile {
 		this.coupling = coupling;
 	}
 
+	public Size getSizeing() {
+		return sizeing;
+	}
+
+	public void setSizeing(Size sizeing) {
+		this.sizeing = sizeing;
+	}
+
+	
 }

@@ -34,7 +34,7 @@ public class UploadServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String UPLOAD_DIRECTORY = Main.WEBCONTENTDIR + "uploads/";
+		String UPLOAD_DIRECTORY = Main.WEBCONTENTDIR + "uploads\\";
 		Main main = new Main();
 		boolean status = false;
 		if (ServletFileUpload.isMultipartContent(request)) {
@@ -85,7 +85,8 @@ public class UploadServlet extends HttpServlet {
 						}
 					}
 				}
-				status = main.run();
+			//	status = main.run();
+				status = main.runSize();
 				
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -98,7 +99,13 @@ public class UploadServlet extends HttpServlet {
 		
 		if(status == true) {
 			request.setAttribute("mainObject", main.getFileList());
-			request.getRequestDispatcher("resultpage.jsp").forward(request, response);
+			 request.getRequestDispatcher("result_size.jsp").forward(request, response); 
+			/*
+			 * request.getRequestDispatcher("result_size.jsp").forward(request, response);
+			 * System.out.print("size page");
+			 */
+			 
+			 System.out.print("size page541");
 		}else {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
