@@ -28,7 +28,7 @@
 			</h3>
 		</center>
 		<br /> <br />
-		<table border="1">
+		<table border="1" style="border-collapse: collapse;">
 			<tr>
 				<th>Line No</th>
 				<th>Program Statement</th>
@@ -87,7 +87,7 @@
 						out.print(line.getLineNumber());
 					%>
 				</td>
-				<td>
+				<td class="lineSet">
 					<%
 						out.print(line.getLineContent());
 					%>
