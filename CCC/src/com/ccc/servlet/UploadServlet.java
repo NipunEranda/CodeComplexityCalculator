@@ -104,8 +104,8 @@ public class UploadServlet extends HttpServlet {
 			 * request.getRequestDispatcher("result_size.jsp").forward(request, response);
 			 * System.out.print("size page");
 			 */
-			 
-			 System.out.print("size page541");
+			// request.getRequestDispatcher("result_variables.jsp").forward(request, response);
+			/* System.out.print("size page541"); */
 		}else {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}

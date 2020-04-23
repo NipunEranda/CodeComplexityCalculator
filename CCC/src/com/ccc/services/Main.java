@@ -86,7 +86,7 @@ public class Main {
 
 			if (!(file.getFileName().contains("java") || file.getFileName().contains("cpp"))) {
 				System.out.println("Wrong file type");
-				System.out.println("ado size");
+				
 			} else {
 				try {
 					if (file.getFileName().contains("java")) {
@@ -127,6 +127,54 @@ public class Main {
 		return status;
 	}
 	
+	public boolean runVariables() {
+
+		VariablesServices variablesServices = new VariablesServiceImp();
+
+		for (CustomFile file : this.fileList) {
+
+			if (!(file.getFileName().contains("java") || file.getFileName().contains("cpp"))) {
+				System.out.println("Wrong file type");
+				
+			} else {
+				try {
+					if (file.getFileName().contains("java")) {
+						fileType = "java";
+					} else {
+						fileType = "cpp";
+					}
+					file.setFileType(fileType);
+					FileRead fileRead = new FileRead(file.getFileName());
+					FileReadService fileReadService = new FileReadServiceImp();
+
+					fileReadService.openFile(fileRead, file);
+					fileReadService.readFile(fileRead, file);
+					fileReadService.closeFile(fileRead);
+
+					variablesServices.process1(file);
+					System.out.println("true1");
+					status = true;
+				} catch (Exception e) {
+					e.printStackTrace();
+					status = false;
+				}
+			}
+		}
+		if (this.fileList.size() > 1) {
+			try {
+				variablesServices.process2(this.fileList);
+				System.out.println("true2");
+				status = true;
+			} catch (Exception e) {
+				status = false;
+				e.printStackTrace();
+			}
+		}
+		
+		System.out.println("true3");
+		variablesServices.process3(this.fileList);
+		return status;
+	}
 	
 	
 

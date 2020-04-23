@@ -12,6 +12,7 @@
 <script src="js/uploadfile.js"></script>
 </head>
 <body>
+<center><h1>Size</h1></center>
 
 	<%@ include file="components/header.jsp"%>
 	<%
