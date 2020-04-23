@@ -8,7 +8,7 @@ import com.ccc.model.Line;
  
 public class RemoveDuplicates 
 {
-    public ArrayList<Line> initiate(ArrayList<Line> lineSet) {
+    public static ArrayList<Line> initiate(ArrayList<Line> lineSet) {
  
         LinkedHashSet<Line> hashSet = new LinkedHashSet<>(lineSet);
          

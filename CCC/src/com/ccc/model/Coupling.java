@@ -60,6 +60,7 @@ public class Coupling {
 	private ArrayList<Line> globalVariableListInReg;
 	private ArrayList<Line> globalVariableListInRec;
 	private ArrayList<Line> regularMethods;
+	private ArrayList<Line> systemMethods;
 	private ArrayList<Line> recursiveMethods;
 	private ArrayList<Line> recursiveMethodCalls;
 	private ArrayList<Line> regularInRegularMethods;
@@ -459,6 +460,14 @@ public class Coupling {
 
 	public void setGlobalVariableListInRec(ArrayList<Line> globalVariableListInRec) {
 		this.globalVariableListInRec = globalVariableListInRec;
+	}
+
+	public ArrayList<Line> getSystemMethods() {
+		return systemMethods;
+	}
+
+	public void setSystemMethods(ArrayList<Line> systemMethods) {
+		this.systemMethods = systemMethods;
 	}
 
 	public void setRegularMethods(ArrayList<Line> regularMethods) {
