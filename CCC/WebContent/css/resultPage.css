@@ -1,0 +1,23 @@
+.coupling{
+	display: block;
+}
+
+.size{
+	display: none;
+}
+
+.variable{
+	display: none;
+}
+
+.method{
+	display: none;
+}
+
+.inheritance{
+	display: none;
+}
+
+.controlStructure{
+	display: none;
+}

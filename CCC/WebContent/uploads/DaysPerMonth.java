@@ -1,11 +1,5 @@
 import java.util.Scanner;
  class Years{
-	 
-   public void getLol(){
-	getLol();
-	System.out.println("lol");
-   }
-	 
    public int getYear(){
 	int year;
 	String enteredYear;
