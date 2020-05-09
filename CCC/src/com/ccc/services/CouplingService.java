@@ -6,12 +6,12 @@ import com.ccc.model.Line;
 
 public interface CouplingService {
 
-	public boolean isAMethod(Line line);
 	public String getMethodName(String line);
+	public void getClassNames(CustomFile file);
+	public void getObjectSet(CustomFile file);
 	public void setEndLineNumber(CustomFile file);
 	public int getEndLineNumber(CustomFile file, Line line);
 	public void getMethodSet(CustomFile file);
-	public void getCalledMethodSet(CustomFile file);
 	public void getCalledMethodSet_DF(CustomFile ifile, ArrayList<CustomFile> fileList);
 	public void getGlobalVariableSet(CustomFile file);
 	public void getGlobalVariableListInReg(CustomFile file);
@@ -25,6 +25,8 @@ public interface CouplingService {
 	public void getRecInRec(CustomFile file);
 	public void getRegInRec(CustomFile file);
 	
+	public void getObjectSet_DF(CustomFile ifile, ArrayList<CustomFile> fileList);
+	public void getSystemMethods_DF(CustomFile ifile, ArrayList<CustomFile> fileList);
 	public void getMethods_DF(ArrayList<CustomFile> fileList);
 	public void getRegInReg_DF(ArrayList<CustomFile> fileList);
 	public void getRecInReg_DF(ArrayList<CustomFile> fileList);

@@ -52,6 +52,9 @@ public class Coupling {
 	private int[] sum;
 	private int finalValue;
 	
+	private ArrayList<Line> classList;
+	private ArrayList<Line> classObjectList;
+	private ArrayList<Line> classObjectList_DF;
 	private ArrayList<Line> MethodList;
 	private ArrayList<Line> methodSetFull;
 	private ArrayList<Line> calledMethodList;
@@ -424,6 +427,30 @@ public class Coupling {
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+
+	public ArrayList<Line> getClassList() {
+		return classList;
+	}
+
+	public void setClassList(ArrayList<Line> classList) {
+		this.classList = classList;
+	}
+
+	public ArrayList<Line> getClassObjectList() {
+		return classObjectList;
+	}
+
+	public void setClassObjectList(ArrayList<Line> classObjectList) {
+		this.classObjectList = classObjectList;
+	}
+
+	public ArrayList<Line> getClassObjectList_DF() {
+		return classObjectList_DF;
+	}
+
+	public void setClassObjectList_DF(ArrayList<Line> classObjectList_DF) {
+		this.classObjectList_DF = classObjectList_DF;
 	}
 
 	public void setEndLineNumber(int lineNumber, int number) {

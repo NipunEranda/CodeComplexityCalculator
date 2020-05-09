@@ -55,8 +55,6 @@ public class Main {
 					fileReadService.openFile(fileRead, file);
 					fileReadService.readFile(fileRead, file);
 					fileReadService.closeFile(fileRead);
-
-					couplingService.process1(file);
 					status = true;
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -72,6 +70,8 @@ public class Main {
 				status = false;
 				e.printStackTrace();
 			}
+		}else {
+			couplingService.process1(fileList.get(0));
 		}
 		couplingService.process3(this.fileList);
 		return status;
