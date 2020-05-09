@@ -21,3 +21,31 @@
 .controlStructure{
 	display: none;
 }
+
+.navBtnN{
+	width: 10%;
+	float: right;
+	padding:2px;
+	border: 0.1;
+	border-color:grey;
+    border-radius: 0;
+    background: none;
+    -webkit-appearance: none;
+    background-color: lightgrey;
+}
+
+.navBtnP{
+	width: 10%;
+	float: left;
+	padding:2px;
+	border: 0.1;
+	border-color:grey;
+    border-radius: 0;
+    background: none;
+    -webkit-appearance: none;
+    background-color: lightgrey;
+}
+
+.lineSet{
+	font-size: 11px;
+}
