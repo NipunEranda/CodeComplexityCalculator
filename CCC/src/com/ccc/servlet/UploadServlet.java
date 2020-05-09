@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -97,8 +98,9 @@ public class UploadServlet extends HttpServlet {
 		}
 		
 		if(status == true) {
-			request.setAttribute("mainObject", main.getFileList());
-			request.getRequestDispatcher("resultpage.jsp").forward(request, response);
+			HttpSession session = request.getSession();
+			session.setAttribute("fileList", main.getFileList());
+			response.sendRedirect("resultpage.jsp");
 		}else {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}

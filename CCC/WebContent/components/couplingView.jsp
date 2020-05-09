@@ -12,7 +12,7 @@
 <body>
 
 	<%
-		ArrayList<CustomFile> main = (ArrayList) request.getAttribute("mainObject");
+		ArrayList<CustomFile> main = (ArrayList) session.getAttribute("fileList");
 	%>
 	<div class="main-container">
 
@@ -187,6 +187,6 @@
 			}
 		%>
 	</div>
-
+	<div><center><button onclick="window.location.href = 'components/couplingWeightChanger.jsp';">Change Weights</button></center></div>
 </body>
 </html>
