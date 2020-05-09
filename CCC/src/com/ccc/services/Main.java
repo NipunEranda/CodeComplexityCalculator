@@ -15,7 +15,7 @@ public class Main {
 	private ArrayList<CustomFile> fileList = new ArrayList<CustomFile>();
 	private String fileType = "";
 	public static String WEBCONTENTDIR = "git/CodeComplexityCalculator/CCC/WebContent/";
-	//public static String WEBCONTENTDIR = "/opt/tomcat/webapps/ROOT/";
+	//Folder path inside the server( public static String WEBCONTENTDIR = "/opt/tomcat/webapps/ROOT/"; )
 
 	public ArrayList<CustomFile> getFileList() {
 		return fileList;

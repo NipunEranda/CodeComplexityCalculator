@@ -1,30 +1,24 @@
 package com.ccc.services;
 
-import java.nio.channels.FileLock;
+
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.apache.tomcat.jni.File;
-
 import com.ccc.model.Coupling;
 import com.ccc.model.CustomFile;
-import com.ccc.model.FileRead;
 import com.ccc.model.Line;
-import com.ccc.util.LineArrayListToArray;
-import com.ccc.util.RemoveDuplicates;
 
-import sun.nio.ch.FileKey;
 
 public class CouplingServiceImp implements CouplingService {
 	
 	static ArrayList<CustomFile> fileList;
 	
-	public CouplingServiceImp(ArrayList<CustomFile> fileList) {
-		this.fileList = fileList;
+	//Setting filelist for operations
+	public CouplingServiceImp(ArrayList<CustomFile> fList) {
+		fileList = fList;
 	}
 
+	//get method name from a line
 	@Override
 	public String getMethodName(String line) {
 		if (line.contains("main") || line.contains("class") || line.contains("if") || line.contains("switch")
@@ -43,6 +37,7 @@ public class CouplingServiceImp implements CouplingService {
 		return null;
 	}
 
+	//get class names in the file
 	@Override
 	public void getClassNames(CustomFile file) {
 		ArrayList<Line> classList = new ArrayList<Line>();
@@ -60,6 +55,7 @@ public class CouplingServiceImp implements CouplingService {
 		file.getCoupling().setClassList(classList);
 	}
 
+	//get objects created in the file
 	@Override
 	public void getObjectSet(CustomFile file) {
 		ArrayList<Line> classObjList = new ArrayList<Line>();
@@ -82,6 +78,7 @@ public class CouplingServiceImp implements CouplingService {
 		file.getCoupling().setClassObjectList(classObjList);
 	}
 
+	//get objects created using other filess
 	@Override
 	public void getObjectSet_DF(CustomFile ifile) {
 		ArrayList<Line> classObjList_DF = new ArrayList<Line>();
@@ -110,6 +107,7 @@ public class CouplingServiceImp implements CouplingService {
 
 	}
 
+	//get end line numbers to identify method scope
 	@Override
 	public int getEndLineNumber(CustomFile file, Line line) {
 		int endNumber = 0;
@@ -124,6 +122,7 @@ public class CouplingServiceImp implements CouplingService {
 		return endNumber;
 	}
 
+	//get user defined method set in the file
 	@Override
 	public void getMethodSet(CustomFile file) {
 
@@ -148,6 +147,7 @@ public class CouplingServiceImp implements CouplingService {
 		file.getCoupling().setMethodList(methodSet);
 	}
 
+	//set end line numbers
 	@Override
 	public void setEndLineNumber(CustomFile file) {
 
@@ -207,6 +207,7 @@ public class CouplingServiceImp implements CouplingService {
 
 	}
 
+	//Get recursive method calls
 	// Senario 1
 	@Override
 	public void getRecursiveMethods(CustomFile file) {
@@ -233,6 +234,7 @@ public class CouplingServiceImp implements CouplingService {
 		file.getCoupling().setRecursiveMethodCalls(recursiveMethodCalls);
 	}
 
+	//get regular methods
 	@Override
 	public void getRegularMethods(CustomFile file) {
 
@@ -255,6 +257,7 @@ public class CouplingServiceImp implements CouplingService {
 		file.getCoupling().setRegularMethods(regularMethodSet);
 	}
 
+	//get system methods
 	@Override
 	public void getSystemMethods(CustomFile file) {
 
@@ -290,6 +293,7 @@ public class CouplingServiceImp implements CouplingService {
 		file.getCoupling().setSystemMethods(systemMethodList);
 	}
 
+	//get regular methods, which called by another regular method
 	// Senario 2
 	@Override
 	public void getRegInReg(CustomFile file) {
@@ -321,6 +325,7 @@ public class CouplingServiceImp implements CouplingService {
 		file.getCoupling().setRegularInRegularMethods(regInReg);
 	}
 
+	//get recursive methods, which called by another regular method
 	// Senario 4
 	@Override
 	public void getRecInReg(CustomFile file) {
@@ -343,6 +348,7 @@ public class CouplingServiceImp implements CouplingService {
 		file.getCoupling().setRecursiveInRegularMethods(recInReg);
 	}
 
+	//get recursive methods, which called by another recursive method
 	// Senario 6
 	@Override
 	public void getRecInRec(CustomFile file) {
@@ -368,6 +374,7 @@ public class CouplingServiceImp implements CouplingService {
 
 	}
 
+	//get regular methods, which called by another recursive method
 	// Senario 8
 	@Override
 	public void getRegInRec(CustomFile file) {
@@ -400,6 +407,7 @@ public class CouplingServiceImp implements CouplingService {
 		file.getCoupling().setRegularInRecursiveMethods(regInRec);
 	}
 
+	//get global variable set in the file
 	@Override
 	public void getGlobalVariableSet(CustomFile file) {
 
@@ -452,6 +460,7 @@ public class CouplingServiceImp implements CouplingService {
 
 	}
 
+	//get global variables referenced by regular methods
 	// Senario 10
 	@Override
 	public void getGlobalVariableListInReg(CustomFile file) {
@@ -486,6 +495,7 @@ public class CouplingServiceImp implements CouplingService {
 		file.getCoupling().setGlobalVariableListInReg(globalVariableSetInReg);
 	}
 
+	//get global variables referenced by recursive methods
 	// Senario 12
 	@Override
 	public void getGlobalVariableListInRec(CustomFile file) {
@@ -524,6 +534,7 @@ public class CouplingServiceImp implements CouplingService {
 
 	}
 
+	//get system methods without other methods from another files
 	@Override
 	public void getSystemMethods_DF(CustomFile ifile) {
 
@@ -573,34 +584,13 @@ public class CouplingServiceImp implements CouplingService {
 		}
 	}
 
+	//get called method set which belong to another file
 	@Override
 	public void getCalledMethodSet_DF(CustomFile ifile) {
-		ArrayList<Line> objectList = new ArrayList<>();
 		ArrayList<Line> calledMethodList_DF = new ArrayList<>();
 		for (CustomFile file : fileList) {
 			if (!file.getFileName().equalsIgnoreCase(ifile.getFileName())) {
-				/*
-				 * for (Line line : ifile.getLineSet()) { if
-				 * (line.getLineContent().contains(file.getFileName().split("\\.")[0])) { if
-				 * (line.getLineContent().contains("new")) {
-				 * line.setFileName(line.getLineContent().split(" ")[0]);
-				 * line.setObjName(line.getLineContent().split(" ")[1]); line.setFile(file);
-				 * objectList.add(line); }
-				 * 
-				 * } ifile.getCoupling().setObjectList(objectList);
-				 * 
-				 * if (objectList.size() > 0) { for (Line obj : objectList) {
-				 * 
-				 * if (line.getLineContent().contains(obj.getLineContent().split(" ")[1]) &&
-				 * line.getLineContent().contains(".") && line.getLineContent().contains(";")) {
-				 * line.setFileName(obj.getLineContent().split(" ")[0]);
-				 * line.setObjName(obj.getLineContent().split(" ")[1]); line.setFile(file);
-				 * calledMethodList_DF.add(line); }
-				 * 
-				 * } }
-				 * 
-				 * }
-				 */
+
 				for (Line line : ifile.getLineSet()) {
 
 					for (Line line_meth : file.getCoupling().getMethodList()) {
@@ -620,47 +610,13 @@ public class CouplingServiceImp implements CouplingService {
 
 	}
 
+	//get method set which belong to another file
 	@Override
 	public void getMethods_DF() {
 
 		for (CustomFile file : fileList) {
 			ArrayList<Line> inReg = new ArrayList<>();
 			ArrayList<Line> inRec = new ArrayList<>();
-			/*
-			 * for (Line line : file.getCoupling().getCalledMethodList_DF()) {
-			 * 
-			 * for (Line line_reg : file.getCoupling().getRegularMethods()) {
-			 * 
-			 * for (Line line_end : file.getCoupling().getMethodList()) {
-			 * 
-			 * if (line_end.getLineNumber() == line_reg.getLineNumber()) {
-			 * 
-			 * if (line.getLineNumber() > line_reg.getLineNumber() && line.getLineNumber() <
-			 * line_end.getEndLineNumber()) { inReg.add(line); }
-			 * 
-			 * }
-			 * 
-			 * }
-			 * 
-			 * }
-			 * 
-			 * for (Line line_rec : file.getCoupling().getRecursiveMethods()) {
-			 * 
-			 * for (Line line_end : file.getCoupling().getMethodList()) {
-			 * 
-			 * if (line_end.getLineNumber() == line_rec.getLineNumber()) {
-			 * 
-			 * if (line.getLineNumber() > line_rec.getLineNumber() && line.getLineNumber() <
-			 * line_end.getEndLineNumber()) { inRec.add(line); }
-			 * 
-			 * }
-			 * 
-			 * }
-			 * 
-			 * }
-			 * 
-			 * }
-			 */
 
 			for (Line line : file.getCoupling().getCalledMethodList_DF()) {
 
@@ -693,6 +649,7 @@ public class CouplingServiceImp implements CouplingService {
 
 	}
 
+	//A regular method calling another regular method in a different file
 	@Override
 	public void getRegInReg_DF() {
 		for (CustomFile file : fileList) {
@@ -723,6 +680,7 @@ public class CouplingServiceImp implements CouplingService {
 		}
 	}
 
+	//A regular method calling a recursive method in a different file
 	@Override
 	public void getRecInReg_DF() {
 		for (CustomFile file : fileList) {
@@ -742,6 +700,7 @@ public class CouplingServiceImp implements CouplingService {
 		}
 	}
 
+	//A recursive method calling another recursive method in a different file
 	@Override
 	public void getRecInRec_DF() {
 		for (CustomFile file : fileList) {
@@ -761,6 +720,7 @@ public class CouplingServiceImp implements CouplingService {
 		}
 	}
 
+	//A recursive method calling a regular method in a different file
 	@Override
 	public void getRegInRec_DF() {
 		for (CustomFile file : fileList) {
@@ -789,6 +749,7 @@ public class CouplingServiceImp implements CouplingService {
 		}
 	}
 
+	//get global variable set which are belong to another file
 	@Override
 	public void getGlobalVariableList_DF(CustomFile ifile) {
 		ArrayList<Line> globalVariableList_DF = new ArrayList<>();
@@ -811,6 +772,7 @@ public class CouplingServiceImp implements CouplingService {
 
 	}
 
+	//A regular method referencing a global variable in a different file 
 	@Override
 	public void getGlobalVariableListInReg_DF() {
 		for (CustomFile file : fileList) {
@@ -832,6 +794,7 @@ public class CouplingServiceImp implements CouplingService {
 		}
 	}
 
+	//A recursive method referencing a global variable in a different file
 	@Override
 	public void getGlobalVariableListInRec_DF() {
 
@@ -854,6 +817,7 @@ public class CouplingServiceImp implements CouplingService {
 		}
 	}
 
+	//Process for a single file upload
 	@Override
 	public void process1(CustomFile file) {
 
@@ -889,6 +853,7 @@ public class CouplingServiceImp implements CouplingService {
 
 	}
 
+	//Process for a multi file upload
 	@Override
 	public void process2() {
 
@@ -948,6 +913,7 @@ public class CouplingServiceImp implements CouplingService {
 
 	}
 
+	//Process for calculations to display results in the table
 	public static void process3() {
 		
 		int count = 0;
@@ -966,7 +932,6 @@ public class CouplingServiceImp implements CouplingService {
 
 				line.setSum(0, count);
 				file.getCoupling();
-				System.out.println(count * Coupling.getWeights()[0]);
 				line.setColValues(0, count * Coupling.getWeights()[0]);
 
 				// col2
