@@ -51,8 +51,8 @@
 			<br />
 		</div>
 		<br />
-		<Button id="previous" style="float: left;" onclick="getPrevious()">Previous</Button>
-		<Button id="next" style="float: right;" onclick="getNext()">Next</Button>
+		<Button id="previous" onclick="getPrevious()" class="navBtnP">Previous</Button>
+		<Button id="next" onclick="getNext()" class="navBtnN">Next</Button>
 		<br />
 	</div>
 
