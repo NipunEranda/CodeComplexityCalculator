@@ -18,6 +18,12 @@ import com.ccc.util.RemoveDuplicates;
 import sun.nio.ch.FileKey;
 
 public class CouplingServiceImp implements CouplingService {
+	
+	static ArrayList<CustomFile> fileList;
+	
+	public CouplingServiceImp(ArrayList<CustomFile> fileList) {
+		this.fileList = fileList;
+	}
 
 	@Override
 	public String getMethodName(String line) {
@@ -77,7 +83,7 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
-	public void getObjectSet_DF(CustomFile ifile, ArrayList<CustomFile> fileList) {
+	public void getObjectSet_DF(CustomFile ifile) {
 		ArrayList<Line> classObjList_DF = new ArrayList<Line>();
 		for (CustomFile file : fileList) {
 
@@ -519,7 +525,7 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
-	public void getSystemMethods_DF(CustomFile ifile, ArrayList<CustomFile> fileList) {
+	public void getSystemMethods_DF(CustomFile ifile) {
 
 		ArrayList<Line> systemMethodList_DF = new ArrayList<>();
 
@@ -568,7 +574,7 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
-	public void getCalledMethodSet_DF(CustomFile ifile, ArrayList<CustomFile> fileList) {
+	public void getCalledMethodSet_DF(CustomFile ifile) {
 		ArrayList<Line> objectList = new ArrayList<>();
 		ArrayList<Line> calledMethodList_DF = new ArrayList<>();
 		for (CustomFile file : fileList) {
@@ -615,7 +621,7 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
-	public void getMethods_DF(ArrayList<CustomFile> fileList) {
+	public void getMethods_DF() {
 
 		for (CustomFile file : fileList) {
 			ArrayList<Line> inReg = new ArrayList<>();
@@ -688,7 +694,7 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
-	public void getRegInReg_DF(ArrayList<CustomFile> fileList) {
+	public void getRegInReg_DF() {
 		for (CustomFile file : fileList) {
 			ArrayList<Line> regInReg_DF = new ArrayList<>();
 
@@ -718,7 +724,7 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
-	public void getRecInReg_DF(ArrayList<CustomFile> fileList) {
+	public void getRecInReg_DF() {
 		for (CustomFile file : fileList) {
 			ArrayList<Line> recInReg_DF = new ArrayList<>();
 			for (Line line : file.getCoupling().getInRec_DF()) {
@@ -737,7 +743,7 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
-	public void getRecInRec_DF(ArrayList<CustomFile> fileList) {
+	public void getRecInRec_DF() {
 		for (CustomFile file : fileList) {
 			ArrayList<Line> recInRec_DF = new ArrayList<>();
 			for (Line line : file.getCoupling().getInRec_DF()) {
@@ -756,7 +762,7 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
-	public void getRegInRec_DF(ArrayList<CustomFile> fileList) {
+	public void getRegInRec_DF() {
 		for (CustomFile file : fileList) {
 			ArrayList<Line> regInRec_DF = new ArrayList<>();
 			for (Line line : file.getCoupling().getInReg_DF()) {
@@ -784,7 +790,7 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
-	public void getGlobalVariableList_DF(CustomFile ifile, ArrayList<CustomFile> fileList) {
+	public void getGlobalVariableList_DF(CustomFile ifile) {
 		ArrayList<Line> globalVariableList_DF = new ArrayList<>();
 
 		for (CustomFile file : fileList) {
@@ -806,7 +812,7 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
-	public void getGlobalVariableListInReg_DF(ArrayList<CustomFile> fileList) {
+	public void getGlobalVariableListInReg_DF() {
 		for (CustomFile file : fileList) {
 			ArrayList<Line> globalVariableListInReg_DF = new ArrayList<>();
 			for (Line regLine : file.getCoupling().getRegularMethods()) {
@@ -827,7 +833,7 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
-	public void getGlobalVariableListInRec_DF(ArrayList<CustomFile> fileList) {
+	public void getGlobalVariableListInRec_DF() {
 
 		for (CustomFile file : fileList) {
 			ArrayList<Line> globalVariableListInRec_DF = new ArrayList<>();
@@ -884,7 +890,7 @@ public class CouplingServiceImp implements CouplingService {
 	}
 
 	@Override
-	public void process2(ArrayList<CustomFile> fileList) {
+	public void process2() {
 
 		for (CustomFile file : fileList) {
 			getClassNames(file);
@@ -904,22 +910,22 @@ public class CouplingServiceImp implements CouplingService {
 		}
 
 		for (CustomFile file : fileList) {
-			getObjectSet_DF(file, fileList);
-			getSystemMethods_DF(file, fileList);
-			getGlobalVariableList_DF(file, fileList);
+			getObjectSet_DF(file);
+			getSystemMethods_DF(file);
+			getGlobalVariableList_DF(file);
 		}
 
 		for (CustomFile file : fileList) {
-			getCalledMethodSet_DF(file, fileList);
+			getCalledMethodSet_DF(file);
 		}
 
-		getMethods_DF(fileList);
-		getRegInReg_DF(fileList);
-		getRecInReg_DF(fileList);
-		getRecInRec_DF(fileList);
-		getRegInRec_DF(fileList);
-		getGlobalVariableListInReg_DF(fileList);
-		getGlobalVariableListInRec_DF(fileList);
+		getMethods_DF();
+		getRegInReg_DF();
+		getRecInReg_DF();
+		getRecInRec_DF();
+		getRegInRec_DF();
+		getGlobalVariableListInReg_DF();
+		getGlobalVariableListInRec_DF();
 
 		for (CustomFile file : fileList) {
 
@@ -942,12 +948,9 @@ public class CouplingServiceImp implements CouplingService {
 
 	}
 
-	@Override
-	public void process3(ArrayList<CustomFile> fileList) {
-
+	public static void process3() {
+		
 		int count = 0;
-		CustomFile resultFile = new CustomFile("resultFile");
-		ArrayList<Line> resultLineSet = new ArrayList<>();
 
 		for (CustomFile file : fileList) {
 			int[] sum = new int[13];
@@ -962,7 +965,9 @@ public class CouplingServiceImp implements CouplingService {
 				}
 
 				line.setSum(0, count);
-				line.setColValues(0, count * file.getCoupling().getWr());
+				file.getCoupling();
+				System.out.println(count * Coupling.getWeights()[0]);
+				line.setColValues(0, count * Coupling.getWeights()[0]);
 
 				// col2
 				count = 0;
@@ -973,7 +978,8 @@ public class CouplingServiceImp implements CouplingService {
 				}
 
 				line.setSum(1, count);
-				line.setColValues(1, count * file.getCoupling().getWmcms());
+				file.getCoupling();
+				line.setColValues(1, count * Coupling.getWeights()[1]);
 
 				// col3
 				if (fileList.size() > 1) {
@@ -984,7 +990,7 @@ public class CouplingServiceImp implements CouplingService {
 						}
 					}
 					line.setSum(2, count);
-					line.setColValues(2, count * file.getCoupling().getWmcmd());
+					line.setColValues(2, count * Coupling.getWeights()[2]);
 				} else {
 					line.setSum(2, 0);
 					line.setColValues(2, 0);
@@ -998,7 +1004,7 @@ public class CouplingServiceImp implements CouplingService {
 					}
 				}
 				line.setSum(3, count);
-				line.setColValues(3, count * file.getCoupling().getWmcrms());
+				line.setColValues(3, count * Coupling.getWeights()[3]);
 
 				// col5
 				if (fileList.size() > 1) {
@@ -1009,7 +1015,7 @@ public class CouplingServiceImp implements CouplingService {
 						}
 					}
 					line.setSum(4, count);
-					line.setColValues(4, count * file.getCoupling().getWmcrmd());
+					line.setColValues(4, count * Coupling.getWeights()[4]);
 				} else {
 					line.setSum(2, 0);
 					line.setColValues(2, 0);
@@ -1023,7 +1029,7 @@ public class CouplingServiceImp implements CouplingService {
 					}
 				}
 				line.setSum(5, count);
-				line.setColValues(5, count * file.getCoupling().getWrmcrms());
+				line.setColValues(5, count * Coupling.getWeights()[5]);
 
 				// col7
 				if (fileList.size() > 1) {
@@ -1034,7 +1040,7 @@ public class CouplingServiceImp implements CouplingService {
 						}
 					}
 					line.setSum(6, count);
-					line.setColValues(6, count * file.getCoupling().getWrmcrmd());
+					line.setColValues(6, count * Coupling.getWeights()[6]);
 				} else {
 					line.setSum(2, 0);
 					line.setColValues(2, 0);
@@ -1048,7 +1054,7 @@ public class CouplingServiceImp implements CouplingService {
 					}
 				}
 				line.setSum(7, count);
-				line.setColValues(7, count * file.getCoupling().getWrmcms());
+				line.setColValues(7, count * Coupling.getWeights()[7]);
 
 				// col9
 				if (fileList.size() > 1) {
@@ -1059,7 +1065,7 @@ public class CouplingServiceImp implements CouplingService {
 						}
 					}
 					line.setSum(8, count);
-					line.setColValues(8, count * file.getCoupling().getWrmcmd());
+					line.setColValues(8, count * Coupling.getWeights()[8]);
 				} else {
 					line.setSum(2, 0);
 					line.setColValues(2, 0);
@@ -1073,7 +1079,7 @@ public class CouplingServiceImp implements CouplingService {
 					}
 				}
 				line.setSum(9, count);
-				line.setColValues(9, count * file.getCoupling().getWmrgvs());
+				line.setColValues(9, count * Coupling.getWeights()[9]);
 
 				// col11
 				if (fileList.size() > 1) {
@@ -1084,7 +1090,7 @@ public class CouplingServiceImp implements CouplingService {
 						}
 					}
 					line.setSum(10, count);
-					line.setColValues(10, count * file.getCoupling().getWmrgvd());
+					line.setColValues(10, count * Coupling.getWeights()[10]);
 				} else {
 					line.setSum(2, 0);
 					line.setColValues(2, 0);
@@ -1098,7 +1104,7 @@ public class CouplingServiceImp implements CouplingService {
 					}
 				}
 				line.setSum(11, count);
-				line.setColValues(11, count * file.getCoupling().getWrmrgvs());
+				line.setColValues(11, count * Coupling.getWeights()[11]);
 
 				// col13
 				count = 0;
@@ -1109,7 +1115,7 @@ public class CouplingServiceImp implements CouplingService {
 						}
 					}
 					line.setSum(12, count);
-					line.setColValues(12, count * file.getCoupling().getWrmrgvd());
+					line.setColValues(12, count * Coupling.getWeights()[12]);
 				} else {
 					line.setSum(2, 0);
 					line.setColValues(2, 0);
@@ -1125,6 +1131,7 @@ public class CouplingServiceImp implements CouplingService {
 				}
 
 			}
+			file.getCoupling().setFinalValue();
 			file.getCoupling().setSum(sum);
 		}
 

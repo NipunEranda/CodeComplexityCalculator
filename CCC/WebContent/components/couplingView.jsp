@@ -2,7 +2,7 @@
 <%@page import="com.ccc.model.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,19 +68,19 @@
 			<tr>
 				<%
 					int col1 = 0;
-					int col2 = 0;
-					int col3 = 0;
-					int col4 = 0;
-					int col5 = 0;
-					int col6 = 0;
-					int col7 = 0;
-					int col8 = 0;
-					int col9 = 0;
-					int col10 = 0;
-					int col11 = 0;
-					int col12 = 0;
-					int col13 = 0;
-					int col14 = 0;
+							int col2 = 0;
+							int col3 = 0;
+							int col4 = 0;
+							int col5 = 0;
+							int col6 = 0;
+							int col7 = 0;
+							int col8 = 0;
+							int col9 = 0;
+							int col10 = 0;
+							int col11 = 0;
+							int col12 = 0;
+							int col13 = 0;
+							int col14 = 0;
 				%>
 				<td>
 					<%
@@ -158,35 +158,99 @@
 					%>
 				</td>
 				<td>
-				<% out.print(line.getFinalValue()); %>
+					<%
+						out.print(line.getFinalValue());
+					%>
 				</td>
 			</tr>
 			<%
 				}
 			%>
 			<tr>
-			<td></td>
-			<td></td>
-			<td><% out.print(file.getCoupling().getSum()[0]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[1]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[2]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[3]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[4]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[5]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[6]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[7]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[8]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[9]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[10]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[11]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[12]); %></td>
-			<td><% out.print(file.getCoupling().getFinalValue()); %></td>
+				<td></td>
+				<td></td>
+				<td>
+					<%
+						out.print(file.getCoupling().getSum()[0]);
+					%>
+				</td>
+				<td>
+					<%
+						out.print(file.getCoupling().getSum()[1]);
+					%>
+				</td>
+				<td>
+					<%
+						out.print(file.getCoupling().getSum()[2]);
+					%>
+				</td>
+				<td>
+					<%
+						out.print(file.getCoupling().getSum()[3]);
+					%>
+				</td>
+				<td>
+					<%
+						out.print(file.getCoupling().getSum()[4]);
+					%>
+				</td>
+				<td>
+					<%
+						out.print(file.getCoupling().getSum()[5]);
+					%>
+				</td>
+				<td>
+					<%
+						out.print(file.getCoupling().getSum()[6]);
+					%>
+				</td>
+				<td>
+					<%
+						out.print(file.getCoupling().getSum()[7]);
+					%>
+				</td>
+				<td>
+					<%
+						out.print(file.getCoupling().getSum()[8]);
+					%>
+				</td>
+				<td>
+					<%
+						out.print(file.getCoupling().getSum()[9]);
+					%>
+				</td>
+				<td>
+					<%
+						out.print(file.getCoupling().getSum()[10]);
+					%>
+				</td>
+				<td>
+					<%
+						out.print(file.getCoupling().getSum()[11]);
+					%>
+				</td>
+				<td>
+					<%
+						out.print(file.getCoupling().getSum()[12]);
+					%>
+				</td>
+				<td>
+					<%
+						out.print(file.getCoupling().getFinalValue());
+					%>
+				</td>
 			</tr>
 		</table>
 		<%
 			}
 		%>
 	</div>
-	<div><center><button onclick="window.location.href = 'components/couplingWeightChanger.jsp';">Change Weights</button></center></div>
+	<div>
+		<center>
+			<button
+				onclick="window.location.href = 'components/couplingWeightChanger.jsp';">Change
+				Weights</button>
+		</center>
+	</div>
 </body>
 </html>

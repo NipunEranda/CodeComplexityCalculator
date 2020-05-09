@@ -18,7 +18,7 @@
                 </div>
                 <div class="nav-bar">
                     <ul>
-                        <li><a class="active" href="#home">Home</a></li>
+                        <li><a class="active" href="index.jsp">Home</a></li>
                         <li><a href="#news">ANALYTICS</a></li>
                         <li><a href="#contact">GUIDE</a></li>
                         <li><a href="#about">ABOUT</a></li>

@@ -24,7 +24,7 @@
 		<div style="text-align: center">
 			<h3>Weights related to the coupling factor</h3>
 		</div>
-		<form action="../UpdateCouplingWeight" method="post">
+		<form action="../UpdateCouplingWeight?update=true" method="post">
 			<table class="table table-striped" style="margin-top: 30px;">
 				<thead>
 					<tr>
@@ -35,71 +35,74 @@
 				<tbody>
 					<tr>
 						<th scope="row">A recursive call</th>
-						<td><input type="number" name="Wr" id="Wr" value="<% out.print(fileList.get(0).getCoupling().getWr()); %>"/></td>
+						<td><input type="number" name="c1" id="c1" value="<% out.print(Coupling.getWeights()[0]); %>"/></td>
 					</tr>
 					<tr>
 						<th scope="row">A regular method calling another regular
 							method in the same file</th>
-						<td><input type="number" name="Wmcms" id="Wmcms" value="<% out.print(fileList.get(0).getCoupling().getWmcms()); %>"/></td>
+						<td><input type="number" name="c2" id="c2" value="<% out.print(Coupling.getWeights()[1]); %>"/></td>
 					</tr>
 					<tr>
 						<th scope="row">A regular method calling another regular
 							method in a different file</th>
-						<td><input type="number" name="Wmcmd" id="Wmcmd" value="<% out.print(fileList.get(0).getCoupling().getWmcmd()); %>"/></td>
+						<td><input type="number" name="c3" id="c3" value="<% out.print(Coupling.getWeights()[2]); %>"/></td>
 					</tr>
 					<tr>
 						<th scope="row">A regular method calling a recursive method
 							in the same file</th>
-						<td><input type="number" name="Wmcrms" id="Wmcrms" value="<% out.print(fileList.get(0).getCoupling().getWmcrms()); %>"/></td>
+						<td><input type="number" name="c4" id="c4" value="<% out.print(Coupling.getWeights()[3]); %>"/></td>
 					</tr>
 					<tr>
 						<th scope="row">A regular method calling a recursive method
 							in a different file</th>
-						<td><input type="number" name="Wmcrmd" id="Wmcrmd" value="<% out.print(fileList.get(0).getCoupling().getWmcrmd()); %>"/></td>
+						<td><input type="number" name="c5" id="c5" value="<% out.print(Coupling.getWeights()[4]); %>"/></td>
 					</tr>
 					<tr>
 						<th scope="row">A recursive method calling another recursive
 							method in the same file</th>
-						<td><input type="number" name="Wrmcrms" id="Wrmcrms" value="<% out.print(fileList.get(0).getCoupling().getWrmcrms()); %>"/></td>
+						<td><input type="number" name="c6" id="c6" value="<% out.print(Coupling.getWeights()[5]); %>"/></td>
 					</tr>
 					<tr>
 						<th scope="row">A recursive method calling another recursive
 							method in a different file</th>
-						<td><input type="number" name="Wrmcrmd" id="Wrmcrmd" value="<% out.print(fileList.get(0).getCoupling().getWrmcrmd()); %>"/></td>
+						<td><input type="number" name="c7" id="c7" value="<% out.print(Coupling.getWeights()[6]); %>"/></td>
 					</tr>
 					<tr>
 						<th scope="row">A recursive method calling a regular method
 							in the same file</th>
-						<td><input type="number" name="Wrmcms" id="Wrmcms" value="<% out.print(fileList.get(0).getCoupling().getWrmcms()); %>"/></td>
+						<td><input type="number" name="c8" id="c8" value="<% out.print(Coupling.getWeights()[7]); %>"/></td>
 					</tr>
 					<tr>
 						<th scope="row">A recursive method calling a regular method
 							in a different file</th>
-						<td><input type="number" name="Wrmcmd" id="Wrmcmd" value="<% out.print(fileList.get(0).getCoupling().getWrmcmd()); %>"/></td>
+						<td><input type="number" name="c9" id="c9" value="<% out.print(Coupling.getWeights()[8]); %>"/></td>
 					</tr>
 					<tr>
 						<th scope="row">A regular method referencing a global
 							variable in the same file</th>
-						<td><input type="number" name="Wmrgvs" id="Wmrgvs" value="<% out.print(fileList.get(0).getCoupling().getWmrgvs()); %>"/></td>
+						<td><input type="number" name="c10" id="c10" value="<% out.print(Coupling.getWeights()[9]); %>"/></td>
 					</tr>
 					<tr>
 						<th scope="row">A regular method referencing a global
 							variable in a different file</th>
-						<td><input type="number" name="Wmrgvd" id="Wmrgvd" value="<% out.print(fileList.get(0).getCoupling().getWmrgvd()); %>"/></td>
+						<td><input type="number" name="c11" id="c11" value="<% out.print(Coupling.getWeights()[10]); %>"/></td>
 					</tr>
 					<tr>
 						<th scope="row">A recursive method referencing a global
 							variable in the same file</th>
-						<td><input type="number" name="Wrmrgvs" id="Wrmrgvs" value="<% out.print(fileList.get(0).getCoupling().getWrmrgvs()); %>"/></td>
+						<td><input type="number" name="c12" id="c12" value="<% out.print(Coupling.getWeights()[11]); %>"/></td>
 					</tr>
 					<tr>
 						<th scope="row">A recursive method referencing a global
 							variable in a different file</th>
-						<td><input type="number" name="Wrmrgvd" id="Wrmrgvd" value="<% out.print(fileList.get(0).getCoupling().getWrmrgvd()); %>"/></td>
+						<td><input type="number" name="c13" id="c13" value="<% out.print(Coupling.getWeights()[12]); %>"/></td>
 					</tr>
 				</tbody>
 			</table>
 			<Button class="btn btn-primary" style="float: right">Save</Button>
+		</form>
+		<form action="../UpdateCouplingWeight?default=true" method="post" style="margin-bottom: 20px;">
+		<button class="btn btn-secondary">Set Default</button>
 		</form>
 	</div>
 </body>
