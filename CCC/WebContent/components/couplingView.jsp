@@ -28,7 +28,7 @@
 			</h3>
 		</center>
 		<br /> <br />
-		<table border="1" style="border-collapse: collapse;" >
+		<table border="1" style="border-collapse: collapse;">
 			<tr>
 				<th>Line No</th>
 				<th>Program Statement</th>
@@ -241,15 +241,17 @@
 				</td>
 			</tr>
 		</table>
+		<br />
 		<%
 			}
 		%>
 	</div>
 	<div>
+		<br />
 		<center>
-			<button
+			<div class="btn btn-primary"
 				onclick="window.location.href = 'components/couplingWeightChanger.jsp';">Change
-				Weights</button>
+				Weights</div>
 		</center>
 	</div>
 </body>

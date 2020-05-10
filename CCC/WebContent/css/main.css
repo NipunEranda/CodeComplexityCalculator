@@ -39,13 +39,13 @@
 
 .nav_bar .row .col{
 	padding: 8px;
-	background-color: black;
-	color: white;
+	background-color: lightgrey;
+	color: black;
 }
 
 .nav_bar .row .col:hover{
-	background-color: lightgrey;
-	color: black;
+	background-color: black;
+	color: white;
 	cursor: pointer;
-	transition-duration: 0.5s;
+	transition-duration: 0.4s;
 }

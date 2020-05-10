@@ -1,9 +1,9 @@
 var number = 0;
 function getNext() {
-	if (number === 5) {
+	if (number === 6) {
 	} else {
-		var compartments = new Array("coupling", "size", "variable", "method",
-				"inheritance", "controlStructure");
+		var compartments = new Array("size", "variable", "method", "coupling",
+				"controlStructure", "inheritance", "finalResult");
 		var status = 'false';
 		for ( var compartment in compartments) {
 
@@ -14,12 +14,16 @@ function getNext() {
 			if (compartment < compartments.length) {
 				if (status === 'true') {
 					document.getElementById(compartments[compartment]).style.display = "block";
+					document.getElementById(compartments[compartment]+"Btn").style.backgroundColor = "lightGrey";
+					document.getElementById(compartments[compartment]+"Btn").style.color = "black";
 					break;
 				}
 
 				if (display === 'block') {
 					status = 'true';
 					document.getElementById(compartments[compartment]).style.display = "none";
+					document.getElementById(compartments[compartment]+"Btn").style.backgroundColor = "Black";
+					document.getElementById(compartments[compartment]+"Btn").style.color = "white";
 				}
 			}
 
@@ -29,11 +33,11 @@ function getNext() {
 }
 
 function getPrevious() {
-	
-	if (number > 0 && number < 6) {
-	
-		var compartments = new Array("controlStructure", "inheritance",
-				"method", "variable", "size", "coupling");
+
+	if (number > 0 && number < 7) {
+
+		var compartments = new Array("finalResult", "inheritance", "controlStructure", "coupling",
+				"method", "variable", "size");
 		var status = 'false';
 		for ( var compartment in compartments) {
 
@@ -44,12 +48,16 @@ function getPrevious() {
 			if (compartment < compartments.length) {
 				if (status === 'true') {
 					document.getElementById(compartments[compartment]).style.display = "block";
+					document.getElementById(compartments[compartment]+"Btn").style.backgroundColor = "lightGrey";
+					document.getElementById(compartments[compartment]+"Btn").style.color = "black";
 					break;
 				}
 
 				if (display === 'block') {
 					status = 'true';
 					document.getElementById(compartments[compartment]).style.display = "none";
+					document.getElementById(compartments[compartment]+"Btn").style.backgroundColor = "Black";
+					document.getElementById(compartments[compartment]+"Btn").style.color = "white";
 				}
 			}
 

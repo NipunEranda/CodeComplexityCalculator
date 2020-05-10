@@ -28,10 +28,10 @@
 
 		<div class="nav_bar">
 			<div class="row" style="text-align: center;">
-				<div class="col" onclick="window.location.href = '${pageContext.request.contextPath}/index.jsp';">Home</div>
-				<div class="col">ANALYTICS</div>
-				<div class="col">GUIDE</div>
-				<div class="col">ABOUT</div>
+				<div class="col" id="home" onclick="window.location.href = '${pageContext.request.contextPath}/index.jsp';">Home</div>
+				<div class="col" id="analytics">ANALYTICS</div>
+				<div class="col" id="guide">GUIDE</div>
+				<div class="col" id="about">ABOUT</div>
 			</div>
 		</div>
 	</div>

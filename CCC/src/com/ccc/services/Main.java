@@ -7,7 +7,6 @@ import org.apache.commons.fileupload.FileItem;
 import com.ccc.model.CustomFile;
 import com.ccc.model.FileRead;
 import com.ccc.model.Line;
-import com.ccc.util.RemoveDuplicates;
 
 public class Main {
 
@@ -62,6 +61,8 @@ public class Main {
 				}
 			}
 		}
+		
+		//For Multi File Upload
 		if (this.fileList.size() > 1) {
 			try {
 				couplingService.process2();
@@ -70,7 +71,8 @@ public class Main {
 				status = false;
 				e.printStackTrace();
 			}
-		}else {
+		}//Single File Upload
+		else {
 			couplingService.process1(fileList.get(0));
 		}
 		CouplingServiceImp.process3();

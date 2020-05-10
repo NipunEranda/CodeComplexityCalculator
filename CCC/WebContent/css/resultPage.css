@@ -1,9 +1,22 @@
-.coupling{
-	display: block;
+#resultContainer{
+	margin-top: 25px;	
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+#resultContainer .row .col{
+	background-color: black;
+	margin-right: 2px;
+	margin-left: 2px;
+	border: none;
+}
+
+#resultContainer .row .col:hover{
+	background-color: white;
+	color: black;
 }
 
 .size{
-	display: none;
+	display: block;
 }
 
 .variable{
@@ -14,12 +27,20 @@
 	display: none;
 }
 
+.coupling{
+	display: none;
+}
+
 .inheritance{
 	display: none;
 }
 
 .controlStructure{
 	display: none;
+}
+
+.finalResult{
+	display:none;
 }
 
 .navBtnN{

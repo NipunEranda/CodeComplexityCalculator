@@ -8,52 +8,73 @@
 <html>
 <head>
 <title>Result Page</title>
+<%@ include file="components/header.jsp"%>
 <link rel="stylesheet" href="css/resultPage.css">
 <script src="js/resultPage.js"></script>
+<style>
+#analytics {
+	background-color: black;
+	color: white;
+}
+
+#analytics:hover {
+	background-color: lightGrey;
+	color: black;
+}
+</style>
 </head>
 <body>
-	<%@ include file="components/header.jsp"%>
 	<div id="resultContainer" class="container-fluid">
+		<div class="row" style="text-align: center;">
+			<div class="col btn btn-primary" id="previous"
+				onclick="getPrevious()">Previous</div>
+			<div class="col btn btn-primary" id="sizeBtn" style="background-color: lightGrey;color:black">Size</div>
+			<div class="col btn btn-primary" id="variableBtn">Variable</div>
+			<div class="col btn btn-primary" id="methodBtn">Method</div>
+			<div class="col btn btn-primary" id="couplingBtn">Coupling</div>
+			<div class="col btn btn-primary" id="controlStructureBtn">Control Structures</div>
+			<div class="col btn btn-primary" id="inheritanceBtn">Inheritance</div>
+			<div class="col btn btn-primary" id="finalResultBtn">Final Result</div>
+			<div class="col btn btn-primary" id="next" onclick="getNext()">Next
+				Factor</div>
+		</div>
+		<br/>
 		<div id="coupling" class="coupling">
-			<center>
-				<h2>Coupling factor</h2>
+			<div>
+				<h3>Code Complexity due to Coupling</h3>
 				<br />
+			</div>
+			<center>
 				<%@ include file="components/couplingView.jsp"%>
+			</center>
 		</div>
 		<div id="size" class="size">
-			<center>
-				<h1>Size factor</h1>
-			</center>
+				<h3>Code Complexity due to size</h3>
 			<br />
 		</div>
 		<div id="variable" class="variable">
-			<center>
-				<h1>Variable factor</h1>
-			</center>
+				<h3>Code Complexity due to variables</h3>
 			<br />
 		</div>
 		<div id="method" class="method">
-			<center>
-				<h1>Method factor</h1>
-			</center>
+				<h3>Code Complexity due to methods</h3>
 			<br />
 		</div>
 		<div id="inheritance" class="inheritance">
-			<center>
-				<h1>Inheritance factor</h1>
-			</center>
+				<h3>Code Complexity due to Inheritance</h3>
 			<br />
 		</div>
 		<div id="controlStructure" class="controlStructure">
+				<h3>Code Complexity due to Control Structures</h3>
+			<br />
+		</div>
+		<div id="finalResult" class="finalResult">
 			<center>
-				<h1>Control Structure factor</h1>
+				<h1>Final Result</h1>
 			</center>
 			<br />
 		</div>
-		<br />
-		<Button id="previous" onclick="getPrevious()" class="navBtnP">Previous</Button>
-		<Button id="next" onclick="getNext()" class="navBtnN">Next</Button>
-		<br />
+		<br /> <br />
 	</div>
 
 </body>
