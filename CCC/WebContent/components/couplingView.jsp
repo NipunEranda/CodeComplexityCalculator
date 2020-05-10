@@ -28,7 +28,7 @@
 			</h3>
 		</center>
 		<br /> <br />
-		<table border="1" style="border-collapse: collapse;">
+		<table border="1" style="border-collapse: collapse;" >
 			<tr>
 				<th>Line No</th>
 				<th>Program Statement</th>

@@ -22,10 +22,10 @@
 				<div class="upload">
 					<form action="UploadServlet" method="post"
 						enctype="multipart/form-data" name="form1" id="form1">
-						<label>Browse <input name="file" type="file" id="file"
+						<label class="browse-button">Browse <input name="file" type="file" id="file"
 							multiple style="display: none;" onChange="uploadOnChange(this)">
 						</label>
-						<div class="browse-button" style="margin-bottom: 50px;">
+						<div class="proceed" style="margin-bottom: 50px;">
 							<div style="width: 100%;">
 								<input type="text" id="filename" style="width: 75%;float: left;" /><input
 									type="submit" name="submit" value="Proceed" style="width: 24%;float: right" />

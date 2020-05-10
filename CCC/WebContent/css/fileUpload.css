@@ -20,17 +20,21 @@
     text-align: center;
 }
 
-.main-container .inner-container .browse-button{
+.main-container .inner-container .proceed{
     margin-bottom: 5px;
     width: 88%;
 }
 
-.main-container .inner-container .browse-button input[type="text"]{
+.main-container .inner-container .browse-button:hover{
+	cursor: pointer;
+}
+
+.main-container .inner-container .proceed input[type="text"]{
     float: left;
     width: 73%;
 }
 
-.main-container .inner-container .browse-button button{
+.main-container .inner-container .proceed button{
     float: right;
     width: 25%;
 }

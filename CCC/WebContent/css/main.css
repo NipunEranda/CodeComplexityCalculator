@@ -1,71 +1,51 @@
-.top-header{
-    border-style: solid;
-    border-width: 0.1px;
-    height: 125px;
-    background-color: white;
-}
-
-.top-header .center-compartment{
-    border-left-style: solid;
-    border-left-width: 0.1px;
-    border-right-style: solid;
-    border-right-width: 0.1px;
-    height: 125px;
-    width: 50%;
-    background-color: white;
-}
-
-.top-header .center-compartment .logo-compartment{
+.topic .logo-compartment{
     float: left;
-    width: 25%;
+    width: 1%;
     height: 125px;
 }
 
-.top-header .center-compartment .logo-compartment .logo{
+.topic .logo-compartment .logo{
     float: left;
     height: 125px;
 }
 
-.top-header .center-compartment .topic-compartment{
-    text-align: left;
-    float: left;
-    width: 65%;
-    margin-right: 10%;
-    height: 125px;
-}
-
-.top-header .center-compartment .topic-compartment .topic{
+.topic .row .col-4 .topic{
     padding-top: 25px;
-    font-size: 28px;
-}
-
-.top-header .center-compartment .topic-compartment .sub-topic{
+    font-size: 30px;
     float: right;
 }
 
-.nav-bar ul{
-  height: 35px;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
+.topic .row .col-4 .sub-topic{
+    float: right;
 }
 
-.nav-bar li {
-  width: 25%;
-  float: left;
+.topic .row .col{
+	border-style: solid;
+	border-color: black;
+	border-width: 0.2px;
 }
 
-.nav-bar li a {
-  font-size: 80%;
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 10px 1px;
-  text-decoration: none;
+.topic .row .col-4{
+	border-style: solid;
+	border-color: black;
+	border-width: 0.2px;
 }
 
-.nav-bar li a:hover {
-  background-color: #111;
+.nav_bar .row .col{
+	border-style: solid;
+	border-color: black;
+	border-width: 0.2px;
+}
+
+.nav_bar .row .col{
+	padding: 8px;
+	background-color: black;
+	color: white;
+}
+
+.nav_bar .row .col:hover{
+	background-color: lightgrey;
+	color: black;
+	cursor: pointer;
+	transition-duration: 0.5s;
 }

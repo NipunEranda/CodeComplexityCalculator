@@ -6,7 +6,6 @@ import com.ccc.model.Line;
 
 public interface CouplingService {
 
-	public String getMethodName(String line);
 	public void getClassNames(CustomFile file);
 	public void getObjectSet(CustomFile file);
 	public void setEndLineNumber(CustomFile file);

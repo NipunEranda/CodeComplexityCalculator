@@ -13,7 +13,7 @@
 </head>
 <body>
 	<%@ include file="components/header.jsp"%>
-	<div id="resultContainer">
+	<div id="resultContainer" class="container-fluid">
 		<div id="coupling" class="coupling">
 			<center>
 				<h2>Coupling factor</h2>
