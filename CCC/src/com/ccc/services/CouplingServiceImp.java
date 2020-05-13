@@ -123,7 +123,7 @@ public class CouplingServiceImp implements CouplingService {
 				}
 			}
 		}
-
+		
 		file.getCoupling().setMethodList(methodSet);
 	}
 
@@ -816,6 +816,7 @@ public class CouplingServiceImp implements CouplingService {
 		getRegInRec(file);
 		getGlobalVariableListInReg(file);
 		getGlobalVariableListInRec(file);
+		
 
 		file.getCoupling().setNr(file.getCoupling().getRecursiveMethodCalls().size());
 		file.getCoupling().setNmcms(file.getCoupling().getRegularInRegularMethods().size());

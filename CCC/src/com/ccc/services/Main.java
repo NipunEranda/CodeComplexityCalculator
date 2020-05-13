@@ -14,7 +14,8 @@ public class Main {
 	private ArrayList<CustomFile> fileList = new ArrayList<CustomFile>();
 	private String fileType = "";
 	public static String WEBCONTENTDIR = "git/CodeComplexityCalculator/CCC/WebContent/";
-	//Folder path inside the server( public static String WEBCONTENTDIR = "/opt/tomcat/webapps/ROOT/"; )
+	// Folder path inside the server( public static String WEBCONTENTDIR =
+	// "/opt/tomcat/webapps/ROOT/"; )
 
 	public ArrayList<CustomFile> getFileList() {
 		return fileList;
@@ -23,7 +24,7 @@ public class Main {
 	public void setFileList(ArrayList<CustomFile> fileList) {
 		this.fileList = fileList;
 	}
-	
+
 	public String getFileType() {
 		return fileType;
 	}
@@ -37,46 +38,48 @@ public class Main {
 		CouplingService couplingService = new CouplingServiceImp(fileList);
 
 		for (CustomFile file : this.fileList) {
+			if (file.getIsRaw() != true) {
+				if (!(file.getFileName().contains("java") || file.getFileName().contains("cpp"))) {
+					System.out.println("Wrong file type");
+				} else {
+					try {
+						if (file.getFileName().contains("java")) {
+							fileType = "java";
+						} else {
+							fileType = "cpp";
+						}
+						file.setFileType(fileType);
+						FileRead fileRead = new FileRead(file.getFileName());
+						FileReadService fileReadService = new FileReadServiceImp();
 
-			if (!(file.getFileName().contains("java") || file.getFileName().contains("cpp"))) {
-				System.out.println("Wrong file type");
-			} else {
-				try {
-					if (file.getFileName().contains("java")) {
-						fileType = "java";
-					} else {
-						fileType = "cpp";
+						fileReadService.openFile(fileRead, file);
+						fileReadService.readFile(fileRead, file);
+						fileReadService.closeFile(fileRead);
+						this.status = true;
+					} catch (Exception e) {
+						e.printStackTrace();
+						this.status = false;
 					}
-					file.setFileType(fileType);
-					FileRead fileRead = new FileRead(file.getFileName());
-					FileReadService fileReadService = new FileReadServiceImp();
-
-					fileReadService.openFile(fileRead, file);
-					fileReadService.readFile(fileRead, file);
-					fileReadService.closeFile(fileRead);
-					status = true;
-				} catch (Exception e) {
-					e.printStackTrace();
-					status = false;
 				}
 			}
 		}
-		
-		//For Multi File Upload
+
+		// For Multi File Upload
 		if (this.fileList.size() > 1) {
 			try {
 				couplingService.process2();
-				status = true;
+				this.status = true;
 			} catch (Exception e) {
-				status = false;
+				this.status = false;
 				e.printStackTrace();
 			}
-		}//Single File Upload
+		} // Single File Upload
 		else {
 			couplingService.process1(fileList.get(0));
+			this.status = true;
 		}
 		CouplingServiceImp.process3();
-		return status;
+		return this.status;
 	}
 
 }
