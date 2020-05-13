@@ -58,7 +58,6 @@ public class RawInputServlet extends HttpServlet {
 		}else {
 			response.sendRedirect("index.jsp");
 		}
-
 	}
 
 }
