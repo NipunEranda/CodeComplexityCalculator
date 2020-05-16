@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Result Size Page</title>
+<title>Result Variables Page</title>
 <link rel="stylesheet" href="css/fileUpload.css">
 <script src="js/uploadfile.js"></script>
 </head>
@@ -22,10 +22,9 @@
 
 		<%
 			for (CustomFile file : main) {
-				int[] sum = new int[5];
+				int[] sum = new int[13];
 		%>
-		
-		<center><h1>Size</h1></center>
+		<center><h1>Method</h1></center>
 		<center>
 			<h3>
 				<%
@@ -34,20 +33,17 @@
 			</h3>
 		</center>
 		<br /> <br />
-		
 		<table border="1">
 			<tr>
 				<th>Line No</th>
 				<th>Program Statement</th>
-				<th>Nkw</th>
+				<th>Wvs</th>
 				<!--col1 A recursive call -->
-				<th>Nid</th>
+				<th>Npdtv</th>
 				<!--col2 A regular method calling another regular method in the same file done-->
-				<th>Nop</th>
-				
-				<th>Nnv</th>
+				<th>Nedtv</th>
 				<!--col3 A regular method calling another regular method in a different file done-->
-				<th>Nsl</th>
+			>
 				<!--col4 A regular method calling a recursive method in the same file done-->
 				<th>Cs</th>
 				<!--col14 total -->
@@ -62,8 +58,7 @@
 					int col2 = 0;
 					int col3 = 0;
 					int col4 = 0;
-					int col5 = 0;
-					int col6 = 0;
+				
 				
 				%>
 				<td>
@@ -91,17 +86,14 @@
 						out.print(line.getSum()[2]);
 					%>
 				</td>
-				<td>
+				<%-- <td>
 					<%
 						out.print(line.getSum()[3]);
 					%>
-				</td>
+				</td> --%>
 				
 				
 				
-				<td>
-				<% out.print(line.getFinalValue()); %>
-				</td>
 				<td>
 				<% out.print(line.getFinalValue()); %>
 				</td>
@@ -112,12 +104,11 @@
 			<tr>
 			<td></td>
 			<td></td>
-			<td><% out.print(file.getSize().getSum()[0]); %></td>
-			<td><% out.print(file.getSize().getSum()[1]); %></td>
-			<td><% out.print(file.getSize().getSum()[2]); %></td>
-			<td><% out.print(file.getSize().getSum()[3]); %></td>
-			<td><% out.print(file.getSize().getSum()[4]); %></td>
-			<td><% out.print(file.getSize().getFinalValue()); %></td>
+			<td><% out.print(file.getCoupling().getSum()[0]); %></td>
+			<td><% out.print(file.getCoupling().getSum()[1]); %></td>
+			<td><% out.print(file.getCoupling().getSum()[2]); %></td>
+			<%-- <td><% out.print(file.getCoupling().getSum()[3]); %></td> --%>
+			<td><% out.print(file.getCoupling().getFinalValue()); %></td>
 			</tr>
 		</table>
 		<%

@@ -2,7 +2,7 @@ package com.ccc.model;
 
 import java.util.ArrayList;
 
-public class Size {
+public class Variables {
 
 	private String fileName;
 	
@@ -10,19 +10,21 @@ public class Size {
 
 	private Line line;
 	private int[] lineWeight = new int[6];
-	private int Nkw;
-	private int Nid;
-	private int Nop;
-	private int Nnv;
-	private int Nsl;
+	
+	
+	private int Wvs;
+	private int Npdtv;
+	private int Ncdtv;
+	
+	
+	// Wvs Npdtv Ncdtv Cv
 	
 	
 	
-	private int tot_Nkw;
-	private int tot_Nid;
-	private int tot_Nop;
-	private int tot_Nnv;
-	private int tot_Nsl;
+	private int tot_Wvs;
+	private int tot_Npdtv;
+	private int tot_Ncdtv;
+
 	
 	
 	
@@ -65,7 +67,7 @@ public class Size {
 	private ArrayList<Line> globalVariableListInReg_DF;
 	private ArrayList<Line> globalVariableListInRec_DF;
 
-	public Size(String fileName) {
+	public Variables(String fileName) {
 		this.setFileName(fileName);
 		this.MethodList = null;
 		this.calledMethodList = null;
@@ -84,19 +86,16 @@ public class Size {
 		weights[0] = 1;
 		weights[1] = 1;
 		weights[2] = 1;
-		weights[3] = 1;
-		weights[4] = 1;
 		
 	}
 
 	
 	
-	public static void setCustomWeights(int Nkw, int Nid, int Nop, int Nnv, int Nsl) {
-		weights[0] = Nkw;
-		weights[1] = Nid;
-		weights[2] = Nop;
-		weights[3] = Nnv;
-		weights[4] = Nsl;
+	public static void setCustomWeights(int Wvs, int Npdtv, int Ncdtv) {
+		weights[0] = Wvs;
+		weights[1] = Npdtv;
+		weights[2] = Ncdtv;
+		
 		
 				
 	}
@@ -122,89 +121,35 @@ public class Size {
 	}
 
 	public static void setWeights(int[] weights) {
-		Size.weights = weights;
+		Variables.weights = weights;
 	}
 
 	
 
-	public int getNkw() {
-		return Nkw;
+
+
+	public int getWvs() {
+		return Wvs;
 	}
 
-	public void setNkw(int nkw) {
-		Nkw = nkw;
+	public void setWvs(int wvs) {
+		Wvs = wvs;
 	}
 
-	public int getNid() {
-		return Nid;
+	public int getNpdtv() {
+		return Npdtv;
 	}
 
-	public void setNid(int nid) {
-		Nid = nid;
+	public void setNpdtv(int npdtv) {
+		Npdtv = npdtv;
 	}
 
-	public int getNop() {
-		return Nop;
+	public int getNcdtv() {
+		return Ncdtv;
 	}
 
-	public void setNop(int nop) {
-		Nop = nop;
-	}
-
-	public int getNnv() {
-		return Nnv;
-	}
-
-	public void setNnv(int nnv) {
-		Nnv = nnv;
-	}
-
-	public int getNsl() {
-		return Nsl;
-	}
-
-	public void setNsl(int nsl) {
-		Nsl = nsl;
-	}
-
-	public int getTot_Nkw() {
-		return tot_Nkw;
-	}
-
-	public void setTot_Nkw(int tot_Nkw) {
-		this.tot_Nkw = tot_Nkw;
-	}
-
-	public int getTot_Nid() {
-		return tot_Nid;
-	}
-
-	public void setTot_Nid(int tot_Nid) {
-		this.tot_Nid = tot_Nid;
-	}
-
-	public int getTot_Nop() {
-		return tot_Nop;
-	}
-
-	public void setTot_Nop(int tot_Nop) {
-		this.tot_Nop = tot_Nop;
-	}
-
-	public int getTot_Nnv() {
-		return tot_Nnv;
-	}
-
-	public void setTot_Nnv(int tot_Nnv) {
-		this.tot_Nnv = tot_Nnv;
-	}
-
-	public int getTot_Nsl() {
-		return tot_Nsl;
-	}
-
-	public void setTot_Nsl(int tot_Nsl) {
-		this.tot_Nsl = tot_Nsl;
+	public void setNcdtv(int ncdtv) {
+		Ncdtv = ncdtv;
 	}
 
 	public String getFileName() {
@@ -452,44 +397,41 @@ public class Size {
 		this.keywords = keywords;
 	}
 	
-	
 	/*
-	 
-	 private int Nkw;
-	private int Nid;
-	private int Nop;
-	private int Nnv;
-	private int Nsl;
+	 * 
+	 private int Wvs;
+	private int Npdtv;
+	private int Ncdtv;
 	
-	private int tot_Nkw;
-	private int tot_Nid;
-	private int tot_Nop;
-	private int tot_Nnv;
-	private int tot_Nsl;
+	
+	// Wvs Npdtv Ncdtv Cv
+	
+	
+	
+	private int tot_Wvs;
+	private int tot_Npdtv;
+	private int tot_Ncdtv; 
 	 
-	 */
+	 * 
+	 * */
 	
 	public void setFinalValue() {
 		
 		
 		
-		tot_Nkw = weights[0] * Nkw;
-		setNkw(tot_Nkw);
-		tot_Nid = weights[1] * Nid;
-		setNid(tot_Nid);
-		tot_Nop = weights[2] * Nop;
-		setNop(tot_Nop);
-		tot_Nnv = weights[3] * Nnv;
-		setNnv(tot_Nnv);
-		tot_Nsl = weights[4] * Nsl;
-		setNsl(tot_Nsl);
+		tot_Wvs = weights[0] * Wvs;
+		setWvs(tot_Wvs);
+		tot_Npdtv = weights[1] * Npdtv;
+		setNpdtv(tot_Npdtv);
+		tot_Ncdtv = weights[2] * Ncdtv;
+		setNcdtv(tot_Ncdtv);
+			
 		
+	//	finalValue = tot_Wvs + tot_Npdtv + tot_Ncdtv ;
 		
+		//Cv = Wvs [(Wpdtv * Npdtv) + (Wcdtv * Ncdtv)]
 		
-		
-		
-		
-		finalValue = tot_Nkw + tot_Nid + tot_Nop + tot_Nnv + tot_Nsl ;
+		finalValue = tot_Wvs * (tot_Npdtv + tot_Ncdtv);
 
 	}
 
