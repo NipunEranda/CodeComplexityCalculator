@@ -3,14 +3,51 @@
 	background-color: rgba(255, 255, 255, 0.5);
 }
 
-#resultContainer .row .col{
+.ord{
 	background-color: black;
+	color: white;
 	margin-right: 2px;
 	margin-left: 2px;
 	border: none;
 }
 
-#resultContainer .row .col:hover{
+.ord:hover{
+	background-color: white;
+	color: black;
+}
+
+.fBtn{
+	background-color: black;
+	color: white;
+	border: none;
+	margin-right: 2px;
+	margin-left: 2px;
+}
+
+.activated{
+	background-color: lightGrey;
+	color: black;
+}
+
+.activated:hover{
+	background-color: white;
+	color: black;
+}
+
+.fBtn:hover{
+	background-color: white;
+	color: black;
+}
+
+.fBtn_clicked{
+	background-color: lightGrey;
+	color: black;
+	border: none;
+	margin-right: 2px;
+	margin-left: 2px;
+}
+
+.fBtn_clicked:hover{
 	background-color: white;
 	color: black;
 }

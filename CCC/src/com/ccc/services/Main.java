@@ -14,7 +14,8 @@ public class Main {
 	private ArrayList<CustomFile> fileList = new ArrayList<CustomFile>();
 	private String fileType = "";
 	public static String WEBCONTENTDIR = "git/CodeComplexityCalculator/CCC/WebContent/";
-	//Folder path inside the server( public static String WEBCONTENTDIR = "/opt/tomcat/webapps/ROOT/"; )
+	// Folder path inside the server( public static String WEBCONTENTDIR =
+	// "/opt/tomcat/webapps/ROOT/"; )
 
 	public ArrayList<CustomFile> getFileList() {
 		return fileList;
@@ -23,7 +24,7 @@ public class Main {
 	public void setFileList(ArrayList<CustomFile> fileList) {
 		this.fileList = fileList;
 	}
-	
+
 	public String getFileType() {
 		return fileType;
 	}
@@ -61,8 +62,8 @@ public class Main {
 				}
 			}
 		}
-		
-		//For Multi File Upload
+
+		// For Multi File Upload
 		if (this.fileList.size() > 1) {
 			try {
 				couplingService.process2();
@@ -71,9 +72,10 @@ public class Main {
 				status = false;
 				e.printStackTrace();
 			}
-		}//Single File Upload
+		} // Single File Upload
 		else {
 			couplingService.process1(fileList.get(0));
+			status = true;
 		}
 		CouplingServiceImp.process3();
 		return status;

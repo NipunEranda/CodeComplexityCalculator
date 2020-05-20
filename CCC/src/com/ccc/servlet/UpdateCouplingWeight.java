@@ -40,7 +40,7 @@ public class UpdateCouplingWeight extends HttpServlet {
 						Wmrgvd, Wrmrgvs, Wrmrgvd);
 
 				CouplingServiceImp.process3();
-				response.sendRedirect("resultpage.jsp");
+				response.sendRedirect("resultpage.jsp?edited=coupling");
 			}
 
 		}

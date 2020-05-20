@@ -26,16 +26,16 @@
 <body>
 	<div id="resultContainer" class="container-fluid">
 		<div class="row" style="text-align: center;">
-			<div class="col btn btn-primary" id="previous"
+			<div class="col btn ord" id="previous"
 				onclick="getPrevious()">Previous</div>
-			<div class="col btn btn-primary" id="sizeBtn" style="background-color: lightGrey;color:black">Size</div>
-			<div class="col btn btn-primary" id="variableBtn">Variable</div>
-			<div class="col btn btn-primary" id="methodBtn">Method</div>
-			<div class="col btn btn-primary" id="couplingBtn">Coupling</div>
-			<div class="col btn btn-primary" id="controlStructureBtn">Control Structures</div>
-			<div class="col btn btn-primary" id="inheritanceBtn">Inheritance</div>
-			<div class="col btn btn-primary" id="finalResultBtn">Final Result</div>
-			<div class="col btn btn-primary" id="next" onclick="getNext()">Next
+			<div class="col btn fBtn activated" id="sizeBtn" onclick="instantGo('size');">Size</div>
+			<div class="col btn fBtn" id="variableBtn" onclick="instantGo('variable');">Variable</div>
+			<div class="col btn fBtn" id="methodBtn" onclick="instantGo('method');">Method</div>
+			<div class="col btn fBtn" id="couplingBtn" onclick="instantGo('coupling');">Coupling</div>
+			<div class="col btn fBtn" id="controlStructureBtn" onclick="instantGo('controlStructure');">Control Structures</div>
+			<div class="col btn fBtn" id="inheritanceBtn" onclick="instantGo('inheritance');">Inheritance</div>
+			<div class="col btn fBtn" id="finalResultBtn" onclick="instantGo('finalResult');">Final Result</div>
+			<div class="col btn ord" id="next" onclick="getNext()">Next
 				Factor</div>
 		</div>
 		<br/>
