@@ -38,27 +38,28 @@ public class Main {
 		CouplingService couplingService = new CouplingServiceImp(fileList);
 
 		for (CustomFile file : this.fileList) {
+			if (file.getIsRaw() != true) {
+				if (!(file.getFileName().contains("java") || file.getFileName().contains("cpp"))) {
+					System.out.println("Wrong file type");
+				} else {
+					try {
+						if (file.getFileName().contains("java")) {
+							fileType = "java";
+						} else {
+							fileType = "cpp";
+						}
+						file.setFileType(fileType);
+						FileRead fileRead = new FileRead(file.getFileName());
+						FileReadService fileReadService = new FileReadServiceImp();
 
-			if (!(file.getFileName().contains("java") || file.getFileName().contains("cpp"))) {
-				System.out.println("Wrong file type");
-			} else {
-				try {
-					if (file.getFileName().contains("java")) {
-						fileType = "java";
-					} else {
-						fileType = "cpp";
+						fileReadService.openFile(fileRead, file);
+						fileReadService.readFile(fileRead, file);
+						fileReadService.closeFile(fileRead);
+						this.status = true;
+					} catch (Exception e) {
+						e.printStackTrace();
+						this.status = false;
 					}
-					file.setFileType(fileType);
-					FileRead fileRead = new FileRead(file.getFileName());
-					FileReadService fileReadService = new FileReadServiceImp();
-
-					fileReadService.openFile(fileRead, file);
-					fileReadService.readFile(fileRead, file);
-					fileReadService.closeFile(fileRead);
-					status = true;
-				} catch (Exception e) {
-					e.printStackTrace();
-					status = false;
 				}
 			}
 		}
@@ -67,18 +68,18 @@ public class Main {
 		if (this.fileList.size() > 1) {
 			try {
 				couplingService.process2();
-				status = true;
+				this.status = true;
 			} catch (Exception e) {
-				status = false;
+				this.status = false;
 				e.printStackTrace();
 			}
 		} // Single File Upload
 		else {
 			couplingService.process1(fileList.get(0));
-			status = true;
+			this.status = true;
 		}
 		CouplingServiceImp.process3();
-		return status;
+		return this.status;
 	}
 
 }

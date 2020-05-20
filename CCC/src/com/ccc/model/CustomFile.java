@@ -7,6 +7,7 @@ public class CustomFile {
 	private String fileName;
 	private String filePath;
 	private String fileType;
+	private boolean isRaw;
 	private int lastIndex;
 	private ArrayList<Line> lineSet;
 	private Coupling coupling;
@@ -15,7 +16,9 @@ public class CustomFile {
 		this.fileName = fileName;
 		this.lineSet = null;
 		this.coupling = new Coupling(fileName);
+		this.isRaw=false;
 	}
+	
 
 	public String getFileName() {
 		return fileName;
@@ -35,6 +38,14 @@ public class CustomFile {
 
 	public void setFileType(String fileType) {
 		this.fileType = fileType;
+	}
+
+	public boolean getIsRaw() {
+		return isRaw;
+	}
+	
+	public void setIsRaw(boolean isRaw) {
+		this.isRaw = isRaw;
 	}
 
 	public void setFileName(String fileName) {
