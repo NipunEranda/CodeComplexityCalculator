@@ -16,6 +16,12 @@
 		  	<description></description>
 		  	<servlet-class>Servlet.UpdateInheritanceWeight</servlet-class>
 		  </servlet>
+		  <servlet>
+		  	<servlet-name>RawInputServlet</servlet-name>
+		  	<display-name>RawInputServlet</display-name>
+		  	<description></description>
+		  	<servlet-class>Servlet.RawInputServlet</servlet-class>
+		  </servlet>
 		  
 		  
 		  <servlet-mapping>
@@ -25,6 +31,10 @@
 		  <servlet-mapping>
 		  	<servlet-name>UpdateInheritanceWeight</servlet-name>
 		  	<url-pattern>/UpdateInheritanceWeight</url-pattern>
+		  </servlet-mapping>
+		  <servlet-mapping>
+		  	<servlet-name>RawInputServlet</servlet-name>
+		  	<url-pattern>/RawInputServlet</url-pattern>
 		  </servlet-mapping>
 		 
 		  
