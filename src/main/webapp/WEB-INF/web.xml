@@ -4,39 +4,22 @@
 
 		<web-app>
 		  <display-name>Inheritance</display-name>
-		  <servlet>
-		  	<servlet-name>HomeServlet</servlet-name>
-		  	<display-name>HomeServlet</display-name>
-		  	<description></description>
-		  	<servlet-class>Servlet.HomeServlet</servlet-class>
-		  </servlet>
+		  
 		  <servlet>
 		  	<servlet-name>UpdateInheritanceWeight</servlet-name>
 		  	<display-name>UpdateInheritanceWeight</display-name>
 		  	<description></description>
 		  	<servlet-class>Servlet.UpdateInheritanceWeight</servlet-class>
 		  </servlet>
-		  <servlet>
-		  	<servlet-name>RawInputServlet</servlet-name>
-		  	<display-name>RawInputServlet</display-name>
-		  	<description></description>
-		  	<servlet-class>Servlet.RawInputServlet</servlet-class>
-		  </servlet>
+		 
 		  
 		  
-		  <servlet-mapping>
-		  	<servlet-name>HomeServlet</servlet-name>
-		  	<url-pattern>/HomeServlet</url-pattern>
-		  </servlet-mapping>
+		 
 		  <servlet-mapping>
 		  	<servlet-name>UpdateInheritanceWeight</servlet-name>
 		  	<url-pattern>/UpdateInheritanceWeight</url-pattern>
 		  </servlet-mapping>
-		  <servlet-mapping>
-		  	<servlet-name>RawInputServlet</servlet-name>
-		  	<url-pattern>/RawInputServlet</url-pattern>
-		  </servlet-mapping>
-		 
+		  
 		  
 		  <welcome-file-list>
 		  	<welcome-file>Home.jsp</welcome-file>

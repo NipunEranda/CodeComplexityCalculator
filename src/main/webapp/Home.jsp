@@ -15,6 +15,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <title>Home Page</title>
+
 <style>
 ul {
 	list-style-type: none;
@@ -64,7 +65,7 @@ background-color
 
 	<div class="container" style="height: 500px">
 
-		<form action="Servlet.RawInputServlet" class="form" method="POST"
+		<form action="RawInputServlet" class="form" method="POST"
 			style="font-family: century gothic;">
 
 			<div class="form-group" style="font-size: 20px; font-weight: normal;">

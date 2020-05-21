@@ -6,7 +6,7 @@ import Model.CustomFile;
 import Model.Inheritance;
 import Model.Line;
 
-public class InheritanceServiceImp extends InheritanceService {
+public class InheritanceServiceImp implements InheritanceService {
 
 	static ArrayList<CustomFile> fileList;
 	
@@ -15,17 +15,35 @@ public class InheritanceServiceImp extends InheritanceService {
 		fileList = fList;
 	}
 
-	
-//get direct inheritance patterns
+	@Override
+//get direct inheritance patterns 
 	public void getDirectInheritance( CustomFile file) {
 		
 		ArrayList<Line> DirectInheritance = new ArrayList<Line>();
 		
+		//c++ inheritance patterns validation
+		
+		for(Line cline :file.getLineSet()) {
+			boolean cdirect = false;
+			if(cline.getLineContent().contains(":public") ||  cline.getLineContent().contains(" :public")
+					||cline.getLineContent().contains(": public")||cline.getLineContent().contains(" : public")) {
+				cdirect = true;
+			}if(cdirect) {
+				DirectInheritance.add(cline);
+			}
+				file.getInheritance().setDirect_I(DirectInheritance);
+		}
+		
+		// java inheritance patterns validation
 		
 		for(Line line : file.getLineSet()) {
 			boolean direct = false;
-			if(line.getLineContent().contains("class") && line.getLineContent().contains("extends")) {
+			if(
+							( line.getLineContent().contains("class") || line.getLineContent().contains(" class") ) && 
+							( line.getLineContent().contains("extends")||line.getLineContent().contains(" extends") )
+							) {
 					 direct = true;
+					 
 		
 		}if(direct) {
 			DirectInheritance.add(line);
@@ -33,7 +51,7 @@ public class InheritanceServiceImp extends InheritanceService {
 	}
 		file.getInheritance().setDirect_I(DirectInheritance);
 }
-	
+@Override	
 //get indirect inheritance patterns
 public void getInDirectInheritance( CustomFile file) {
 		
@@ -41,7 +59,7 @@ public void getInDirectInheritance( CustomFile file) {
 		
 		for(Line line : file.getLineSet()) {
 			boolean indirect = false;
-			if(line.getLineContent().contains("toString") ) {
+			if(line.getLineContent().contains("toString") ||line.getLineContent().contains(" toString") ) {
 					 indirect = true;
 		
 		}if(indirect) {
@@ -65,8 +83,8 @@ public void getInDirectInheritance( CustomFile file) {
 	public void process2() {
 		for(CustomFile file : fileList) {
 			
-			getDirect_I(file);
-			getInDirect_I(file);
+			getDirectInheritance(file);
+			getInDirectInheritance(file);
 		}
 		
 		for(CustomFile file :fileList) {
@@ -115,5 +133,37 @@ public void getInDirectInheritance( CustomFile file) {
 			file.getInheritance().setSum(sum);
 		}
 		
+	}
+
+	@Override
+	public void getTotalInheritance(CustomFile file) {
+		// TODO Auto-generated method stub
+ArrayList<Line> TotalInheritance = new ArrayList<Line>();
+		
+		for(Line line : file.getLineSet()) {
+			int total = 0;
+			if(line.getLineContent().contains("toString") ||line.getLineContent().contains(" toString") ) {
+					 total = total  +1;
+					 TotalInheritance.add(line);
+					 }else if(
+								( line.getLineContent().contains("class") || line.getLineContent().contains(" class") ) && 
+								( line.getLineContent().contains("extends")||line.getLineContent().contains(" extends") )
+								) {
+						 total = total  +1;
+						 TotalInheritance.add(line);
+					 }else if(line.getLineContent().contains(":public") ||  line.getLineContent().contains(" :public")
+								||line.getLineContent().contains(": public")||line.getLineContent().contains(" : public")) {
+						 total = total  +1;
+						 TotalInheritance.add(line);
+					 }
+					
+		
+		}
+	
+		
+		file.getInheritance().setTotal_I(TotalInheritance);
+	
+
+
 	}
 	}

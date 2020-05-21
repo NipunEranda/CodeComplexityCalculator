@@ -59,7 +59,7 @@ public class RawInputServlet extends HttpServlet {
 		if(status) {
 			HttpSession session = request.getSession();
 			session.setAttribute("fileList", main.getFileList());
-			response.sendRedirect("DisplayComplexityOfInheritance.jsp");
+			response.sendRedirect("components/DisplayComplexityOfInheritance.jsp");
 		}else {
 			response.sendRedirect("index.jsp");
 		}
