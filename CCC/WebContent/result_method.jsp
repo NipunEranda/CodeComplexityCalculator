@@ -59,7 +59,6 @@
 					int col3 = 0;
 					int col4 = 0;
 				
-				
 				%>
 				<td>
 					<%

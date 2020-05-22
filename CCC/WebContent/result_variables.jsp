@@ -57,8 +57,7 @@
 					int col1 = 0;
 					int col2 = 0;
 					int col3 = 0;
-					int col4 = 0;
-				
+					int col4 = 0;				
 				
 				%>
 				<td>
