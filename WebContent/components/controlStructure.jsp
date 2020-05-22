@@ -21,17 +21,20 @@ crossorigin="anonymous">
 	ArrayList<CustomFile> main = (ArrayList) session.getAttribute("fileList");
 %>
 	<div class="main-container">
-	
-		<center><h3>
+		
 		<%
 			
 			for(CustomFile file : main){
-				
-				out.print(file.getFileName());
-				
-				
 		%>
-		</h3></center><br><br>
+		
+		<br>
+		<center><h4 class="bg-primary text-light p-2">
+		
+		<%	
+				out.print(file.getFileName());
+	
+		%>
+		</h4></center>
 		
 		<%
 		
@@ -68,11 +71,15 @@ crossorigin="anonymous">
 								out.print("<td>"+ccspps.get(i)+"</td>");
 								out.print("<td>"+ccs.get(i)+"</td></tr>");
 							}
-						}
+						
 						%>
 		
 					</tbody>
 			</table>
+			
+			<%
+				}
+			%>
 		
 			<form class="form mb-2 float-left" action="components/controlStructureEditWeights.jsp" >
 				<input type="submit" class="btn btn-secondary" value="Change Weights"> 
