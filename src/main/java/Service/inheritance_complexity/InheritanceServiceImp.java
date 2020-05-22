@@ -127,6 +127,18 @@ public void getInDirectInheritance( CustomFile file) {
 				line.setSum(1, count);
 				file.getInheritance();
 				line.setColValues(1, count * Inheritance.getWeights()[1]);
+				
+				//column3
+				count = 0;
+				for(Line regLine : file.getInheritance().getTotal_I()) {
+					if(regLine.getLineNumber() == line.getLineNumber()) {
+						count ++;
+					}
+				}
+				
+				line.setSum(2, count);
+				file.getInheritance();
+				line.setColValues(1, count * Inheritance.getWeights()[2]);
 			}
 			
 			file.getInheritance().setFinalValue();
