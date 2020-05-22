@@ -44,7 +44,7 @@ crossorigin="anonymous">
 				ArrayList ccs =  (ArrayList)file.getControlStructure().getCsList();	
 				ArrayList statements =  (ArrayList)file.getControlStructure().getStatement();
 				int weights[] = file.getControlStructure().getWeights();
-		
+				int total = 0;
 			
 		%>
 		
@@ -70,9 +70,11 @@ crossorigin="anonymous">
 								out.print("<td>"+nc.get(i)+"</td>");
 								out.print("<td>"+ccspps.get(i)+"</td>");
 								out.print("<td>"+ccs.get(i)+"</td></tr>");
+								total += Integer.parseInt(ccs.get(i).toString());
 							}
 						
 						%>
+						<tr><td></td><td>Total</td><td></td><td></td><td></td><td><%= total%></td></tr>
 		
 					</tbody>
 			</table>
