@@ -86,12 +86,7 @@
 						out.print(line.getSum()[2]);
 					%>
 				</td>
-				<%-- <td>
-					<%
-						out.print(line.getSum()[3]);
-					%>
-				</td> --%>
-				
+						
 				
 				
 				<td>
@@ -104,11 +99,10 @@
 			<tr>
 			<td></td>
 			<td></td>
-			<td><% out.print(file.getCoupling().getSum()[0]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[1]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[2]); %></td>
-			<%-- <td><% out.print(file.getCoupling().getSum()[3]); %></td> --%>
-			<td><% out.print(file.getCoupling().getFinalValue()); %></td>
+			<td><% out.print(file.getMethod().getSum()[0]); %></td>
+			<td><% out.print(file.getMethod().getSum()[1]); %></td>
+			<td><% out.print(file.getMethod().getSum()[2]); %></td>
+			<td><% out.print(file.getMethod().getFinalValue()); %></td>
 			</tr>
 		</table>
 		<%

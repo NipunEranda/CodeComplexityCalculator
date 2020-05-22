@@ -97,11 +97,11 @@
 			<tr>
 			<td></td>
 			<td></td>
-			<td><% out.print(file.getCoupling().getSum()[0]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[1]); %></td>
-			<td><% out.print(file.getCoupling().getSum()[2]); %></td>
+			<td><% out.print(file.getVariables().getSum()[0]); %></td>
+			<td><% out.print(file.getVariables().getSum()[1]); %></td>
+			<td><% out.print(file.getVariables().getSum()[2]); %></td>
 		
-			<td><% out.print(file.getCoupling().getFinalValue()); %></td>
+			<td><% out.print(file.getVariables().getFinalValue()); %></td>
 			</tr>
 		</table>
 		<%
