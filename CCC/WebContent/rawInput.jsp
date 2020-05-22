@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="components/header.jsp"%>
 <meta charset="ISO-8859-1">
 
 
@@ -14,7 +15,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<title>Home Page</title>
+<title>Raw Input</title>
 <style>
 ul {
 	list-style-type: none;
@@ -64,10 +65,7 @@ background-color
 </head>
 <body>
 
-
-
-
-	<div class="container" style="height: 500px">
+	<div class="container" style="height: 500px;margin-top: 25px;">
 
 		<form action="RawInputServlet" class="form" method="POST"
 			style="font-family: century gothic;">

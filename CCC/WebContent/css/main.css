@@ -1,3 +1,7 @@
+.topic{
+	color: white;
+}
+
 .topic .logo-compartment{
     float: left;
     width: 1%;
@@ -9,7 +13,7 @@
     height: 125px;
 }
 
-.topic .row .col-4 .topic{
+.topic .row .col-4 .maintopic{
     padding-top: 25px;
     font-size: 30px;
     float: right;
@@ -39,13 +43,13 @@
 
 .nav_bar .row .col{
 	padding: 8px;
-	background-color: lightgrey;
-	color: black;
+	background-color: black;
+	color: white;
 }
 
 .nav_bar .row .col:hover{
-	background-color: black;
-	color: white;
+	background-color: darkorange;
+	color: black;
 	cursor: pointer;
 	transition-duration: 0.4s;
 }

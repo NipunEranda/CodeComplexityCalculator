@@ -11,11 +11,18 @@ public class CustomFile {
 	private int lastIndex;
 	private ArrayList<Line> lineSet;
 	private Coupling coupling;
+	private Inheritance inheritance;
+	private ControlStructure controlStructure;
+	private Size size;
+	private Variables variables;
+	private Method method;
 	
 	public CustomFile(String fileName) {
 		this.fileName = fileName;
 		this.lineSet = null;
 		this.coupling = new Coupling(fileName);
+		this.inheritance = new Inheritance(fileName);
+		this.controlStructure = new ControlStructure(fileName);
 		this.isRaw=false;
 	}
 	
@@ -75,5 +82,46 @@ public class CustomFile {
 	public void setCoupling(Coupling coupling) {
 		this.coupling = coupling;
 	}
+	
+	public Inheritance getInheritance() {
+		return inheritance;
+	}
+
+	public void setInheritance(Inheritance inheritance) {
+		this.inheritance = inheritance;
+	}
+	
+	public ControlStructure getControlStructure() {
+		return controlStructure;
+	}
+	
+	public void setControlStructure(ControlStructure controlStructure) {
+		this.controlStructure = controlStructure;
+	}
+	
+	public Size getSize() {
+		return size;
+	}
+
+	public void setSize(Size size) {
+		this.size = size;
+	}
+
+	public Variables getVariables() {
+		return variables;
+	}
+
+	public void setVariables(Variables variables) {
+		this.variables = variables;
+	}
+
+	public Method getMethod() {
+		return method;
+	}
+
+	public void setMethod(Method method) {
+		this.method = method;
+	}
+	
 
 }

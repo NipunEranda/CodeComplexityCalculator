@@ -2,7 +2,6 @@ import java.util.Scanner;
 public class Maths1{
 	double num = 0.0;
 	
-	
 	public static void main(String[] args){
 		answer();
 	}
@@ -12,12 +11,12 @@ public class Maths1{
 		Maths1 m1 = new Maths1();
 		m5.getCube();
 		m5.answer();
-		if(num == 0)
+		if(num1 == 0)
 			return 0;
 		else
 			return getSqr(num1-1) + (2 * num1) - 1;
 	}
-
+	
 	public double getCube(double num2){
 		Maths2 m3 = new Maths2();
 		m3.answer();
@@ -38,10 +37,10 @@ public class Maths1{
 		num = input.nextInt();
 		m4.num = 0;
 	
-		double n2 = getSqr(num);
+	double n2 = getSqr(num);
 	
-		System.out.println("Squared value of " + num + "is " + n2);
-		System.out.println("Cube value of " + num + "is " + getCube(num)); 
+	System.out.println("Squared value of " + num + "is " + n2);
+	System.out.println("Cube value of " + num + "is " + getCube(num)); 
 }
 
 	public void printSomething1(){

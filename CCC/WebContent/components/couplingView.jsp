@@ -8,13 +8,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Coupling</title>
+<style type="text/css">
+
+table tr td{
+	font-size: 12px;
+}
+
+</style>
 </head>
 <body>
 
 	<%
 		ArrayList<CustomFile> main = (ArrayList) session.getAttribute("fileList");
 	%>
-	<div class="main-container">
+	<div>
 
 		<%
 			for (CustomFile file : main) {
@@ -28,8 +35,8 @@
 			</h3>
 		</center>
 		<br /> <br />
-		<table border="1" style="border-collapse: collapse;">
-			<tr>
+		<table border="1" style="border-collapse: collapse;width: 100%;font-size: 14px;" class="table">
+			 <thead class="thead-dark">
 				<th>Line No</th>
 				<th>Program Statement</th>
 				<th>Nr</th>
@@ -60,7 +67,7 @@
 				<!--col13 A recursive method referencing a global variable in a different file -->
 				<th>Ccp</th>
 				<!--col14 total -->
-			</tr>
+			</thead>
 			<%
 				int count = 0;
 					for (Line line : file.getLineSet()) {
@@ -87,7 +94,7 @@
 						out.print(line.getLineNumber());
 					%>
 				</td>
-				<td class="lineSet">
+				<td>
 					<%
 						out.print(line.getLineContent());
 					%>
