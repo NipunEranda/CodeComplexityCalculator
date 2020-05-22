@@ -36,6 +36,7 @@ public class Main {
 	public boolean run() {
 
 		CouplingService couplingService = new CouplingServiceImp(fileList);
+		ControlStructureService controlStructureService = new ControlStructureServiceImp(fileList);
 
 		for (CustomFile file : this.fileList) {
 
@@ -67,6 +68,7 @@ public class Main {
 		if (this.fileList.size() > 1) {
 			try {
 				couplingService.process2();
+				controlStructureService.process2();
 				status = true;
 			} catch (Exception e) {
 				status = false;
@@ -75,6 +77,7 @@ public class Main {
 		} // Single File Upload
 		else {
 			couplingService.process1(fileList.get(0));
+			controlStructureService.process1(fileList.get(0));
 			status = true;
 		}
 		CouplingServiceImp.process3();

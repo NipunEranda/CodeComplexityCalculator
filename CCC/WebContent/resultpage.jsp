@@ -13,12 +13,12 @@
 <script src="js/resultPage.js"></script>
 <style>
 #analytics {
-	background-color: black;
-	color: white;
+	background-color: darkorange;
+	color: black;
 }
 
 #analytics:hover {
-	background-color: lightGrey;
+	background-color: gold;
 	color: black;
 }
 </style>
@@ -26,19 +26,25 @@
 <body>
 	<div id="resultContainer" class="container-fluid">
 		<div class="row" style="text-align: center;">
-			<div class="col btn ord" id="previous"
-				onclick="getPrevious()">Previous</div>
-			<div class="col btn fBtn activated" id="sizeBtn" onclick="instantGo('size');">Size</div>
-			<div class="col btn fBtn" id="variableBtn" onclick="instantGo('variable');">Variable</div>
-			<div class="col btn fBtn" id="methodBtn" onclick="instantGo('method');">Method</div>
-			<div class="col btn fBtn" id="couplingBtn" onclick="instantGo('coupling');">Coupling</div>
-			<div class="col btn fBtn" id="controlStructureBtn" onclick="instantGo('controlStructure');">Control Structures</div>
-			<div class="col btn fBtn" id="inheritanceBtn" onclick="instantGo('inheritance');">Inheritance</div>
-			<div class="col btn fBtn" id="finalResultBtn" onclick="instantGo('finalResult');">Final Result</div>
+			<div class="col btn ord" id="previous" onclick="getPrevious()">Previous</div>
+			<div class="col btn fBtn activated" id="sizeBtn"
+				onclick="instantGo('size');">Size</div>
+			<div class="col btn fBtn" id="variableBtn"
+				onclick="instantGo('variable');">Variable</div>
+			<div class="col btn fBtn" id="methodBtn"
+				onclick="instantGo('method');">Method</div>
+			<div class="col btn fBtn" id="couplingBtn"
+				onclick="instantGo('coupling');">Coupling</div>
+			<div class="col btn fBtn" id="controlStructureBtn"
+				onclick="instantGo('controlStructure');">Control Structures</div>
+			<div class="col btn fBtn" id="inheritanceBtn"
+				onclick="instantGo('inheritance');">Inheritance</div>
+			<div class="col btn fBtn" id="finalResultBtn"
+				onclick="instantGo('finalResult');">Final Result</div>
 			<div class="col btn ord" id="next" onclick="getNext()">Next
 				Factor</div>
 		</div>
-		<br/>
+		<br />
 		<div id="coupling" class="coupling">
 			<div>
 				<h3>Code Complexity due to Coupling</h3>
@@ -49,24 +55,31 @@
 			</center>
 		</div>
 		<div id="size" class="size">
-				<h3>Code Complexity due to size</h3>
+			<h3>Code Complexity due to size</h3>
 			<br />
+
 		</div>
 		<div id="variable" class="variable">
-				<h3>Code Complexity due to variables</h3>
+			<h3>Code Complexity due to variables</h3>
 			<br />
+
 		</div>
 		<div id="method" class="method">
-				<h3>Code Complexity due to methods</h3>
+			<h3>Code Complexity due to methods</h3>
 			<br />
+
 		</div>
 		<div id="inheritance" class="inheritance">
-				<h3>Code Complexity due to Inheritance</h3>
+			<h3>Code Complexity due to Inheritance</h3>
 			<br />
+
 		</div>
 		<div id="controlStructure" class="controlStructure">
-				<h3>Code Complexity due to Control Structures</h3>
+			<h3>Code Complexity due to Control Structures</h3>
 			<br />
+			<center>
+				<%@ include file="components/controlStructure.jsp"%>
+			</center>
 		</div>
 		<div id="finalResult" class="finalResult">
 			<center>
