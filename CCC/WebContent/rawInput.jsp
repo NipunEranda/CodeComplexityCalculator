@@ -5,16 +5,6 @@
 <head>
 <%@ include file="components/header.jsp"%>
 <meta charset="ISO-8859-1">
-
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <title>Raw Input</title>
 <style>
 ul {
@@ -77,9 +67,10 @@ background-color
 }
 </style>
 </head>
-<body>
+<body background="images/backgroundCover.jpeg"
+	style=" background-size: cover;" />
 
-	<div class="container" style="height: 500px; margin-top: 25px;">
+	<div class="container" style="height: 500px; margin-top: 25px;background-color: rgba(0, 0, 0, 0.7);color: white; padding: 30px;margin-bottom: 30px;">
 
 		<form action="RawInputServlet" class="form" method="POST"
 			style="font-family: century gothic;">
@@ -94,14 +85,12 @@ background-color
 			</div>
 
 
-			<div class="form-group" style="font-size: 25px; font-weight: normal;">
+			<div class="form-group" style="font-size: 20px; font-weight: normal;">
 				<label for="code">Paste your code here</label>
 				<textarea class="form-control" rows="10" id="code" name="code"></textarea>
 			</div>
 
-			<br>
-
-			<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+			<button type="submit" class="btn btn-lg" style="background-color: darkorange">Submit</button>
 		</form>
 	</div>
 

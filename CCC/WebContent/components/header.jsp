@@ -7,7 +7,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<div class="topic" style="width: 98.9%;">
+	<div class="topic" style="width: 98.9%;background-image: url('images/backgroundCover.jpeg');">
 		<div class="row">
 			<div class="col" style="background-color: rgba(0, 0, 0, 0.7);"></div>
 			<div class="col" style="border-right: none; padding-left: 0px;background-color: rgba(0, 0, 0, 0.7);">

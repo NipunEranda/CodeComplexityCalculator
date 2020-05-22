@@ -20,8 +20,6 @@
 		<%
 			for (CustomFile filecs : maincs) {
 		%>
-
-		<br>
 		<center>
 			<h4 class="bg-primary text-light p-2">
 
@@ -82,11 +80,13 @@
 			}
 		%>
 
+
 		<form class="form mb-2 float-left"
 			action="components/controlStructureEditWeights.jsp">
-			<input type="submit" class="btn btn-secondary" value="Change Weights">
+			<center>
+				<input type="submit" class="btn btn-primary" value="Change Weights">
+			</center>
 		</form>
-
 
 	</div>
 

@@ -123,7 +123,6 @@
 		%>
 	</div>
 	<div>
-		<br />
 		<center>
 			<div class="btn btn-primary"
 				onclick="window.location.href = 'InheritanceWeightChange.jsp';">Change

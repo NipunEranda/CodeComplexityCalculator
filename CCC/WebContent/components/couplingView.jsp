@@ -239,7 +239,6 @@ table tr td{
 		%>
 	</div>
 	<div>
-		<br />
 		<center>
 			<div class="btn btn-primary"
 				onclick="window.location.href = 'components/couplingWeightChanger.jsp';">Change
