@@ -1,0 +1,109 @@
+#resultContainer{
+	margin-top: 25px;	
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.ord{
+	background-color: black;
+	color: white;
+	margin-right: 2px;
+	margin-left: 2px;
+	border: none;
+}
+
+.ord:hover{
+	background-color: white;
+	color: black;
+}
+
+.fBtn{
+	background-color: black;
+	color: white;
+	border: none;
+	margin-right: 2px;
+	margin-left: 2px;
+}
+
+.activated{
+	background-color: lightGrey;
+	color: black;
+}
+
+.activated:hover{
+	background-color: white;
+	color: black;
+}
+
+.fBtn:hover{
+	background-color: white;
+	color: black;
+}
+
+.fBtn_clicked{
+	background-color: lightGrey;
+	color: black;
+	border: none;
+	margin-right: 2px;
+	margin-left: 2px;
+}
+
+.fBtn_clicked:hover{
+	background-color: white;
+	color: black;
+}
+
+.size{
+	display: block;
+}
+
+.variable{
+	display: none;
+}
+
+.method{
+	display: none;
+}
+
+.coupling{
+	display: none;
+}
+
+.inheritance{
+	display: none;
+}
+
+.controlStructure{
+	display: none;
+}
+
+.finalResult{
+	display:none;
+}
+
+.navBtnN{
+	width: 10%;
+	float: right;
+	padding:2px;
+	border: 0.1;
+	border-color:grey;
+    border-radius: 0;
+    background: none;
+    -webkit-appearance: none;
+    background-color: lightgrey;
+}
+
+.navBtnP{
+	width: 10%;
+	float: left;
+	padding:2px;
+	border: 0.1;
+	border-color:grey;
+    border-radius: 0;
+    background: none;
+    -webkit-appearance: none;
+    background-color: lightgrey;
+}
+
+.lineSet{
+	font-size: 11px;
+}

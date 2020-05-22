@@ -1,0 +1,51 @@
+.topic .logo-compartment{
+    float: left;
+    width: 1%;
+    height: 125px;
+}
+
+.topic .logo-compartment .logo{
+    float: left;
+    height: 125px;
+}
+
+.topic .row .col-4 .topic{
+    padding-top: 25px;
+    font-size: 30px;
+    float: right;
+}
+
+.topic .row .col-4 .sub-topic{
+    float: right;
+}
+
+.topic .row .col{
+	border-style: solid;
+	border-color: black;
+	border-width: 0.2px;
+}
+
+.topic .row .col-4{
+	border-style: solid;
+	border-color: black;
+	border-width: 0.2px;
+}
+
+.nav_bar .row .col{
+	border-style: solid;
+	border-color: black;
+	border-width: 0.2px;
+}
+
+.nav_bar .row .col{
+	padding: 8px;
+	background-color: lightgrey;
+	color: black;
+}
+
+.nav_bar .row .col:hover{
+	background-color: black;
+	color: white;
+	cursor: pointer;
+	transition-duration: 0.4s;
+}

@@ -1,0 +1,56 @@
+.main-container{
+    margin-top: 50px;
+}
+
+.main-container .inner-container{
+    padding: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 0.1px;
+    width: 60%;
+}
+
+.main-container .inner-container .container{
+    padding: 30px;
+    border-style: solid;
+    border-width: 0.1px;
+    width: 80%;
+    text-align: center;
+}
+
+.main-container .inner-container .proceed{
+    margin-bottom: 5px;
+    width: 88%;
+}
+
+.main-container .inner-container .browse-button:hover{
+	cursor: pointer;
+}
+
+.main-container .inner-container .proceed input[type="text"]{
+    float: left;
+    width: 73%;
+}
+
+.main-container .inner-container .proceed button{
+    float: right;
+    width: 25%;
+}
+.main-container .inner-container .upload label input{
+    -moz-opacity:0;
+    filter:alpha(opacity: 0);
+    opacity: 0;
+}
+
+.main-container .inner-container .upload label {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-style: solid;
+    border-width: 0.1px;
+    background:white;
+    width:88%;
+    display:block;
+    margin-bottom: 5px;
+}
