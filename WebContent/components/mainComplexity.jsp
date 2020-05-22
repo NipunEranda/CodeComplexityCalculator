@@ -66,7 +66,6 @@ crossorigin="anonymous">
 					</thead>
 					<tbody>
 					
-					
 						<%
 							int count = 0;
 							for(Line line : file.getLineSet()){
