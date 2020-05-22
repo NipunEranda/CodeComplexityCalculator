@@ -1,7 +1,8 @@
+<%@page import="com.ccc.model.Line"%>
 <%@page import="com.ccc.model.CustomFile"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,38 +19,38 @@ crossorigin="anonymous">
 <body>
 
 <% 
-	ArrayList<CustomFile> main = (ArrayList) session.getAttribute("fileList");
+	ArrayList<CustomFile> programList = (ArrayList) session.getAttribute("fileList");
 		
 %>
 
 <div class="main-container">
 	
-		<center><h3 class="bg-light">
-		<%
-			
-			for(CustomFile file : main){
-				
+		<%	
+			for(CustomFile file : programList){
+		%>
+		
+		<br>
+		<center><h4 class="bg-primary text-light p-2">
+		<%	
 				out.print(file.getFileName());
-				
-				
 		%>
-		</h3></center><br><br>
+		</h4></center>
 		
 		<%
-		
-/* 				ArrayList Cs =  (ArrayList)file.getControlStructure().getWtcsList();
-				ArrayList Cv =  (ArrayList)file.getControlStructure().getNcList();
-				ArrayList Cm =  (ArrayList)file.getControlStructure().getCcsppsList();
-				ArrayList Ccp =  (ArrayList)file.getControlStructure().getCsList();	
-				ArrayList Ci =  (ArrayList)file.getControlStructure().getStatement();
+
 				ArrayList Ccs =  (ArrayList)file.getControlStructure().getCsList();	
-				ArrayList Tcps =  (ArrayList)file.getControlStructure().getStatement(); */
 		
-			}
+				int totCs = 0;
+				int totCv = 0;
+				int totCm = 0;
+				int totCcp = 0;
+				int totCi = 0;
+				int totCcs = 0;
+				
 		%>
 
 
-			<table class=" table-fixed table table-bordered" >
+			<table class=" table-fixed table table-bordered table-striped" >
 					<thead>
 						<tr>
 							<th>Line</th>
@@ -64,28 +65,39 @@ crossorigin="anonymous">
 						</tr>
 					</thead>
 					<tbody>
+					
+					
+						<%
+							int count = 0;
+							for(Line line : file.getLineSet()){
+								
+								out.print("<tr><td>"+line.getLineNumber()+"</td>");
+								out.print("<td>"+line.getLineContent()+"</td>");
+								out.print("<td></td>");
+								out.print("<td></td>");
+								out.print("<td></td>");
+								out.print("<td></td>");
+								out.print("<td></td>");
+								out.print("<td>"+Ccs.get(line.getLineNumber()-1)+"</td>");
+								out.print("<td></td></tr>");
+								
+								
+								
+								totCcs += Integer.parseInt(Ccs.get(line.getLineNumber()-1).toString());
+								
+							}			
+						%>
+					
+						<tr class="font-weight-bold"><td></td><td>Total</td><td></td><td></td><td></td><td></td><td></td><td><%= totCcs %></td><td></td></tr>
 						
-<%-- 						<%
-							if(program != null){
-								for(int i=0; i<program.size();i++){
-									out.print("<tr><td>"+i+"</td>");
-									out.print("<td>"+ program.get(i) +"</td>");
-									out.print("<td></td>");
-									out.print("<td></td>");
-									out.print("<td></td>");
-									out.print("<td></td>");
-									out.print("<td></td>");
-									out.print("<td></td>");
-									out.print("<td></td></tr>");
-									
-								}
-							}
-						
-						%> --%>
 		
 					</tbody>
 			</table>
 			
+			<%
+				}
+			%>
+		
 			
 	</div>
 
