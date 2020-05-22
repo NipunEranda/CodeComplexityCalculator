@@ -19,7 +19,15 @@ public class Inheritance {
 	private int tot_indirect;
 	
 	private int tot_total;
+	private int ci;
 	
+	public int getCi() {
+		return ci;
+	}
+
+	
+
+
 	private int[] sum;
 	private int finalValue;
 	
@@ -48,16 +56,18 @@ public class Inheritance {
 		weights[0] = 1;
 		weights[1] = 1;
 		weights[2] = 1;
+		weights[3] = 1;
 		
 		
 	}
 	//setting custom values
 	
-	public static void setCustomWeights(int W_direct, int W_indirect,int W_total) {
+	public static void setCustomWeights(int W_direct, int W_indirect,int W_total,int Ci) {
 		
 		weights[0] = W_direct;
 		weights[1] = W_indirect;
 		weights[2] = W_total;
+		weights[3] = Ci;
 	}
 	
 	
@@ -176,13 +186,13 @@ public class Inheritance {
 		tot_total = tot_direct + tot_indirect;
 		setTot_total(tot_total);
 		
-		//final value calculations
-		
-		if(tot_total <=3) {
-			finalValue = tot_total;
+		if(tot_total <= 3) {
+			ci = tot_total;
 		}else {
-			finalValue = 4;
+			ci = 4;
 		}
+		
+		
 				
 	}
 

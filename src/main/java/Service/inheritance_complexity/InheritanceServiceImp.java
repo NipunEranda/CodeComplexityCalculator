@@ -75,9 +75,12 @@ public void getInDirectInheritance( CustomFile file) {
 		
 		getDirectInheritance(file);
 		getInDirectInheritance(file);
+		getTotalInheritance(file);
+		
 		
 		file.getInheritance().setN_direct(file.getInheritance().getDirect_I().size());
 		file.getInheritance().setN_indirect(file.getInheritance().getIndirect_I().size());
+		file.getInheritance().setN_total(file.getInheritance().getTotal_I().size());
 	}
 	
 	public void process2() {
@@ -85,12 +88,14 @@ public void getInDirectInheritance( CustomFile file) {
 			
 			getDirectInheritance(file);
 			getInDirectInheritance(file);
+			getTotalInheritance(file);
 		}
 		
 		for(CustomFile file :fileList) {
 			
 			file.getInheritance().setN_direct(file.getInheritance().getDirect_I().size());
 			file.getInheritance().setN_indirect(file.getInheritance().getIndirect_I().size());
+			file.getInheritance().setN_total(file.getInheritance().getTotal_I().size());
 		}
 	}
 	
@@ -138,7 +143,7 @@ public void getInDirectInheritance( CustomFile file) {
 				
 				line.setSum(2, count);
 				file.getInheritance();
-				line.setColValues(1, count * Inheritance.getWeights()[2]);
+				line.setColValues(2, count * Inheritance.getWeights()[2]);
 			}
 			
 			file.getInheritance().setFinalValue();
@@ -176,6 +181,37 @@ ArrayList<Line> TotalInheritance = new ArrayList<Line>();
 		file.getInheritance().setTotal_I(TotalInheritance);
 	
 
+
+	}
+
+	@Override
+	public void getci(CustomFile file) {
+		// TODO Auto-generated method stub
+ArrayList<Line> ci = new ArrayList<Line>();
+		
+		for(Line line : file.getLineSet()) {
+			int total = 0;
+			if(line.getLineContent().contains("toString") ||line.getLineContent().contains(" toString") ) {
+					 total = total  +1;
+					 ci.add(line);
+					 }else if(
+								( line.getLineContent().contains("class") || line.getLineContent().contains(" class") ) && 
+								( line.getLineContent().contains("extends")||line.getLineContent().contains(" extends") )
+								) {
+						 total = total  +1;
+						 ci.add(line);
+					 }else if(line.getLineContent().contains(":public") ||  line.getLineContent().contains(" :public")
+								||line.getLineContent().contains(": public")||line.getLineContent().contains(" : public")) {
+						 total = total  +1;
+						 ci.add(line);
+					 }
+					
+		
+		}
+	
+		
+		
+	
 
 	}
 	}
