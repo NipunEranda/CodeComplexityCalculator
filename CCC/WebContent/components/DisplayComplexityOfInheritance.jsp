@@ -1,5 +1,5 @@
 <%@page import=" com.ccc.model.*"%>
-<%@page import=" com.ccc.services.InheritanceServiceImp"%>
+<%@page import=" com.ccc.services.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -14,11 +14,11 @@
 	<%
 		ArrayList<CustomFile> mainI = (ArrayList) session.getAttribute("fileList");
 	%>
-	<div>
+	<div class="mainI-container">
 
 		<%
 			for (CustomFile fileI : mainI) {
-				int[] sum = new int[4];
+				int[] sum = new int[5];
 		%>
 		<center>
 			<h4 class="bg-primary text-light p-2 ">
@@ -28,8 +28,7 @@
 				%>
 			</h4>
 		</center>
-		<table class="table table-fixed table-bordered table-striped"
-			style="border-collapse: collapse;">
+		<table border="1" class="table table-fixed table-bordered table-striped" style="border-collapse: collapse;width: 100%;font-size: 14px;">
 			 <thead class="thead-dark">
 			<tr>
 				<th scope="col">Line No</th>
@@ -66,23 +65,23 @@
 				</td>
 				<td>
 					<%
-						out.print(line.getInheritancesum()[0]);
+						out.print(line.getSum()[0]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getInheritancesum()[1]);
+						out.print(line.getSum()[1]);
 					%>
 				</td>
 				
 				<td>
 					<%
-						out.print(line.getInheritancesum()[2]);
+						out.print(line.getSum()[2]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getInheritanceFinalValue());
+						out.print(line.getFinalValue());
 					%>
 				</td>
 				
@@ -125,7 +124,7 @@
 	<div>
 		<center>
 			<div class="btn btn-primary"
-				onclick="window.location.href = 'InheritanceWeightChange.jsp';">Change
+				onclick="window.location.href = 'components/InheritanceWeightChange.jsp';">Change
 				Weights</div>
 		</center>
 	</div>

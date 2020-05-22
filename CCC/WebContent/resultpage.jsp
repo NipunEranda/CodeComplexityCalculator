@@ -85,6 +85,9 @@
 				<h1>Final Result</h1>
 			</center>
 			<br />
+			<center>
+			<%@ include file="components/mainComplexity.jsp" %>
+			</center>
 		</div>
 		<br /> <br />
 	</div>

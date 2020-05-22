@@ -13,6 +13,9 @@ public class CustomFile {
 	private Coupling coupling;
 	private ControlStructure controlStructure;
 	private Inheritance inheritance;
+	private Size size;
+	private Variables variables;
+	private Method method;
 	
 	public CustomFile(String fileName) {
 		this.fileName = fileName;
@@ -20,6 +23,9 @@ public class CustomFile {
 		this.coupling = new Coupling(fileName);
 		this.controlStructure = new ControlStructure(fileName);
 		this.inheritance = new Inheritance(fileName);
+		this.size = new Size(fileName);
+		this.variables = new Variables(fileName);
+		this.method = new Method(fileName);
 		this.isRaw=false;
 	}
 	
@@ -94,6 +100,30 @@ public class CustomFile {
 
 	public void setInheritance(Inheritance inheritance) {
 		this.inheritance = inheritance;
+	}
+	
+	public Size getSize() {
+		return size;
+	}
+
+	public void setSize(Size size) {
+		this.size = size;
+	}
+
+	public Variables getVariables() {
+		return variables;
+	}
+
+	public void setVariables(Variables variables) {
+		this.variables = variables;
+	}
+
+	public Method getMethod() {
+		return method;
+	}
+
+	public void setMethod(Method method) {
+		this.method = method;
 	}
 
 }

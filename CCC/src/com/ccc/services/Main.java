@@ -7,6 +7,10 @@ import org.apache.commons.fileupload.FileItem;
 import com.ccc.model.CustomFile;
 import com.ccc.model.FileRead;
 import com.ccc.model.Line;
+import com.ccc.model.SizeService;
+import com.ccc.model.SizeServiceImp;
+import com.ccc.model.VariablesServiceImp;
+import com.ccc.model.VariablesServices;
 
 public class Main {
 
@@ -65,6 +69,8 @@ public class Main {
 		CouplingService couplingService = new CouplingServiceImp(fileList);
 		ControlStructureService controlStructureService = new ControlStructureServiceImp(fileList);
 		InheritanceService inheritanceService = new InheritanceServiceImp(fileList);
+		SizeService sizeService = new SizeServiceImp(fileList);
+		VariablesServices variablesServices = new VariablesServiceImp(fileList);
 
 		// For Multi File Upload
 		if (this.fileList.size() > 1) {
@@ -72,6 +78,8 @@ public class Main {
 				couplingService.process2();
 				controlStructureService.process2();
 				inheritanceService.process2();
+				//sizeService.process2();
+				//variablesServices.process2();
 				this.status = true;
 			} catch (Exception e) {
 				this.status = false;
@@ -82,10 +90,14 @@ public class Main {
 			couplingService.process1(fileList.get(0));
 			controlStructureService.process1(fileList.get(0));
 			inheritanceService.process1(fileList.get(0));
+			//sizeService.process1(fileList.get(0));
+			//variablesServices.process1(fileList.get(0));
 			this.status = true;
 		}
 		CouplingServiceImp.process3();
 		InheritanceServiceImp.process3();
+		//SizeServiceImp.process3();
+		//VariablesServiceImp.process3();
 		return this.status;
 	}
 
