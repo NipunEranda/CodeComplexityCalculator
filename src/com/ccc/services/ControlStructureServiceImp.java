@@ -165,18 +165,30 @@ public class ControlStructureServiceImp implements ControlStructureService {
 		
 	}
 
+	// calculate control structure complexity for multiple file
 	@Override
 	public void process2() {
 		// TODO Auto-generated method stub
-			
+			for (CustomFile file : fileList) {
+				Calculation(file);
+			}
 		
 	}
 	
 	// Recalculate complexity after changing weights for single file
 	public static void process3() {
 		
-			System.out.println("Weight Updated");
-			Calculation(fileList.get(0));
+			if(fileList.size()> 1) {
+				
+				for(CustomFile file : fileList) {
+					Calculation(file);
+				}
+				
+			}else {
+				
+				System.out.println("Weight Updated");
+				Calculation(fileList.get(0));
+			}
 			
 	}
 	
