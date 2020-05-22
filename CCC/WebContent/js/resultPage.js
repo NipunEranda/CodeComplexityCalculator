@@ -6,6 +6,7 @@ window.addEventListener('load', (event) => {
 	var tab = url.searchParams.get("edited");
 	
 	if(tab != null){
+		
 		changeClass(document.getElementById("sizeBtn"), "activated", " fBtn");
 		var compartments = new Array("size", "variable", "method", "coupling",
 			"controlStructure", "inheritance", "finalResult");

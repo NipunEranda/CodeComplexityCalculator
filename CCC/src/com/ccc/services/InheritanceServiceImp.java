@@ -113,9 +113,8 @@ public class InheritanceServiceImp implements InheritanceService {
 					}
 				}
 
-				line.setSum(0, count);
-				file.getInheritance();
-				line.setColValues(0, count * Inheritance.getWeights()[0]);
+				line.setInheritancesum(0, count);
+				line.setInheritancecolValues(0, count * Inheritance.getWeights()[0]);
 
 				// column2
 				count = 0;
@@ -125,9 +124,8 @@ public class InheritanceServiceImp implements InheritanceService {
 					}
 				}
 
-				line.setSum(1, count);
-				file.getInheritance();
-				line.setColValues(1, count * Inheritance.getWeights()[1]);
+				line.setInheritancesum(1, count);
+				line.setInheritancecolValues(1, count * Inheritance.getWeights()[1]);
 
 				// column3
 				count = 0;
@@ -137,11 +135,18 @@ public class InheritanceServiceImp implements InheritanceService {
 					}
 				}
 
-				line.setSum(2, count);
-				file.getInheritance();
-				line.setColValues(2, count * Inheritance.getWeights()[2]);
+				line.setInheritancesum(2, count);
+				line.setInheritancecolValues(2, count * Inheritance.getWeights()[2]);
 			}
 
+			for (Line line : file.getLineSet()) {
+
+				for (int i = 0; i < line.getInheritancesum().length; i++) {
+					sum[i] += line.getInheritancesum()[i];
+				}
+
+			}
+			
 			file.getInheritance().setFinalValue();
 			file.getInheritance().setSum(sum);
 		}

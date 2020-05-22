@@ -913,7 +913,7 @@ public class MethodServiceImp implements MethodService {
 		int count = 0;
 
 		for (CustomFile file : fileList) {
-			int[] sum = new int[5];
+			int[] sum = new int[13];
 			for (Line line : file.getLineSet()) {
 
 				// col1
@@ -924,9 +924,8 @@ public class MethodServiceImp implements MethodService {
 					}
 				}
 
-				line.setSum(0, count);
-				file.getMethod();
-				line.setColValues(0, count * Method.getWeights()[0]);
+				line.setMethodsum(0, count);
+				line.setMethodcolValues(0, count * Method.getWeights()[0]);
 
 				// col2
 				count = 0;
@@ -936,9 +935,8 @@ public class MethodServiceImp implements MethodService {
 					}
 				}
 
-				line.setSum(1, count);
-				file.getMethod();
-				line.setColValues(1, count * Method.getWeights()[1]);
+				line.setMethodsum(1, count);
+				line.setMethodcolValues(1, count * Method.getWeights()[1]);
 
 				// col3
 				if (fileList.size() > 1) {
@@ -948,11 +946,11 @@ public class MethodServiceImp implements MethodService {
 							count++;
 						}
 					}
-					line.setSum(2, count);
-					line.setColValues(2, count * Method.getWeights()[2]);
+					line.setMethodsum(2, count);
+					line.setMethodcolValues(2, count * Method.getWeights()[2]);
 				} else {
-					line.setSum(2, 0);
-					line.setColValues(2, 0);
+					line.setMethodsum(2, 0);
+					line.setMethodcolValues(2, 0);
 				}
 
 				// col4
@@ -962,8 +960,8 @@ public class MethodServiceImp implements MethodService {
 						count++;
 					}
 				}
-				line.setSum(3, count);
-				line.setColValues(3, count * Method.getWeights()[3]);
+				line.setMethodsum(3, count);
+				line.setMethodcolValues(3, count * Method.getWeights()[3]);
 
 				// col5
 				if (fileList.size() > 1) {
@@ -973,21 +971,21 @@ public class MethodServiceImp implements MethodService {
 							count++;
 						}
 					}
-					line.setSum(4, count);
-					line.setColValues(4, count * Method.getWeights()[4]);
+					line.setMethodsum(4, count);
+					line.setMethodcolValues(4, count * Method.getWeights()[4]);
 				} else {
-					line.setSum(2, 0);
-					line.setColValues(2, 0);
+					line.setMethodsum(4, 0);
+					line.setMethodcolValues(4, 0);
 				}
 
-				
+				line.setMethodFinalValue();
 
 			}
 
 			for (Line line : file.getLineSet()) {
 
-				for (int i = 0; i < line.getSum().length; i++) {
-					sum[i] += line.getSum()[i];
+				for (int i = 0; i < line.getMethodsum().length; i++) {
+					sum[i] += line.getMethodsum()[i];
 				}
 
 			}

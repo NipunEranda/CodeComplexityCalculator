@@ -124,6 +124,7 @@
 			</table>
 			<Button class="btn btn-primary" style="float: right">Save</Button>
 		</form>
+					<Button class="btn btn-danger" style="float: right; margin-right: 4px;" onclick="window.location.replace('../resultpage.jsp');">Back</Button>
 		<form action="../UpdateCouplingWeight?default=true" method="post"
 			style="margin-bottom: 20px;">
 			<button class="btn btn-secondary">Set Default</button>

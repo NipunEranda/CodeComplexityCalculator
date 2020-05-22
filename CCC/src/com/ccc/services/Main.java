@@ -18,8 +18,8 @@ public class Main {
 	private ArrayList<CustomFile> fileList = new ArrayList<CustomFile>();
 	private String fileType = "";
 	public static String WEBCONTENTDIR = "git/CodeComplexityCalculator/CCC/WebContent/";
-	// Folder path inside the server
-	// public static String WEBCONTENTDIR ="/opt/tomcat/webapps/ROOT/";
+	//Folder path inside the server
+	//public static String WEBCONTENTDIR ="/opt/tomcat/webapps/ROOT/";
 
 	public ArrayList<CustomFile> getFileList() {
 		return fileList;
@@ -71,6 +71,7 @@ public class Main {
 		InheritanceService inheritanceService = new InheritanceServiceImp(fileList);
 		SizeService sizeService = new SizeServiceImp(fileList);
 		VariablesServices variablesServices = new VariablesServiceImp(fileList);
+		MethodService methodService = new MethodServiceImp(fileList);
 
 		// For Multi File Upload
 		if (this.fileList.size() > 1) {
@@ -80,6 +81,7 @@ public class Main {
 				inheritanceService.process2();
 				//sizeService.process2();
 				//variablesServices.process2();
+				methodService.process2();
 				this.status = true;
 			} catch (Exception e) {
 				this.status = false;
@@ -92,12 +94,14 @@ public class Main {
 			inheritanceService.process1(fileList.get(0));
 			//sizeService.process1(fileList.get(0));
 			//variablesServices.process1(fileList.get(0));
+			methodService.process1(fileList.get(0));
 			this.status = true;
 		}
 		CouplingServiceImp.process3();
 		InheritanceServiceImp.process3();
 		//SizeServiceImp.process3();
 		//VariablesServiceImp.process3();
+		MethodServiceImp.process3();
 		return this.status;
 	}
 

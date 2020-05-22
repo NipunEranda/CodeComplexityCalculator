@@ -9,6 +9,16 @@
 <head>
 <title>Result Variables Page</title>
 <link rel="stylesheet" href="css/filemUpload.css">
+<style>
+table tr td{
+	font-size: 13px;
+	text-align: center;
+}
+
+table tr .content{
+	text-align: left;
+}
+</style>
 <script src="js/uploadfilem.js"></script>
 </head>
 <body>
@@ -21,17 +31,16 @@
 			for (CustomFile filem : mainm) {
 				int[] sum = new int[13];
 		%>
-		<center><h1>Method</h1></center>
 		<center>
-			<h3>
+			<h4 class="bg-primary text-light p-2 ">
+
 				<%
 					out.print(filem.getFileName());
 				%>
-			</h3>
+			</h4>
 		</center>
-		<br /> <br />
-		<table border="1">
-			<tr>
+		<table border="1" class="table table-fixed table-bordered table-striped" style="border-collapse: collapse;width: 100%;font-size: 13.5px;">
+			 <thead class="thead-dark">
 				<th>Line No</th>
 				<th>Program Statement</th>
 				<th>Wmrt</th>
@@ -40,11 +49,10 @@
 				<!--col2 A regular method calling another regular method in the same filem done-->
 				<th>Nedtv</th>
 				<!--col3 A regular method calling another regular method in a different filem done-->
-			>
 				<!--col4 A regular method calling a recursive method in the same filem done-->
 				<th>CM</th>
 				<!--col14 total -->
-			</tr>
+			</thead>
 			<%
 				int count = 0;
 					for (Line line : filem.getLineSet()) {
@@ -62,31 +70,31 @@
 						out.print(line.getLineNumber());
 					%>
 				</td>
-				<td>
+				<td class="content">
 					<%
 						out.print(line.getLineContent());
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[0]);
+						out.print(line.getMethodsum()[0]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[1]);
+						out.print(line.getMethodsum()[1]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[2]);
+						out.print(line.getMethodsum()[2]);
 					%>
 				</td>
 						
 				
 				
 				<td>
-				<% out.print(line.getFinalValue()); %>
+				<% out.print(line.getMethodFinalValue()); %>
 				</td>
 			</tr>
 			<%

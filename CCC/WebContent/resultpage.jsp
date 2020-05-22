@@ -65,28 +65,31 @@
 		<div id="method" class="method">
 			<h3>Code Complexity due to methods</h3>
 			<br />
+			<center>
+				<%@ include file="components/result_method.jsp"%>
+			</center>
 		</div>
 		<div id="inheritance" class="inheritance">
 			<h3>Code Complexity due to Inheritance</h3>
 			<br />
 			<center>
-			<%@ include file="components/DisplayComplexityOfInheritance.jsp" %>
+				<%@ include file="components/DisplayComplexityOfInheritance.jsp"%>
 			</center>
 		</div>
 		<div id="controlStructure" class="controlStructure">
 			<h3>Code Complexity due to Control Structures</h3>
 			<br />
 			<center>
-			<%@ include file="components/controlStructure.jsp" %>
+				<%@ include file="components/controlStructure.jsp"%>
 			</center>
 		</div>
 		<div id="finalResult" class="finalResult">
 			<center>
-				<h1>Final Result</h1>
+				<h1>Analysis Result</h1>
 			</center>
 			<br />
 			<center>
-			<%@ include file="components/mainComplexity.jsp" %>
+				<%@ include file="components/mainComplexity.jsp"%>
 			</center>
 		</div>
 		<br /> <br />

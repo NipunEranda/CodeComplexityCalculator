@@ -4,23 +4,17 @@
 <%@page import="com.ccc.services.*"%>
 <!DOCTYPE html>
 <head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <title>Change complexity values</title>
+<link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
+<%@ include file="header.jsp"%>
 	<div class="container">
 
 		<div style="text-align: center">
 			<h3>Weights related to the Inheritance</h3>
 		</div>
-		<form action="../UpdateCouplingWeight?update=true" method="post">
+		<form action="../UpdateInheritanceWeight?update=true" method="post">
 			<table class="table table-striped" style="margin-top: 30px;">
 				<thead>
 					<tr>
@@ -38,62 +32,62 @@
 					<tr>
 						<th scope="row">A class inheriting (directly) from one
 							user-defined class</th>
-						<td><input type="number" name="c1" id="c1"
+						<td><input type="number" name="c2" id="c2"
 							value="<%out.print(Inheritance.getWeights()[0]);%>"
 							style="float: right; text-align: center;" /></td>
 					</tr>
 					<tr>
 						<th scope="row">A class inheriting (directly) from two
 							user-defined classes</th>
-						<td><input type="number" name="c1" id="c1"
+						<td><input type="number" name="c3" id="c3"
 							value="<%out.print(Inheritance.getWeights()[0]);%>"
 							style="float: right; text-align: center;" /></td>
 					</tr>
 					<tr>
 						<th scope="row">A class inheriting (directly) from three
 							user-defined classes</th>
-						<td><input type="number" name="c1" id="c1"
+						<td><input type="number" name="c4" id="c4"
 							value="<%out.print(Inheritance.getWeights()[0]);%>"
 							style="float: right; text-align: center;" /></td>
 					</tr>
 					<tr>
 						<th scope="row">A class inheriting (directly) from more than
 							three user-defined classes</th>
-						<td><input type="number" name="c1" id="c1"
+						<td><input type="number" name="c5" id="c5"
 							value="<%out.print(Inheritance.getWeights()[0]);%>"
 							style="float: right; text-align: center;" /></td>
 					</tr>
 					<tr>
 						<th scope="row">A class with no inheritance (indirect)</th>
-						<td><input type="number" name="c1" id="c1"
+						<td><input type="number" name="c6" id="c6"
 							value="<%out.print(Inheritance.getWeights()[1]);%>"
 							style="float: right; text-align: center;" /></td>
 					</tr>
 					<tr>
 						<th scope="row">A class inheriting (indirectly) from one
 							user-defined class</th>
-						<td><input type="number" name="c1" id="c1"
+						<td><input type="number" name="c7" id="c7"
 							value="<%out.print(Inheritance.getWeights()[1]);%>"
 							style="float: right; text-align: center;" /></td>
 					</tr>
 					<tr>
 						<th scope="row">A class inheriting (indirectly) from two
 							user-defined classes</th>
-						<td><input type="number" name="c1" id="c1"
+						<td><input type="number" name="c8" id="c8"
 							value="<%out.print(Inheritance.getWeights()[1]);%>"
 							style="float: right; text-align: center;" /></td>
 					</tr>
 					<tr>
 						<th scope="row">A class inheriting (indirectly) from three
 							user-defined classes</th>
-						<td><input type="number" name="c1" id="c1"
+						<td><input type="number" name="c9" id="c9"
 							value="<%out.print(Inheritance.getWeights()[1]);%>"
 							style="float: right; text-align: center;" /></td>
 					</tr>
 					<tr>
 						<th scope="row">A class inheriting (indirectly) from more
 							than three user-defined classes</th>
-						<td><input type="number" name="c1" id="c1"
+						<td><input type="number" name="c10" id="c10"
 							value="<%out.print(Inheritance.getWeights()[1]);%>"
 							style="float: right; text-align: center;" /></td>
 					</tr>

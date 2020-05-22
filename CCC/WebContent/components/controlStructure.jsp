@@ -1,5 +1,4 @@
 <%@page import="com.ccc.model.CustomFile"%>
-<%@page import="com.sun.javafx.scene.traversal.WeightedClosestCorner"%>
 <%@page import="com.ccc.model.Line"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,6 +8,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Control Structure</title>
+
+<style type="text/css">
+
+table tr td{
+	font-size: 13px;
+	text-align: center;
+}
+
+table tr .content{
+	text-align: left;
+}
+
+</style>
+
 </head>
 <body>
 
@@ -57,7 +70,7 @@
 				<%
 					for (int i = 0; i < filecs.getLineSet().size(); i++) {
 							out.print("<tr><td>" + i + "</td>");
-							out.print("<td>" + statements.get(i) + "</td>");
+							out.print("<td class='content'>" + statements.get(i) + "</td>");
 							out.print("<td>" + wtcs.get(i) + "</td>");
 							out.print("<td>" + nc.get(i) + "</td>");
 							out.print("<td>" + ccspps.get(i) + "</td>");

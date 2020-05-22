@@ -10,7 +10,18 @@
 <title>Main Complexity</title>
 
 <%--	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	--%>
+<style type="text/css">
 
+table tr td{
+	font-size: 13px;
+	text-align: center;
+}
+
+table tr .content{
+	text-align: left;
+}
+
+</style>
 </head>
 <body>
 
@@ -18,7 +29,7 @@
 		ArrayList<CustomFile> programList = (ArrayList) session.getAttribute("fileList");
 	%>
 
-	<div class="main-container">
+	<div>
 
 		<%
 			for (CustomFile file : programList) {
@@ -68,12 +79,12 @@
 						for (Line line : file.getLineSet()) {
 
 							out.print("<tr><td>" + line.getLineNumber() + "</td>");
-							out.print("<td>" + line.getLineContent() + "</td>");
+							out.print("<td class='content'>" + line.getLineContent() + "</td>");
 							out.print("<td></td>");
 							out.print("<td></td>");
-							out.print("<td></td>");
+							out.print("<td>" + line.getMethodFinalValue() + "</td>");
 							out.print("<td>" + line.getCouplingFinalValue() + "</td>");
-							out.print("<td>" + line.getFinalValue() + "</td>");
+							out.print("<td>" + line.getInheritanceFinalValue() + "</td>");
 							out.print("<td>" + Ccs.get(line.getLineNumber() - 1) + "</td>");
 							out.print("<td>" + (line.getCouplingFinalValue() + line.getFinalValue() + Integer.parseInt(Ccs.get(line.getLineNumber()-1).toString())) + "</td></tr>");
 
@@ -87,11 +98,11 @@
 					<td>Total</td>
 					<td></td>
 					<td></td>
-					<td></td>
+					<td><%= file.getMethod().getFinalValue() %></td>
 					<td><%= file.getCoupling().getFinalValue() %></td>
 					<td><%= file.getInheritance().getFinalValue() %></td>
 					<td><%=totCcs%></td>
-					<td><% out.print(file.getCoupling().getFinalValue() + file.getInheritance().getFinalValue() + totCcs);%></td>
+					<td><% out.print(file.getMethod().getFinalValue() + file.getCoupling().getFinalValue() + file.getInheritance().getFinalValue() + totCcs);%></td>
 				</tr>
 
 

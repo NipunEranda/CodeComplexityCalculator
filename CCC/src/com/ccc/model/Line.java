@@ -21,15 +21,25 @@ public class Line {
 	private int[] Inheritancesum;
 	private int InheritanceFinalValue;
 	
+	private int[] MethodcolValues;
+	private int[] Methodsum;
+	private int MethodFinalValue;
+	
 	public Line(int lineNumber, String lineContent) {
 		this.lineNumber = lineNumber;
 		this.lineContent = lineContent;
+		
 		this.colValues = new int[13];
 		this.sum = new int[13];
+		
 		this.CouplingcolValues = new int[13];
 		this.Couplingsum = new int[13];
+		
 		this.InheritancecolValues = new int[3];
 		this.Inheritancesum = new int[4];
+		
+		this.MethodcolValues = new int[6];
+		this.Methodsum = new int[5];
 	}
 	
 	public String getFileName() {
@@ -163,4 +173,33 @@ public class Line {
 		}
 		this.InheritanceFinalValue = sum;
 	}
+
+	public int[] getMethodcolValues() {
+		return MethodcolValues;
+	}
+
+	public void setMethodcolValues(int index, int value) {
+		this.MethodcolValues[index] = value;
+	}
+
+	public int[] getMethodsum() {
+		return Methodsum;
+	}
+
+	public void setMethodsum(int index, int value) {
+		this.Methodsum[index] = value;
+	}
+
+	public int getMethodFinalValue() {
+		return MethodFinalValue;
+	}
+
+	public void setMethodFinalValue() {
+		int sum = 0;
+		for(int x : this.MethodcolValues) {
+			sum += x;
+		}
+		this.MethodFinalValue = sum;
+	}
+	
 }

@@ -31,7 +31,8 @@
 .main-container .inner-container .proceed input[type="submit"]{
 	width: 24%;
 	float: right;
-	background-color: white;
+	background-color: darkorange;
+	color: white;
 	padding:3px;
 	border:none;
 }
@@ -59,13 +60,12 @@
 .main-container .inner-container .upload label {
     padding-top: 2px;
     padding-bottom: 2px;
-    border-style: solid;
-    border-width: 0.1px;
+    border:none;
     width:88%;
     display:block;
     margin-bottom: 5px;
-    background-color: white;
-    color: black;
+    background-color: darkorange;
+    color: white;
 }
 
 .main-container .inner-container .upload label:hover {

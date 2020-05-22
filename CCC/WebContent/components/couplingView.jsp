@@ -11,7 +11,12 @@
 <style type="text/css">
 
 table tr td{
-	font-size: 12px;
+	font-size: 13px;
+	text-align: center;
+}
+
+table tr .content{
+	text-align: left;
 }
 
 </style>
@@ -35,7 +40,7 @@ table tr td{
 				%>
 			</h4>
 		</center>
-		<table border="1" class="table table-fixed table-bordered table-striped" style="border-collapse: collapse;width: 100%;font-size: 14px;">
+		<table border="1" class="table table-fixed table-bordered table-striped" style="border-collapse: collapse;width: 100%;font-size: 13.5px;">
 			 <thead class="thead-dark">
 				<th>Line No</th>
 				<th>Program Statement</th>
@@ -79,7 +84,7 @@ table tr td{
 						out.print(line.getLineNumber());
 					%>
 				</td>
-				<td>
+				<td class="content">
 					<%
 						out.print(line.getLineContent());
 					%>

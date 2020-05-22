@@ -8,6 +8,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Inheritance</title>
+<style type="text/css">
+
+table tr td{
+	font-size: 13px;
+	text-align: center;
+}
+
+table tr .content{
+	text-align: left;
+}
+
+</style>
 </head>
 <body>
 
@@ -58,30 +70,30 @@
 						out.print(line.getLineNumber());
 					%>
 				</td>
-				<td class="lineSet">
+				<td class="content">
 					<%
 						out.print(line.getLineContent());
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[0]);
+						out.print(line.getInheritancesum()[0]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[1]);
+						out.print(line.getInheritancesum()[1]);
 					%>
 				</td>
 				
 				<td>
 					<%
-						out.print(line.getSum()[2]);
+						out.print(line.getInheritancesum()[2]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getFinalValue());
+						out.print(line.getInheritanceFinalValue());
 					%>
 				</td>
 				
