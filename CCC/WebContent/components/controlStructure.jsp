@@ -15,7 +15,7 @@
 	<%
 		ArrayList<CustomFile> maincs = (ArrayList) session.getAttribute("fileList");
 	%>
-	<div class="maincs-container">
+	<div>
 
 		<%
 			for (CustomFile filecs : maincs) {

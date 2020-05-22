@@ -912,9 +912,8 @@ public class CouplingServiceImp implements CouplingService {
 					}
 				}
 
-				line.setSum(0, count);
-				file.getCoupling();
-				line.setColValues(0, count * Coupling.getWeights()[0]);
+				line.setCouplingsum(0, count);
+				line.setCouplingcolValues(0, count * Coupling.getWeights()[0]);
 
 				// col2
 				count = 0;
@@ -924,9 +923,8 @@ public class CouplingServiceImp implements CouplingService {
 					}
 				}
 
-				line.setSum(1, count);
-				file.getCoupling();
-				line.setColValues(1, count * Coupling.getWeights()[1]);
+				line.setCouplingsum(1, count);
+				line.setCouplingcolValues(1, count * Coupling.getWeights()[1]);
 
 				// col3
 				if (fileList.size() > 1) {
@@ -936,11 +934,11 @@ public class CouplingServiceImp implements CouplingService {
 							count++;
 						}
 					}
-					line.setSum(2, count);
-					line.setColValues(2, count * Coupling.getWeights()[2]);
+					line.setCouplingsum(2, count);
+					line.setCouplingcolValues(2, count * Coupling.getWeights()[2]);
 				} else {
-					line.setSum(2, 0);
-					line.setColValues(2, 0);
+					line.setCouplingsum(2, 0);
+					line.setCouplingcolValues(2, 0);
 				}
 
 				// col4
@@ -950,8 +948,8 @@ public class CouplingServiceImp implements CouplingService {
 						count++;
 					}
 				}
-				line.setSum(3, count);
-				line.setColValues(3, count * Coupling.getWeights()[3]);
+				line.setCouplingsum(3, count);
+				line.setCouplingcolValues(3, count * Coupling.getWeights()[3]);
 
 				// col5
 				if (fileList.size() > 1) {
@@ -961,11 +959,11 @@ public class CouplingServiceImp implements CouplingService {
 							count++;
 						}
 					}
-					line.setSum(4, count);
-					line.setColValues(4, count * Coupling.getWeights()[4]);
+					line.setCouplingsum(4, count);
+					line.setCouplingcolValues(4, count * Coupling.getWeights()[4]);
 				} else {
-					line.setSum(2, 0);
-					line.setColValues(2, 0);
+					line.setCouplingsum(2, 0);
+					line.setCouplingcolValues(2, 0);
 				}
 
 				// col6
@@ -975,8 +973,8 @@ public class CouplingServiceImp implements CouplingService {
 						count++;
 					}
 				}
-				line.setSum(5, count);
-				line.setColValues(5, count * Coupling.getWeights()[5]);
+				line.setCouplingsum(5, count);
+				line.setCouplingcolValues(5, count * Coupling.getWeights()[5]);
 
 				// col7
 				if (fileList.size() > 1) {
@@ -986,11 +984,11 @@ public class CouplingServiceImp implements CouplingService {
 							count++;
 						}
 					}
-					line.setSum(6, count);
-					line.setColValues(6, count * Coupling.getWeights()[6]);
+					line.setCouplingsum(6, count);
+					line.setCouplingcolValues(6, count * Coupling.getWeights()[6]);
 				} else {
-					line.setSum(2, 0);
-					line.setColValues(2, 0);
+					line.setCouplingsum(2, 0);
+					line.setCouplingcolValues(2, 0);
 				}
 
 				// col8
@@ -1000,8 +998,8 @@ public class CouplingServiceImp implements CouplingService {
 						count++;
 					}
 				}
-				line.setSum(7, count);
-				line.setColValues(7, count * Coupling.getWeights()[7]);
+				line.setCouplingsum(7, count);
+				line.setCouplingcolValues(7, count * Coupling.getWeights()[7]);
 
 				// col9
 				if (fileList.size() > 1) {
@@ -1011,11 +1009,11 @@ public class CouplingServiceImp implements CouplingService {
 							count++;
 						}
 					}
-					line.setSum(8, count);
-					line.setColValues(8, count * Coupling.getWeights()[8]);
+					line.setCouplingsum(8, count);
+					line.setCouplingcolValues(8, count * Coupling.getWeights()[8]);
 				} else {
-					line.setSum(2, 0);
-					line.setColValues(2, 0);
+					line.setCouplingsum(2, 0);
+					line.setCouplingcolValues(2, 0);
 				}
 
 				// col10
@@ -1025,8 +1023,8 @@ public class CouplingServiceImp implements CouplingService {
 						count++;
 					}
 				}
-				line.setSum(9, count);
-				line.setColValues(9, count * Coupling.getWeights()[9]);
+				line.setCouplingsum(9, count);
+				line.setCouplingcolValues(9, count * Coupling.getWeights()[9]);
 
 				// col11
 				if (fileList.size() > 1) {
@@ -1036,11 +1034,11 @@ public class CouplingServiceImp implements CouplingService {
 							count++;
 						}
 					}
-					line.setSum(10, count);
-					line.setColValues(10, count * Coupling.getWeights()[10]);
+					line.setCouplingsum(10, count);
+					line.setCouplingcolValues(10, count * Coupling.getWeights()[10]);
 				} else {
-					line.setSum(2, 0);
-					line.setColValues(2, 0);
+					line.setCouplingsum(2, 0);
+					line.setCouplingcolValues(2, 0);
 				}
 
 				// col12
@@ -1050,8 +1048,8 @@ public class CouplingServiceImp implements CouplingService {
 						count++;
 					}
 				}
-				line.setSum(11, count);
-				line.setColValues(11, count * Coupling.getWeights()[11]);
+				line.setCouplingsum(11, count);
+				line.setCouplingcolValues(11, count * Coupling.getWeights()[11]);
 
 				// col13
 				count = 0;
@@ -1061,20 +1059,20 @@ public class CouplingServiceImp implements CouplingService {
 							count++;
 						}
 					}
-					line.setSum(12, count);
-					line.setColValues(12, count * Coupling.getWeights()[12]);
+					line.setCouplingsum(12, count);
+					line.setCouplingcolValues(12, count * Coupling.getWeights()[12]);
 				} else {
-					line.setSum(2, 0);
-					line.setColValues(2, 0);
+					line.setCouplingsum(2, 0);
+					line.setCouplingcolValues(2, 0);
 				}
-				line.setFinalValue();
+				line.setCouplingFinalValue();
 
 			}
 
 			for (Line line : file.getLineSet()) {
 
-				for (int i = 0; i < line.getSum().length; i++) {
-					sum[i] += line.getSum()[i];
+				for (int i = 0; i < line.getCouplingsum().length; i++) {
+					sum[i] += line.getCouplingsum()[i];
 				}
 
 			}

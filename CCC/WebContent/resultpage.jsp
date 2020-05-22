@@ -69,6 +69,9 @@
 		<div id="inheritance" class="inheritance">
 			<h3>Code Complexity due to Inheritance</h3>
 			<br />
+			<center>
+			<%@ include file="components/DisplayComplexityOfInheritance.jsp" %>
+			</center>
 		</div>
 		<div id="controlStructure" class="controlStructure">
 			<h3>Code Complexity due to Control Structures</h3>

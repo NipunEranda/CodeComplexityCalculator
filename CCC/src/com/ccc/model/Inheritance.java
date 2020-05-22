@@ -216,6 +216,4 @@ public class Inheritance {
 		this.Total_I = total_I;
 	}
 
-
-	
 }

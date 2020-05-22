@@ -73,22 +73,7 @@ table tr td{
 					for (Line line : file.getLineSet()) {
 			%>
 			<tr>
-				<%
-					int col1 = 0;
-							int col2 = 0;
-							int col3 = 0;
-							int col4 = 0;
-							int col5 = 0;
-							int col6 = 0;
-							int col7 = 0;
-							int col8 = 0;
-							int col9 = 0;
-							int col10 = 0;
-							int col11 = 0;
-							int col12 = 0;
-							int col13 = 0;
-							int col14 = 0;
-				%>
+
 				<td>
 					<%
 						out.print(line.getLineNumber());
@@ -101,72 +86,72 @@ table tr td{
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[0]);
+						out.print(line.getCouplingsum()[0]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[1]);
+						out.print(line.getCouplingsum()[1]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[2]);
+						out.print(line.getCouplingsum()[2]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[3]);
+						out.print(line.getCouplingsum()[3]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[4]);
+						out.print(line.getCouplingsum()[4]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[5]);
+						out.print(line.getCouplingsum()[5]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[6]);
+						out.print(line.getCouplingsum()[6]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[7]);
+						out.print(line.getCouplingsum()[7]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[8]);
+						out.print(line.getCouplingsum()[8]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[9]);
+						out.print(line.getCouplingsum()[9]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[10]);
+						out.print(line.getCouplingsum()[10]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[11]);
+						out.print(line.getCouplingsum()[11]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getSum()[12]);
+						out.print(line.getCouplingsum()[12]);
 					%>
 				</td>
 				<td>
 					<%
-						out.print(line.getFinalValue());
+						out.print(line.getCouplingFinalValue());
 					%>
 				</td>
 			</tr>

@@ -8,15 +8,28 @@ public class Line {
 	private String lineContent;
 	private int endLineNumber;
 	private String objName;
+	
 	private int[] colValues;
 	private int[] sum;
 	private int finalValue;
+	
+	private int[] CouplingcolValues;
+	private int[] Couplingsum;
+	private int CouplingFinalValue;
+	
+	private int[] InheritancecolValues;
+	private int[] Inheritancesum;
+	private int InheritanceFinalValue;
 	
 	public Line(int lineNumber, String lineContent) {
 		this.lineNumber = lineNumber;
 		this.lineContent = lineContent;
 		this.colValues = new int[13];
 		this.sum = new int[13];
+		this.CouplingcolValues = new int[13];
+		this.Couplingsum = new int[13];
+		this.InheritancecolValues = new int[3];
+		this.Inheritancesum = new int[4];
 	}
 	
 	public String getFileName() {
@@ -78,6 +91,18 @@ public class Line {
 		}
 		this.finalValue = sum;
 	}
+	
+	public int getCouplingFinalValue() {
+		return CouplingFinalValue;
+	}
+
+	public void setCouplingFinalValue() {
+		int sum = 0;
+		for(int x : this.CouplingcolValues) {
+			sum += x;
+		}
+		this.CouplingFinalValue = sum;
+	}
 
 	public int[] getColValues() {
 		return colValues;
@@ -85,6 +110,14 @@ public class Line {
 
 	public void setColValues(int index, int value) {
 		this.colValues[index] = value;
+	}
+	
+	public int[] getCouplingcolValues() {
+		return CouplingcolValues;
+	}
+
+	public void setCouplingcolValues(int index, int value) {
+		this.CouplingcolValues[index] = value;
 	}
 
 	public int[] getSum() {
@@ -95,4 +128,39 @@ public class Line {
 		this.sum[index] = value;
 	}
 	
+	public int[] getCouplingsum() {
+		return Couplingsum;
+	}
+
+	public void setCouplingsum(int index, int value) {
+		this.Couplingsum[index] = value;
+	}
+
+	public int[] getInheritancecolValues() {
+		return InheritancecolValues;
+	}
+
+	public void setInheritancecolValues(int index, int value) {
+		this.InheritancecolValues[index] = value;
+	}
+
+	public int[] getInheritancesum() {
+		return Inheritancesum;
+	}
+
+	public void setInheritancesum(int index, int value) {
+		this.Inheritancesum[index] = value;
+	}
+
+	public int getInheritanceFinalValue() {
+		return InheritanceFinalValue;
+	}
+
+	public void setInheritanceFinalValue() {
+		int sum = 0;
+		for(int x : this.InheritancecolValues) {
+			sum += x;
+		}
+		this.InheritanceFinalValue = sum;
+	}
 }

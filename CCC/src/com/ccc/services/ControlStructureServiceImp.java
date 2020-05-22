@@ -56,8 +56,8 @@ public class ControlStructureServiceImp implements ControlStructureService {
 						}
 						if(line.contains("//") && !isComment) {
 							String[] ln = line.split("//");
-							System.out.print("# without comment :"+ln[0]);
-							System.out.println(" # comment :"+ln[1]);
+							//System.out.print("# without comment :"+ln[0]);
+							//System.out.println(" # comment :"+ln[1]);
 							
 							line = ln[0];	
 						}
@@ -67,18 +67,18 @@ public class ControlStructureServiceImp implements ControlStructureService {
 			
 						// if contains any ITERATION in current statement assign weights and process formula
 						if(line.contains("for") || line.contains("while") || line.contains("do{")) {
-							System.out.println("iteration detected");
+							//System.out.println("iteration detected");
 							wtcs = wIteration;
 							nc = 1;
 							cs = (wtcs * nc) + temp;
 							ccspps = temp;
-							System.out.println("for cs: "+cs);
+							//System.out.println("for cs: "+cs);
 
 						}
 						
 						// if current statement contains any CONDITONAL CS assign weights and process formula
 						if(line.contains("if") || line.contains("else if") ) {
-							System.out.println("condition detected");
+							//System.out.println("condition detected");
 							wtcs = wCondition;
 				
 							// check if there many conditions in conditional statement and count it
@@ -95,7 +95,7 @@ public class ControlStructureServiceImp implements ControlStructureService {
 								nc = 1;
 							}
 							
-							System.out.println("if Condtion : "+nc);
+							//System.out.println("if Condtion : "+nc);
 							
 							temp = nested.get(nested.size()-1);
 							
@@ -105,7 +105,7 @@ public class ControlStructureServiceImp implements ControlStructureService {
 						
 						// if current statement includes any SWITCH, assign weights and calculate complexity
 						if(line.contains("switch")) {
-							System.out.println("switch detected");
+							//System.out.println("switch detected");
 							wtcs = wSwitch;
 							nc = 1;
 							cs = (wtcs * nc) + temp;
@@ -114,7 +114,7 @@ public class ControlStructureServiceImp implements ControlStructureService {
 						
 						// if current statement include a CASE, assign weights and calculate complexity
 						if(line.contains("case")) {	
-							System.out.println("case detected");
+							//System.out.println("case detected");
 							wtcs = wCase;
 							nc = 1;
 							cs = (wtcs * nc) + temp;
@@ -124,18 +124,18 @@ public class ControlStructureServiceImp implements ControlStructureService {
 						
 						// set inner ccspps values as a list
 						if(line.contains("{") && line.contains("if") || line.contains("switch") || line.contains("for") || line.contains("while") || line.contains("do")) {
-							System.out.println("nested line "+l.getLineNumber()+" ccspps: "+cs);
+							//System.out.println("nested line "+l.getLineNumber()+" ccspps: "+cs);
 							nested.add(cs);
 							nesting = true;
 							temp = cs;
 						}else if(line.contains("}")) {
 							if(nesting) {
-								System.out.println("line end : "+l.getLineNumber());
+								//System.out.println("line end : "+l.getLineNumber());
 								nested.remove(nested.size()-1);
 								nesting = false;
 							}
 							
-							System.out.println(nested.toString());
+							//System.out.println(nested.toString());
 						
 						}
 					
@@ -186,7 +186,7 @@ public class ControlStructureServiceImp implements ControlStructureService {
 				
 			}else {
 				
-				System.out.println("Weight Updated");
+				//System.out.println("Weight Updated");
 				Calculation(fileList.get(0));
 			}
 			

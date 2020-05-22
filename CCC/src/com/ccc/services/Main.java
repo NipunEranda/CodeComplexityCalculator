@@ -35,9 +35,6 @@ public class Main {
 
 	public boolean run() {
 
-		CouplingService couplingService = new CouplingServiceImp(fileList);
-		ControlStructureService controlStructureService = new ControlStructureServiceImp(fileList);
-
 		for (CustomFile file : this.fileList) {
 			if (file.getIsRaw() != true) {
 				if (!(file.getFileName().contains("java") || file.getFileName().contains("cpp"))) {
@@ -65,11 +62,16 @@ public class Main {
 			}
 		}
 
+		CouplingService couplingService = new CouplingServiceImp(fileList);
+		ControlStructureService controlStructureService = new ControlStructureServiceImp(fileList);
+		InheritanceService inheritanceService = new InheritanceServiceImp(fileList);
+
 		// For Multi File Upload
 		if (this.fileList.size() > 1) {
 			try {
 				couplingService.process2();
 				controlStructureService.process2();
+				inheritanceService.process2();
 				this.status = true;
 			} catch (Exception e) {
 				this.status = false;
@@ -79,10 +81,11 @@ public class Main {
 		else {
 			couplingService.process1(fileList.get(0));
 			controlStructureService.process1(fileList.get(0));
+			inheritanceService.process1(fileList.get(0));
 			this.status = true;
 		}
 		CouplingServiceImp.process3();
-		// ControlStructureServiceImp.process3();
+		InheritanceServiceImp.process3();
 		return this.status;
 	}
 

@@ -587,7 +587,7 @@ public class Coupling {
 	public void setGlobalVariableListInRec_DF(ArrayList<Line> globalVariableListInRec_DF) {
 		this.globalVariableListInRec_DF = globalVariableListInRec_DF;
 	}
-	
+
 	public void setFinalValue() {
 		
 		totr = weights[0] * Nr;

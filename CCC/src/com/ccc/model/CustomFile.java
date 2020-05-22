@@ -12,12 +12,14 @@ public class CustomFile {
 	private ArrayList<Line> lineSet;
 	private Coupling coupling;
 	private ControlStructure controlStructure;
+	private Inheritance inheritance;
 	
 	public CustomFile(String fileName) {
 		this.fileName = fileName;
 		this.lineSet = null;
 		this.coupling = new Coupling(fileName);
 		this.controlStructure = new ControlStructure(fileName);
+		this.inheritance = new Inheritance(fileName);
 		this.isRaw=false;
 	}
 	
@@ -86,5 +88,12 @@ public class CustomFile {
 		this.controlStructure = controlStructure;
 	}
 
+	public Inheritance getInheritance() {
+		return inheritance;
+	}
+
+	public void setInheritance(Inheritance inheritance) {
+		this.inheritance = inheritance;
+	}
 
 }
