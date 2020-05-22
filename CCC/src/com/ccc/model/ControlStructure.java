@@ -173,4 +173,13 @@ public class ControlStructure {
 		this.csList = csList;
 	}
 
+	public ArrayList<String> getStatement() {
+		return statement;
+	}
+
+	public void setStatement(ArrayList<String> statement) {
+		this.statement = statement;
+	}
+	
+
 }

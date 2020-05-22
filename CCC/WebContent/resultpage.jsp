@@ -74,6 +74,7 @@
 			<h3>Code Complexity due to Control Structures</h3>
 			<br />
 			<center>
+			<%@ include file="components/controlStructure.jsp" %>
 			</center>
 		</div>
 		<div id="finalResult" class="finalResult">
@@ -84,6 +85,5 @@
 		</div>
 		<br /> <br />
 	</div>
-
 </body>
 </html>

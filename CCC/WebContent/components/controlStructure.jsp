@@ -1,5 +1,6 @@
+<%@page import="com.ccc.model.CustomFile"%>
+<%@page import="com.sun.javafx.scene.traversal.WeightedClosestCorner"%>
 <%@page import="com.ccc.model.Line"%>
-<%@page import="com.ccc.model.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -66,7 +67,14 @@
 							total += Integer.parseInt(ccs.get(i).toString());
 						}
 				%>
-				<tr><td></td><td>Total</td><td></td><td></td><td></td><td><%= total %></td></tr>
+				<tr>
+					<td></td>
+					<td>Total</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><%=total%></td>
+				</tr>
 			</tbody>
 		</table>
 
