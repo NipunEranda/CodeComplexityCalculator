@@ -10,6 +10,7 @@ import com.ccc.model.Line;
 
 public class FileReadServiceImp implements FileReadService{
 
+	//Code segmant for open files
 	@Override
 	public void openFile(FileRead file, CustomFile fileobj) {
 		try{
@@ -19,6 +20,7 @@ public class FileReadServiceImp implements FileReadService{
         }
 	}
 
+	//Code segmant for read files and store in a object
 	@Override
 	public void readFile(FileRead file, CustomFile fileobj) {
 		int count=1;
@@ -32,6 +34,7 @@ public class FileReadServiceImp implements FileReadService{
 		fileobj.setLastIndex(lineSet.size());
 	}
 
+	//Code segmant for close opened files
 	@Override
 	public void closeFile(FileRead file) {
 		file.getScanner().close();

@@ -37,7 +37,7 @@
 			<tr>
 				<th>Line No</th>
 				<th>Program Statement</th>
-				<th>Wvs</th>
+				<th>Wmrt</th>
 				<!--col1 A recursive call -->
 				<th>Npdtv</th>
 				<!--col2 A regular method calling another regular method in the same file done-->
@@ -45,7 +45,7 @@
 				<!--col3 A regular method calling another regular method in a different file done-->
 			>
 				<!--col4 A regular method calling a recursive method in the same file done-->
-				<th>Cs</th>
+				<th>CM</th>
 				<!--col14 total -->
 			</tr>
 			<%

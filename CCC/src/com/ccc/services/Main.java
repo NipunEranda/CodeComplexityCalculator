@@ -14,9 +14,11 @@ public class Main {
 	private boolean status;
 	private ArrayList<CustomFile> fileList = new ArrayList<CustomFile>();
 	private String fileType = "";
-	public static String WEBCONTENTDIR = "C:\\Users\\prasa\\git\\CCC\\CodeComplexityCalculator\\CCC\\WebContent\\";
-
-	//public static String WEBCONTENTDIR = "/opt/tomcat/webapps/ROOT/";
+	public static String WEBCONTENTDIR = "git/CodeComplexityCalculator/CCC/WebContent/";
+	
+	//Folder path inside the server( public static String WEBCONTENTDIR = "/opt/tomcat/webapps/ROOT/"; )
+	
+	// C:\Users\prasa\git\CCC\CodeComplexityCalculator\CCC\WebContent
 
 	public ArrayList<CustomFile> getFileList() {
 		return fileList;
@@ -36,7 +38,7 @@ public class Main {
 
 	public boolean run() {
 
-		CouplingService couplingService = new CouplingServiceImp();
+		CouplingService couplingService = new CouplingServiceImp(fileList);
 
 		for (CustomFile file : this.fileList) {
 
@@ -56,8 +58,6 @@ public class Main {
 					fileReadService.openFile(fileRead, file);
 					fileReadService.readFile(fileRead, file);
 					fileReadService.closeFile(fileRead);
-
-					couplingService.process1(file);
 					status = true;
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,75 +67,31 @@ public class Main {
 		}
 		if (this.fileList.size() > 1) {
 			try {
-				couplingService.process2(this.fileList);
+				couplingService.process2();
 				status = true;
 			} catch (Exception e) {
 				status = false;
 				e.printStackTrace();
 			}
+		}else {
+			couplingService.process1(fileList.get(0));
 		}
-		couplingService.process3(this.fileList);
+		CouplingServiceImp.process3();
 		return status;
 	}
 	
-	public boolean runSize() {
+	
+	
+	
+	public boolean size_run() {
 
-		SizeService sizeService = new SizeServiceImp();
-
-		for (CustomFile file : this.fileList) {
-
-			if (!(file.getFileName().contains("java") || file.getFileName().contains("cpp"))) {
-				System.out.println("Wrong file type");
-				
-			} else {
-				try {
-					if (file.getFileName().contains("java")) {
-						fileType = "java";
-					} else {
-						fileType = "cpp";
-					}
-					file.setFileType(fileType);
-					FileRead fileRead = new FileRead(file.getFileName());
-					FileReadService fileReadService = new FileReadServiceImp();
-
-					fileReadService.openFile(fileRead, file);
-					fileReadService.readFile(fileRead, file);
-					fileReadService.closeFile(fileRead);
-
-					sizeService.process1(file);
-					System.out.println("true1");
-					status = true;
-				} catch (Exception e) {
-					e.printStackTrace();
-					status = false;
-				}
-			}
-		}
-		if (this.fileList.size() > 1) {
-			try {
-				sizeService.process2(this.fileList);
-				System.out.println("true2");
-				status = true;
-			} catch (Exception e) {
-				status = false;
-				e.printStackTrace();
-			}
-		}
+		//CouplingService couplingService = new CouplingServiceImp(fileList);
+		SizeService sizeService = new SizeServiceImp(fileList);
 		
-		System.out.println("true3");
-		sizeService.process3(this.fileList);
-		return status;
-	}
-	
-	public boolean runVariables() {
-
-		VariablesServices variablesServices = new VariablesServiceImp();
-
 		for (CustomFile file : this.fileList) {
 
 			if (!(file.getFileName().contains("java") || file.getFileName().contains("cpp"))) {
 				System.out.println("Wrong file type");
-				
 			} else {
 				try {
 					if (file.getFileName().contains("java")) {
@@ -150,9 +106,6 @@ public class Main {
 					fileReadService.openFile(fileRead, file);
 					fileReadService.readFile(fileRead, file);
 					fileReadService.closeFile(fileRead);
-
-					variablesServices.process1(file);
-					System.out.println("true1");
 					status = true;
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -162,20 +115,68 @@ public class Main {
 		}
 		if (this.fileList.size() > 1) {
 			try {
-				variablesServices.process2(this.fileList);
-				System.out.println("true2");
+				sizeService.process2();
 				status = true;
 			} catch (Exception e) {
 				status = false;
 				e.printStackTrace();
 			}
+		}else {
+			sizeService.process1(fileList.get(0));
 		}
-		
-		System.out.println("true3");
-		variablesServices.process3(this.fileList);
+		SizeServiceImp.process3();
 		return status;
 	}
 	
+	
+	
+	//VariablesServiceImp
+	
+	
+	public boolean variables_run() {
+
+		//CouplingService couplingService = new CouplingServiceImp(fileList);
+		VariablesServices variablesServices = new VariablesServiceImp(fileList);
+		
+		for (CustomFile file : this.fileList) {
+
+			if (!(file.getFileName().contains("java") || file.getFileName().contains("cpp"))) {
+				System.out.println("Wrong file type");
+			} else {
+				try {
+					if (file.getFileName().contains("java")) {
+						fileType = "java";
+					} else {
+						fileType = "cpp";
+					}
+					file.setFileType(fileType);
+					FileRead fileRead = new FileRead(file.getFileName());
+					FileReadService fileReadService = new FileReadServiceImp();
+
+					fileReadService.openFile(fileRead, file);
+					fileReadService.readFile(fileRead, file);
+					fileReadService.closeFile(fileRead);
+					status = true;
+				} catch (Exception e) {
+					e.printStackTrace();
+					status = false;
+				}
+			}
+		}
+		if (this.fileList.size() > 1) {
+			try {
+				variablesServices.process2();
+				status = true;
+			} catch (Exception e) {
+				status = false;
+				e.printStackTrace();
+			}
+		}else {
+			variablesServices.process1(fileList.get(0));
+		}
+		VariablesServiceImp.process3();
+		return status;
+	}
 	
 
 }

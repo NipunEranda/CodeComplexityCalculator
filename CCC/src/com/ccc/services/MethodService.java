@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.ccc.model.CustomFile;
 import com.ccc.model.Line;
 
-public interface SizeService {
+public interface MethodService {
 
 	public String getMethodName(String line);
 	public void getClassNames(CustomFile file);
@@ -39,8 +39,6 @@ public interface SizeService {
 	
 	public void process1(CustomFile file);
 	public void process2();
-	public void getKeywords(CustomFile file);
-	public void getOperators(CustomFile file);
 	
 	
 	

@@ -4,17 +4,17 @@ package com.ccc.services;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import com.ccc.model.Size;
+import com.ccc.model.Method;
 import com.ccc.model.CustomFile;
 import com.ccc.model.Line;
 
 
-public class SizeServiceImp implements SizeService {
+public class MethodServiceImp implements MethodService {
 	
 	static ArrayList<CustomFile> fileList;
 	
 	//Setting filelist for operations
-	public SizeServiceImp(ArrayList<CustomFile> fList) {
+	public MethodServiceImp(ArrayList<CustomFile> fList) {
 		fileList = fList;
 	}
 
@@ -52,7 +52,7 @@ public class SizeServiceImp implements SizeService {
 			}
 
 		}
-		file.getSize().setClassList(classList);
+		file.getMethod().setClassList(classList);
 	}
 
 	//get objects created in the file
@@ -63,7 +63,7 @@ public class SizeServiceImp implements SizeService {
 		for (Line line : file.getLineSet()) {
 
 			if (line.getLineContent().contains(" new ")) {
-				for (Line line_class : file.getSize().getClassList()) {
+				for (Line line_class : file.getMethod().getClassList()) {
 					if (line.getLineContent().contains(line_class.getLineContent())) {
 
 						String[] sub = line.getLineContent().split("\\(");
@@ -75,7 +75,7 @@ public class SizeServiceImp implements SizeService {
 
 		}
 
-		file.getSize().setClassObjectList(classObjList);
+		file.getMethod().setClassObjectList(classObjList);
 	}
 
 	//get objects created using other filess
@@ -88,7 +88,7 @@ public class SizeServiceImp implements SizeService {
 
 				for (Line line : ifile.getLineSet()) {
 
-					for (Line line_class : file.getSize().getClassList()) {
+					for (Line line_class : file.getMethod().getClassList()) {
 
 						if (line.getLineContent().contains(" new ")
 								&& line.getLineContent().contains(line_class.getLineContent())) {
@@ -102,7 +102,7 @@ public class SizeServiceImp implements SizeService {
 				}
 
 			}
-			ifile.getSize().setClassObjectList_DF(classObjList_DF);
+			ifile.getMethod().setClassObjectList_DF(classObjList_DF);
 		}
 
 	}
@@ -111,7 +111,7 @@ public class SizeServiceImp implements SizeService {
 	@Override
 	public int getEndLineNumber(CustomFile file, Line line) {
 		int endNumber = 0;
-		for (Line line1 : file.getSize().getMethodList()) {
+		for (Line line1 : file.getMethod().getMethodList()) {
 
 			if (line1.getLineNumber() == line.getLineNumber()) {
 				endNumber = line1.getEndLineNumber();
@@ -144,21 +144,21 @@ public class SizeServiceImp implements SizeService {
 				}
 			}
 		}
-		file.getSize().setMethodList(methodSet);
+		file.getMethod().setMethodList(methodSet);
 	}
 
 	//set end line numbers
 	@Override
 	public void setEndLineNumber(CustomFile file) {
 
-		for (int i = 0; i < file.getSize().getMethodList().size(); i++) {
+		for (int i = 0; i < file.getMethod().getMethodList().size(); i++) {
 
 			int opnBrkt = 0;
 			int clsBrkt = 0;
 
-			if (i == file.getSize().getMethodList().size() - 1) {
+			if (i == file.getMethod().getMethodList().size() - 1) {
 
-				for (int j = file.getSize().getMethodList().get(i).getLineNumber() - 1; j < file
+				for (int j = file.getMethod().getMethodList().get(i).getLineNumber() - 1; j < file
 						.getLastIndex(); ++j) {
 
 					if (file.getLineSet().get(j).getLineContent().contains("{")
@@ -171,7 +171,7 @@ public class SizeServiceImp implements SizeService {
 					}
 
 					if (opnBrkt == 0) {
-						file.getSize().setEndLineNumber(i, ++j);
+						file.getMethod().setEndLineNumber(i, ++j);
 						break;
 					} else {
 						continue;
@@ -180,7 +180,7 @@ public class SizeServiceImp implements SizeService {
 
 			} else {
 
-				for (int j = file.getSize().getMethodList().get(i).getLineNumber() - 1; j < file.getSize()
+				for (int j = file.getMethod().getMethodList().get(i).getLineNumber() - 1; j < file.getMethod()
 						.getMethodList().get(i + 1).getLineNumber() - 1; ++j) {
 
 					if (file.getLineSet().get(j).getLineContent().contains("{")
@@ -193,7 +193,7 @@ public class SizeServiceImp implements SizeService {
 					}
 
 					if (opnBrkt == clsBrkt) {
-						file.getSize().setEndLineNumber(i, ++j);
+						file.getMethod().setEndLineNumber(i, ++j);
 						break;
 					} else {
 						continue;
@@ -215,7 +215,7 @@ public class SizeServiceImp implements SizeService {
 		ArrayList<Line> recursiveMethodSet = new ArrayList<Line>();
 		ArrayList<Line> recursiveMethodCalls = new ArrayList<Line>();
 
-		for (Line line : file.getSize().getMethodList()) {
+		for (Line line : file.getMethod().getMethodList()) {
 			boolean no_recursive = true;
 
 			for (int i = line.getLineNumber(); i < line.getEndLineNumber(); i++) {
@@ -230,8 +230,8 @@ public class SizeServiceImp implements SizeService {
 			}
 		}
 
-		file.getSize().setRecursiveMethods(recursiveMethodSet);
-		file.getSize().setRecursiveMethodCalls(recursiveMethodCalls);
+		file.getMethod().setRecursiveMethods(recursiveMethodSet);
+		file.getMethod().setRecursiveMethodCalls(recursiveMethodCalls);
 	}
 
 	//get regular methods
@@ -240,7 +240,7 @@ public class SizeServiceImp implements SizeService {
 
 		ArrayList<Line> regularMethodSet = new ArrayList<Line>();
 
-		for (Line line : file.getSize().getMethodList()) {
+		for (Line line : file.getMethod().getMethodList()) {
 			boolean no_recursive = true;
 
 			for (int i = line.getLineNumber(); i < line.getEndLineNumber(); i++) {
@@ -254,7 +254,7 @@ public class SizeServiceImp implements SizeService {
 			}
 		}
 
-		file.getSize().setRegularMethods(regularMethodSet);
+		file.getMethod().setRegularMethods(regularMethodSet);
 	}
 
 	//get system methods
@@ -275,7 +275,7 @@ public class SizeServiceImp implements SizeService {
 				String[] sub = line.getLineContent().split("\\(");
 				String method = sub[0].trim();
 
-				for (Line line_method : file.getSize().getMethodList()) {
+				for (Line line_method : file.getMethod().getMethodList()) {
 
 					if (method.contains(line_method.getLineContent())) {
 						status = false;
@@ -290,7 +290,7 @@ public class SizeServiceImp implements SizeService {
 			}
 		}
 
-		file.getSize().setSystemMethods(systemMethodList);
+		file.getMethod().setSystemMethods(systemMethodList);
 	}
 
 	//get regular methods, which called by another regular method
@@ -300,8 +300,8 @@ public class SizeServiceImp implements SizeService {
 
 		ArrayList<Line> regInReg = new ArrayList<Line>();
 
-		for (Line line : file.getSize().getRegularMethods()) {
-			for (Line regLine : file.getSize().getRegularMethods()) {
+		for (Line line : file.getMethod().getRegularMethods()) {
+			for (Line regLine : file.getMethod().getRegularMethods()) {
 				if (line.getLineNumber() != regLine.getLineNumber()) {
 					for (int i = line.getLineNumber(); i < getEndLineNumber(file, line); i++) {
 
@@ -313,7 +313,7 @@ public class SizeServiceImp implements SizeService {
 				}
 
 			}
-			for (Line line_sys : file.getSize().getSystemMethods()) {
+			for (Line line_sys : file.getMethod().getSystemMethods()) {
 
 				if (line_sys.getLineNumber() > line.getLineNumber()
 						&& line_sys.getLineNumber() < getEndLineNumber(file, line)) {
@@ -322,7 +322,7 @@ public class SizeServiceImp implements SizeService {
 
 			}
 		}
-		file.getSize().setRegularInRegularMethods(regInReg);
+		file.getMethod().setRegularInRegularMethods(regInReg);
 	}
 
 	//get recursive methods, which called by another regular method
@@ -332,11 +332,11 @@ public class SizeServiceImp implements SizeService {
 
 		ArrayList<Line> recInReg = new ArrayList<Line>();
 
-		for (Line regLine : file.getSize().getRegularMethods()) {
+		for (Line regLine : file.getMethod().getRegularMethods()) {
 
 			for (int i = regLine.getLineNumber(); i < getEndLineNumber(file, regLine); i++) {
 
-				for (Line recLine : file.getSize().getRecursiveMethods()) {
+				for (Line recLine : file.getMethod().getRecursiveMethods()) {
 					if (file.getLineSet().get(i).getLineContent().contains(recLine.getLineContent())) {
 						recInReg.add(file.getLineSet().get(i));
 					}
@@ -345,7 +345,7 @@ public class SizeServiceImp implements SizeService {
 			}
 
 		}
-		file.getSize().setRecursiveInRegularMethods(recInReg);
+		file.getMethod().setRecursiveInRegularMethods(recInReg);
 	}
 
 	//get recursive methods, which called by another recursive method
@@ -355,8 +355,8 @@ public class SizeServiceImp implements SizeService {
 
 		ArrayList<Line> recInRec = new ArrayList<Line>();
 
-		for (Line line : file.getSize().getRecursiveMethods()) {
-			for (Line recLine : file.getSize().getRecursiveMethods()) {
+		for (Line line : file.getMethod().getRecursiveMethods()) {
+			for (Line recLine : file.getMethod().getRecursiveMethods()) {
 				if (line.getLineNumber() != recLine.getLineNumber()) {
 					for (int i = line.getLineNumber(); i < getEndLineNumber(file, line); i++) {
 
@@ -370,7 +370,7 @@ public class SizeServiceImp implements SizeService {
 			}
 		}
 
-		file.getSize().setRecursiveInRecursiveMethods(recInRec);
+		file.getMethod().setRecursiveInRecursiveMethods(recInRec);
 
 	}
 
@@ -381,11 +381,11 @@ public class SizeServiceImp implements SizeService {
 
 		ArrayList<Line> regInRec = new ArrayList<Line>();
 
-		for (Line recLine : file.getSize().getRecursiveMethods()) {
+		for (Line recLine : file.getMethod().getRecursiveMethods()) {
 
 			for (int i = recLine.getLineNumber(); i < getEndLineNumber(file, recLine); i++) {
 
-				for (Line regLine : file.getSize().getRegularMethods()) {
+				for (Line regLine : file.getMethod().getRegularMethods()) {
 					if (file.getLineSet().get(i).getLineContent().contains(regLine.getLineContent())) {
 						regInRec.add(file.getLineSet().get(i));
 					}
@@ -393,7 +393,7 @@ public class SizeServiceImp implements SizeService {
 
 			}
 
-			for (Line line_sys : file.getSize().getSystemMethods()) {
+			for (Line line_sys : file.getMethod().getSystemMethods()) {
 
 				if (line_sys.getLineNumber() > recLine.getLineNumber()
 						&& line_sys.getLineNumber() < getEndLineNumber(file, recLine)) {
@@ -404,7 +404,7 @@ public class SizeServiceImp implements SizeService {
 
 		}
 
-		file.getSize().setRegularInRecursiveMethods(regInRec);
+		file.getMethod().setRegularInRecursiveMethods(regInRec);
 	}
 
 	//get global variable set in the file
@@ -436,7 +436,7 @@ public class SizeServiceImp implements SizeService {
 		ArrayList<Integer> removableNumbers = new ArrayList<>();
 		for (Line line : variableSet) {
 
-			for (Line line_meth : file.getSize().getMethodList()) {
+			for (Line line_meth : file.getMethod().getMethodList()) {
 				if (line.getLineNumber() > line_meth.getLineNumber()
 						&& line.getLineNumber() < line_meth.getEndLineNumber()) {
 					removableNumbers.add(line.getLineNumber());
@@ -456,7 +456,7 @@ public class SizeServiceImp implements SizeService {
 
 		}
 
-		file.getSize().setGlobalVariableSet(variableSet);
+		file.getMethod().setGlobalVariableSet(variableSet);
 
 	}
 
@@ -467,9 +467,9 @@ public class SizeServiceImp implements SizeService {
 
 		ArrayList<Line> globalVariableSetInReg = new ArrayList<Line>();
 
-		for (Line line : file.getSize().getGlobalVariableSet()) {
+		for (Line line : file.getMethod().getGlobalVariableSet()) {
 
-			for (Line line_reg : file.getSize().getRegularMethods()) {
+			for (Line line_reg : file.getMethod().getRegularMethods()) {
 
 				for (int i = line_reg.getLineNumber(); i < getEndLineNumber(file, line_reg); i++) {
 					if (file.getLineSet().get(i).getLineContent().contains(line.getLineContent())
@@ -492,7 +492,7 @@ public class SizeServiceImp implements SizeService {
 
 		}
 
-		file.getSize().setGlobalVariableListInReg(globalVariableSetInReg);
+		file.getMethod().setGlobalVariableListInReg(globalVariableSetInReg);
 	}
 
 	//get global variables referenced by recursive methods
@@ -502,9 +502,9 @@ public class SizeServiceImp implements SizeService {
 
 		ArrayList<Line> globalVariableSetInRec = new ArrayList<Line>();
 
-		for (Line line : file.getSize().getGlobalVariableSet()) {
+		for (Line line : file.getMethod().getGlobalVariableSet()) {
 
-			for (Line methodLine : file.getSize().getRecursiveMethods()) {
+			for (Line methodLine : file.getMethod().getRecursiveMethods()) {
 
 				for (int i = methodLine.getLineNumber(); i < getEndLineNumber(file, methodLine); i++) {
 
@@ -530,7 +530,7 @@ public class SizeServiceImp implements SizeService {
 
 		}
 
-		file.getSize().setGlobalVariableListInRec(globalVariableSetInRec);
+		file.getMethod().setGlobalVariableListInRec(globalVariableSetInRec);
 
 	}
 
@@ -554,7 +554,7 @@ public class SizeServiceImp implements SizeService {
 						String[] sub = line.getLineContent().split("\\(");
 						String method = sub[0].trim();
 
-						for (Line line_method : ifile.getSize().getMethodList()) {
+						for (Line line_method : ifile.getMethod().getMethodList()) {
 
 							if (method.contains(line_method.getLineContent())) {
 								status = false;
@@ -564,7 +564,7 @@ public class SizeServiceImp implements SizeService {
 						}
 
 						if (status == true) {
-							for (Line line_meth : file.getSize().getMethodList()) {
+							for (Line line_meth : file.getMethod().getMethodList()) {
 								if (method.contains(line_meth.getLineContent())) {
 									status = false;
 									break;
@@ -580,7 +580,7 @@ public class SizeServiceImp implements SizeService {
 					}
 				}
 			}
-			file.getSize().setSystemMethods(systemMethodList_DF);
+			file.getMethod().setSystemMethods(systemMethodList_DF);
 		}
 	}
 
@@ -593,7 +593,7 @@ public class SizeServiceImp implements SizeService {
 
 				for (Line line : ifile.getLineSet()) {
 
-					for (Line line_meth : file.getSize().getMethodList()) {
+					for (Line line_meth : file.getMethod().getMethodList()) {
 
 						if (line.getLineContent().contains("." + line_meth.getLineContent())) {
 							line.setFileName(file.getFileName().split("\\.")[0]);
@@ -604,7 +604,7 @@ public class SizeServiceImp implements SizeService {
 
 				}
 
-				ifile.getSize().setCalledMethodList_DF(calledMethodList_DF);
+				ifile.getMethod().setCalledMethodList_DF(calledMethodList_DF);
 			}
 		}
 
@@ -618,19 +618,19 @@ public class SizeServiceImp implements SizeService {
 			ArrayList<Line> inReg = new ArrayList<>();
 			ArrayList<Line> inRec = new ArrayList<>();
 
-			for (Line line : file.getSize().getCalledMethodList_DF()) {
+			for (Line line : file.getMethod().getCalledMethodList_DF()) {
 
 				for (CustomFile tFile : fileList) {
 
 					if (tFile.getFileName().split("\\.")[0].equalsIgnoreCase(line.getFileName())) {
 
-						for (Line line_meth_reg : tFile.getSize().getRegularMethods()) {
+						for (Line line_meth_reg : tFile.getMethod().getRegularMethods()) {
 							if (line.getLineContent().contains(line_meth_reg.getLineContent())) {
 								inReg.add(line);
 							}
 						}
 
-						for (Line line_meth_rec : tFile.getSize().getRecursiveMethods()) {
+						for (Line line_meth_rec : tFile.getMethod().getRecursiveMethods()) {
 							if (line.getLineContent().contains(line_meth_rec.getLineContent())) {
 								inRec.add(line);
 							}
@@ -642,8 +642,8 @@ public class SizeServiceImp implements SizeService {
 
 			}
 
-			file.getSize().setInReg_DF(inReg);
-			file.getSize().setInRec_DF(inRec);
+			file.getMethod().setInReg_DF(inReg);
+			file.getMethod().setInRec_DF(inRec);
 
 		}
 
@@ -655,9 +655,9 @@ public class SizeServiceImp implements SizeService {
 		for (CustomFile file : fileList) {
 			ArrayList<Line> regInReg_DF = new ArrayList<>();
 
-			for (Line line : file.getSize().getInReg_DF()) {
+			for (Line line : file.getMethod().getInReg_DF()) {
 
-				for (Line line_reg : file.getSize().getRegularMethods()) {
+				for (Line line_reg : file.getMethod().getRegularMethods()) {
 
 					if (line.getLineNumber() > line_reg.getLineNumber()
 							&& line.getLineNumber() < line_reg.getEndLineNumber()) {
@@ -666,7 +666,7 @@ public class SizeServiceImp implements SizeService {
 
 				}
 
-				for (Line line_sys : file.getSize().getSystemMethods()) {
+				for (Line line_sys : file.getMethod().getSystemMethods()) {
 
 					if (line_sys.getLineNumber() > line.getLineNumber()
 							&& line_sys.getLineNumber() < getEndLineNumber(file, line)) {
@@ -676,7 +676,7 @@ public class SizeServiceImp implements SizeService {
 				}
 
 			}
-			file.getSize().setRegularInRegularMethods_DF(regInReg_DF);
+			file.getMethod().setRegularInRegularMethods_DF(regInReg_DF);
 		}
 	}
 
@@ -685,9 +685,9 @@ public class SizeServiceImp implements SizeService {
 	public void getRecInReg_DF() {
 		for (CustomFile file : fileList) {
 			ArrayList<Line> recInReg_DF = new ArrayList<>();
-			for (Line line : file.getSize().getInRec_DF()) {
+			for (Line line : file.getMethod().getInRec_DF()) {
 
-				for (Line line_reg : file.getSize().getRegularMethods()) {
+				for (Line line_reg : file.getMethod().getRegularMethods()) {
 
 					if (line.getLineNumber() > line_reg.getLineNumber()
 							&& line.getLineNumber() < line_reg.getEndLineNumber()) {
@@ -696,7 +696,7 @@ public class SizeServiceImp implements SizeService {
 
 				}
 			}
-			file.getSize().setRecursiveInRegularMethods_DF(recInReg_DF);
+			file.getMethod().setRecursiveInRegularMethods_DF(recInReg_DF);
 		}
 	}
 
@@ -705,9 +705,9 @@ public class SizeServiceImp implements SizeService {
 	public void getRecInRec_DF() {
 		for (CustomFile file : fileList) {
 			ArrayList<Line> recInRec_DF = new ArrayList<>();
-			for (Line line : file.getSize().getInRec_DF()) {
+			for (Line line : file.getMethod().getInRec_DF()) {
 
-				for (Line line_rec : file.getSize().getRecursiveMethods()) {
+				for (Line line_rec : file.getMethod().getRecursiveMethods()) {
 
 					if (line.getLineNumber() > line_rec.getLineNumber()
 							&& line.getLineNumber() < line_rec.getEndLineNumber()) {
@@ -716,7 +716,7 @@ public class SizeServiceImp implements SizeService {
 
 				}
 			}
-			file.getSize().setRecursiveInRecursiveMethods_DF(recInRec_DF);
+			file.getMethod().setRecursiveInRecursiveMethods_DF(recInRec_DF);
 		}
 	}
 
@@ -725,9 +725,9 @@ public class SizeServiceImp implements SizeService {
 	public void getRegInRec_DF() {
 		for (CustomFile file : fileList) {
 			ArrayList<Line> regInRec_DF = new ArrayList<>();
-			for (Line line : file.getSize().getInReg_DF()) {
+			for (Line line : file.getMethod().getInReg_DF()) {
 
-				for (Line line_rec : file.getSize().getRecursiveMethods()) {
+				for (Line line_rec : file.getMethod().getRecursiveMethods()) {
 
 					if (line.getLineNumber() > line_rec.getLineNumber()
 							&& line.getLineNumber() < line_rec.getEndLineNumber()) {
@@ -736,7 +736,7 @@ public class SizeServiceImp implements SizeService {
 
 				}
 
-				for (Line line_sys : file.getSize().getSystemMethods()) {
+				for (Line line_sys : file.getMethod().getSystemMethods()) {
 
 					if (line_sys.getLineNumber() > line.getLineNumber()
 							&& line_sys.getLineNumber() < getEndLineNumber(file, line)) {
@@ -745,7 +745,7 @@ public class SizeServiceImp implements SizeService {
 
 				}
 			}
-			file.getSize().setRegularInRecursiveMethods_DF(regInRec_DF);
+			file.getMethod().setRegularInRecursiveMethods_DF(regInRec_DF);
 		}
 	}
 
@@ -758,7 +758,7 @@ public class SizeServiceImp implements SizeService {
 
 			if (!ifile.getFileName().equalsIgnoreCase(file.getFileName())) {
 				for (Line line : ifile.getLineSet()) {
-					for (Line line_g : file.getSize().getGlobalVariableSet()) {
+					for (Line line_g : file.getMethod().getGlobalVariableSet()) {
 						if(line.getLineContent().contains("."+line_g.getLineContent())) {
 							globalVariableList_DF.add(line);
 						}
@@ -768,7 +768,7 @@ public class SizeServiceImp implements SizeService {
 
 		}
 
-		ifile.getSize().setGlobalVariableList_DF(globalVariableList_DF);
+		ifile.getMethod().setGlobalVariableList_DF(globalVariableList_DF);
 
 	}
 
@@ -777,9 +777,9 @@ public class SizeServiceImp implements SizeService {
 	public void getGlobalVariableListInReg_DF() {
 		for (CustomFile file : fileList) {
 			ArrayList<Line> globalVariableListInReg_DF = new ArrayList<>();
-			for (Line regLine : file.getSize().getRegularMethods()) {
+			for (Line regLine : file.getMethod().getRegularMethods()) {
 
-				for (Line gVariable : file.getSize().getGlobalVariableList_DF()) {
+				for (Line gVariable : file.getMethod().getGlobalVariableList_DF()) {
 
 					if (gVariable.getLineNumber() > regLine.getLineNumber()
 							&& gVariable.getLineNumber() < getEndLineNumber(file, regLine)) {
@@ -790,7 +790,7 @@ public class SizeServiceImp implements SizeService {
 
 			}
 
-			file.getSize().setGlobalVariableListInReg_DF(globalVariableListInReg_DF);
+			file.getMethod().setGlobalVariableListInReg_DF(globalVariableListInReg_DF);
 		}
 	}
 
@@ -800,9 +800,9 @@ public class SizeServiceImp implements SizeService {
 
 		for (CustomFile file : fileList) {
 			ArrayList<Line> globalVariableListInRec_DF = new ArrayList<>();
-			for (Line recLine : file.getSize().getRecursiveMethods()) {
+			for (Line recLine : file.getMethod().getRecursiveMethods()) {
 
-				for (Line gVariable : file.getSize().getGlobalVariableList_DF()) {
+				for (Line gVariable : file.getMethod().getGlobalVariableList_DF()) {
 
 					if (gVariable.getLineNumber() > recLine.getLineNumber()
 							&& gVariable.getLineNumber() < getEndLineNumber(file, recLine)) {
@@ -813,7 +813,7 @@ public class SizeServiceImp implements SizeService {
 
 			}
 
-			file.getSize().setGlobalVariableListInRec_DF(globalVariableListInRec_DF);
+			file.getMethod().setGlobalVariableListInRec_DF(globalVariableListInRec_DF);
 		}
 	}
 	
@@ -822,142 +822,14 @@ public class SizeServiceImp implements SizeService {
 	
 	
 	
-	//get global getKeywords set in the file
-		@Override
-		public void getKeywords(CustomFile file) {
-
-			ArrayList<Line> variableSet = new ArrayList<Line>();
-
-			for (Line line : file.getLineSet()) {
-
-				// Check more details on getKeywords variables (class, public, void, true, else, default, return, null, break, this, etc.)
-				if (line.getLineContent().contains("=") && line.getLineContent().contains(";")) {
-					if (line.getLineContent().contains("class ") || line.getLineContent().contains("assert ")
-							|| line.getLineContent().contains("abstract") || line.getLineContent().contains("return")
-							|| line.getLineContent().contains("this") || line.getLineContent().contains("catch")
-							|| line.getLineContent().contains("break") || line.getLineContent().contains("char")
-							|| line.getLineContent().contains("super") || line.getLineContent().contains("class")
-							|| line.getLineContent().contains("const") || line.getLineContent().contains("protected")
-							|| line.getLineContent().contains("continue") || line.getLineContent().contains("goto")
-							|| line.getLineContent().contains("default") || line.getLineContent().contains("private")
-							|| line.getLineContent().contains("static") || line.getLineContent().contains("implements")
-							|| line.getLineContent().contains("try") || line.getLineContent().contains("instanceof")
-							|| line.getLineContent().contains("throws") || line.getLineContent().contains("throw")
-							|| line.getLineContent().contains("enum") || line.getLineContent().contains("interface")
-							|| line.getLineContent().contains("extends") || line.getLineContent().contains("synchronized")
-							|| line.getLineContent().contains("final") || line.getLineContent().contains("native")
-							|| line.getLineContent().contains("finally") || line.getLineContent().contains("new")
-							|| line.getLineContent().contains("package") ) {
-
-					} else if (line.getLineContent().contains("byte") || line.getLineContent().contains("short")
-							|| line.getLineContent().contains("int") || line.getLineContent().contains("long")
-							|| line.getLineContent().contains("float") || line.getLineContent().contains("double")
-							|| line.getLineContent().contains("char") || line.getLineContent().contains("boolean")) {
-
-						String value = line.getLineContent().replace("static", "").replace("public", "").trim();
-						String[] sub = value.split(" ");
-						variableSet.add(new Line(line.getLineNumber(), sub[1]));
-					}
-				}
-			}
-
-			ArrayList<Integer> removableNumbers = new ArrayList<>();
-			for (Line line : variableSet) {
-
-				for (Line line_meth : file.getSize().getMethodList()) {
-					if (line.getLineNumber() > line_meth.getLineNumber()
-							&& line.getLineNumber() < line_meth.getEndLineNumber()) {
-						removableNumbers.add(line.getLineNumber());
-					}
-				}
-
-			}
-			for (int x : removableNumbers) {
-
-				for (int i = 0; i < variableSet.size(); i++) {
-
-					if (variableSet.get(i).getLineNumber() == x) {
-						variableSet.remove(i);
-					}
-
-				}
-
-			}
-
-			file.getSize().setGlobalVariableSet(variableSet);
-
-		}
+	
 	
 	
 	
 
 	
 	
-	//get global getOperators set in the file
-		@Override
-		public void getOperators(CustomFile file) {
-
-			ArrayList<Line> variableSet = new ArrayList<Line>();
-
-			for (Line line : file.getLineSet()) {
-
-				// Check more details on getKeywords variables (class, public, void, true, else, default, return, null, break, this, etc.)
-				if (line.getLineContent().contains("=") && line.getLineContent().contains(";")) {
-					if (line.getLineContent().contains("+ ") || line.getLineContent().contains("-")
-							|| line.getLineContent().contains("*") || line.getLineContent().contains("/ ")
-							|| line.getLineContent().contains("%") || line.getLineContent().contains("++")
-							|| line.getLineContent().contains("--") || line.getLineContent().contains("==")
-							|| line.getLineContent().contains("!=") || line.getLineContent().contains(">")
-							|| line.getLineContent().contains("<") || line.getLineContent().contains(">=")
-							|| line.getLineContent().contains("<=") || line.getLineContent().contains("&&")
-							|| line.getLineContent().contains("||") || line.getLineContent().contains("!")
-							|| line.getLineContent().contains("|") || line.getLineContent().contains("<<")
-							|| line.getLineContent().contains("<<<") || line.getLineContent().contains(">>")
-							|| line.getLineContent().contains(">>>") || line.getLineContent().contains("->")
-							|| line.getLineContent().contains("+=") || line.getLineContent().contains("-=")
-							|| line.getLineContent().contains("*=") || line.getLineContent().contains("/=")
-							|| line.getLineContent().contains("=>>>=") || line.getLineContent().contains("|=")
-							|| line.getLineContent().contains("&=") || line.getLineContent().contains("%=")
-							|| line.getLineContent().contains("<<=") || line.getLineContent().contains(">>=")) {
-
-					} else if (line.getLineContent().contains("byte") || line.getLineContent().contains("short")
-							|| line.getLineContent().contains("int") || line.getLineContent().contains("long")
-							|| line.getLineContent().contains("float") || line.getLineContent().contains("double")
-							|| line.getLineContent().contains("char") || line.getLineContent().contains("boolean")) {
-
-						String value = line.getLineContent().replace("static", "").replace("public", "").trim();
-						String[] sub = value.split(" ");
-						variableSet.add(new Line(line.getLineNumber(), sub[1]));
-					}
-				}
-			}
-
-			ArrayList<Integer> removableNumbers = new ArrayList<>();
-			for (Line line : variableSet) {
-
-				for (Line line_meth : file.getSize().getMethodList()) {
-					if (line.getLineNumber() > line_meth.getLineNumber()
-							&& line.getLineNumber() < line_meth.getEndLineNumber()) {
-						removableNumbers.add(line.getLineNumber());
-					}
-				}
-
-			}
-			for (int x : removableNumbers) {
-
-				for (int i = 0; i < variableSet.size(); i++) {
-
-					if (variableSet.get(i).getLineNumber() == x) {
-						variableSet.remove(i);
-					}
-
-				}
-
-			}
-
-			file.getSize().setGlobalVariableSet(variableSet);
-
-		}
+	
 
 	//Process for a single file upload
 	@Override
@@ -979,19 +851,19 @@ public class SizeServiceImp implements SizeService {
 		getGlobalVariableListInRec(file);
 
 		
-		file.getSize().setNkw(file.getSize().getGlobalVariableListInReg().size());
-		file.getSize().setNkw(0);
-		file.getSize().setNid(file.getSize().getGlobalVariableListInReg().size());
-		file.getSize().setNid(0);
-		file.getSize().setNop(file.getSize().getGlobalVariableListInReg().size());
-		file.getSize().setNop(0);
-		file.getSize().setNnv(file.getSize().getGlobalVariableListInReg().size());
-		file.getSize().setNnv(0);		
-		file.getSize().setNsl(file.getSize().getGlobalVariableListInReg().size());
-		file.getSize().setNsl(0);
+		file.getMethod().setWmrt(file.getMethod().getGlobalVariableListInReg().size());
+		file.getMethod().setWmrt(0);
+		file.getMethod().setWpdtp(file.getMethod().getGlobalVariableListInReg().size());
+		file.getMethod().setWpdtp(0);
+		file.getMethod().setNpdtp(file.getMethod().getGlobalVariableListInReg().size());
+		file.getMethod().setNpdtp(0);
+		file.getMethod().setWcdtp(file.getMethod().getGlobalVariableListInReg().size());
+		file.getMethod().setWcdtp(0);		
+		file.getMethod().setNcdtp(file.getMethod().getGlobalVariableListInReg().size());
+		file.getMethod().setNcdtp(0);
 		
 	
-		file.getSize().setFinalValue();
+		file.getMethod().setFinalValue();
 
 	}
 
@@ -1036,25 +908,15 @@ public class SizeServiceImp implements SizeService {
 
 		for (CustomFile file : fileList) {
 			
-			
-			/*tot_Nkw = weights[0] * Nkw;
-			setNkw(tot_Nkw);
-			tot_Nid = weights[1] * Nid;
-			setNid(tot_Nid);
-			tot_Nop = weights[2] * Nop;
-			setNop(tot_Nop);
-			tot_Nnv = weights[3] * Nnv;
-			setNnv(tot_Nnv);
-			tot_Nsl = weights[4] * Nsl;
-			setNsl(tot_Nsl);*/
+		
 
-			file.getSize().setNkw(file.getSize().getRecursiveMethodCalls().size());
-			file.getSize().setNid(file.getSize().getRegularInRegularMethods().size());
-			file.getSize().setNop(file.getSize().getRegularInRegularMethods_DF().size());
-			file.getSize().setNnv(file.getSize().getRecursiveInRegularMethods().size());
-			file.getSize().setNsl(file.getSize().getRecursiveInRegularMethods_DF().size());
+			file.getMethod().setWmrt(file.getMethod().getRecursiveMethodCalls().size());
+			file.getMethod().setWpdtp(file.getMethod().getRegularInRegularMethods().size());
+			file.getMethod().setNpdtp(file.getMethod().getRegularInRegularMethods_DF().size());
+			file.getMethod().setWcdtp(file.getMethod().getRecursiveInRegularMethods().size());
+			file.getMethod().setNcdtp(file.getMethod().getRecursiveInRegularMethods_DF().size());
 			
-			file.getSize().setFinalValue();
+			file.getMethod().setFinalValue();
 
 		}
 
@@ -1071,38 +933,38 @@ public class SizeServiceImp implements SizeService {
 
 				// col1
 				count = 0;
-				for (Line regLine : file.getSize().getRecursiveMethodCalls()) {
+				for (Line regLine : file.getMethod().getRecursiveMethodCalls()) {
 					if (regLine.getLineNumber() == line.getLineNumber()) {
 						count++;
 					}
 				}
 
 				line.setSum(0, count);
-				file.getSize();
-				line.setColValues(0, count * Size.getWeights()[0]);
+				file.getMethod();
+				line.setColValues(0, count * Method.getWeights()[0]);
 
 				// col2
 				count = 0;
-				for (Line regLine : file.getSize().getRegularInRegularMethods()) {
+				for (Line regLine : file.getMethod().getRegularInRegularMethods()) {
 					if (regLine.getLineNumber() == line.getLineNumber()) {
 						count++;
 					}
 				}
 
 				line.setSum(1, count);
-				file.getSize();
-				line.setColValues(1, count * Size.getWeights()[1]);
+				file.getMethod();
+				line.setColValues(1, count * Method.getWeights()[1]);
 
 				// col3
 				if (fileList.size() > 1) {
 					count = 0;
-					for (Line regLine : file.getSize().getRegularInRegularMethods_DF()) {
+					for (Line regLine : file.getMethod().getRegularInRegularMethods_DF()) {
 						if (regLine.getLineNumber() == line.getLineNumber()) {
 							count++;
 						}
 					}
 					line.setSum(2, count);
-					line.setColValues(2, count * Size.getWeights()[2]);
+					line.setColValues(2, count * Method.getWeights()[2]);
 				} else {
 					line.setSum(2, 0);
 					line.setColValues(2, 0);
@@ -1110,24 +972,24 @@ public class SizeServiceImp implements SizeService {
 
 				// col4
 				count = 0;
-				for (Line regLine : file.getSize().getRecursiveInRegularMethods()) {
+				for (Line regLine : file.getMethod().getRecursiveInRegularMethods()) {
 					if (regLine.getLineNumber() == line.getLineNumber()) {
 						count++;
 					}
 				}
 				line.setSum(3, count);
-				line.setColValues(3, count * Size.getWeights()[3]);
+				line.setColValues(3, count * Method.getWeights()[3]);
 
 				// col5
 				if (fileList.size() > 1) {
 					count = 0;
-					for (Line regLine : file.getSize().getRecursiveInRegularMethods_DF()) {
+					for (Line regLine : file.getMethod().getRecursiveInRegularMethods_DF()) {
 						if (regLine.getLineNumber() == line.getLineNumber()) {
 							count++;
 						}
 					}
 					line.setSum(4, count);
-					line.setColValues(4, count * Size.getWeights()[4]);
+					line.setColValues(4, count * Method.getWeights()[4]);
 				} else {
 					line.setSum(2, 0);
 					line.setColValues(2, 0);
@@ -1144,8 +1006,8 @@ public class SizeServiceImp implements SizeService {
 				}
 
 			}
-			file.getSize().setFinalValue();
-			file.getSize().setSum(sum);
+			file.getMethod().setFinalValue();
+			file.getMethod().setSum(sum);
 		}
 
 	}

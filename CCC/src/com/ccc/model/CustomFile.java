@@ -10,19 +10,25 @@ public class CustomFile {
 	private int lastIndex;
 	private ArrayList<Line> lineSet;
 	private Coupling coupling;
-	private Size sizeing;
+	private Size size;
+	private Variables variables;
+	private Method method;
 	
 	public CustomFile(String fileName) {
 		this.fileName = fileName;
 		this.lineSet = null;
 		this.coupling = new Coupling(fileName);
-		this.sizeing = new Size(fileName);
+		this.size = new Size(fileName);
+		this.variables = new Variables(fileName);
+		this.method = new Method(fileName);
 	}
 
 	public String getFileName() {
 		return fileName;
 	}
 	
+	
+
 	public String getFilePath() {
 		return filePath;
 	}
@@ -66,14 +72,33 @@ public class CustomFile {
 	public void setCoupling(Coupling coupling) {
 		this.coupling = coupling;
 	}
-
-	public Size getSizeing() {
-		return sizeing;
+	
+	public Size getSize() {
+		return size;
 	}
 
-	public void setSizeing(Size sizeing) {
-		this.sizeing = sizeing;
+	public void setSize(Size size) {
+		this.size = size;
 	}
 
+	public Variables getVariables() {
+		return variables;
+	}
+
+	public void setVariables(Variables variables) {
+		this.variables = variables;
+	}
+
+	public Method getMethod() {
+		return method;
+	}
+
+	public void setMethod(Method method) {
+		this.method = method;
+	}
+	
+	
+	
+	
 	
 }
