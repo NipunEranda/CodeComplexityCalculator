@@ -26,7 +26,7 @@
 
 		<%
 			for (CustomFile file : main) {
-				int[] sum = new int[4];
+				int[] sum = new int[5];
 		%>
 		<center>
 			<p>
