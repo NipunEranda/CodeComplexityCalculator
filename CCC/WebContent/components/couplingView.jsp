@@ -36,6 +36,7 @@ table tr td{
 			</h4>
 		</center>
 		<table border="1" class="table table-fixed table-bordered table-striped" style="border-collapse: collapse;width: 100%;font-size: 14px;">
+		<table border="1" style="border-collapse: collapse;width: 100%;font-size: 14px;" class="table">
 			 <thead class="thead-dark">
 				<th>Line No</th>
 				<th>Program Statement</th>

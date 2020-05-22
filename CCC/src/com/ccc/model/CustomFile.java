@@ -18,7 +18,9 @@ public class CustomFile {
 		this.lineSet = null;
 		this.coupling = new Coupling(fileName);
 		this.controlStructure = new ControlStructure(fileName);
+		this.isRaw=false;
 	}
+	
 
 	public String getFileName() {
 		return fileName;
@@ -35,17 +37,17 @@ public class CustomFile {
 	public String getFileType() {
 		return fileType;
 	}
-	
-	public boolean getIsRaw() {
-		return isRaw;
-	}
-
-	public void setIsRaw(boolean isRaw) {
-		this.isRaw = isRaw;
-	}
 
 	public void setFileType(String fileType) {
 		this.fileType = fileType;
+	}
+
+	public boolean getIsRaw() {
+		return isRaw;
+	}
+	
+	public void setIsRaw(boolean isRaw) {
+		this.isRaw = isRaw;
 	}
 
 	public void setFileName(String fileName) {
@@ -83,5 +85,6 @@ public class CustomFile {
 	public void setControlStructure(ControlStructure controlStructure) {
 		this.controlStructure = controlStructure;
 	}
+
 
 }

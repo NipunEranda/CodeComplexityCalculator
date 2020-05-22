@@ -30,7 +30,6 @@ public class RawInputServlet extends HttpServlet {
 		String code = request.getParameter("code");
 		String choice = request.getParameter("type");
 		String fileName;
-		System.out.println(choice);
 		if(choice.equalsIgnoreCase("0")) {
 			fileName = "raw code";
 		}else if(choice.equalsIgnoreCase("1")){

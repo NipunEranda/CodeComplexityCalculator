@@ -13,13 +13,9 @@ window.addEventListener('load', (event) => {
 		for ( var compartment in compartments) {
 			if(tab === compartments[compartment]){
 				document.getElementById(compartments[compartment]).style.display = "block";
-				/*document.getElementById(compartments[compartment]+"Btn").style.backgroundColor = "lightGrey";
-				document.getElementById(compartments[compartment]+"Btn").style.color = "black";*/
 				changeClass(document.getElementById(compartments[compartment]+"Btn"), "fBtn", " fBtn_clicked");
 			}else{
 				document.getElementById(compartments[compartment]).style.display = "none";
-				/*document.getElementById(compartments[compartment]+"Btn").style.backgroundColor = "Black";
-				document.getElementById(compartments[compartment]+"Btn").style.color = "white";*/
 				changeClass(document.getElementById(compartments[compartment]+"Btn"), "fBtn_clicked", " fBtn");
 			}
 		}

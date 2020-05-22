@@ -40,23 +40,37 @@ li a {
 }
 
 li
+
  
+
 a
+
+
 :hover
+
+
 :not
+
  
+
 (
 .active
+
  
+
 )
 {
 background-color
+
+
 :
+
  
+
 #ffd700
+
+
 ;
-
-
 }
 .active {
 	background-color: #ffd700;
@@ -65,7 +79,7 @@ background-color
 </head>
 <body>
 
-	<div class="container" style="height: 500px;margin-top: 25px;">
+	<div class="container" style="height: 500px; margin-top: 25px;">
 
 		<form action="RawInputServlet" class="form" method="POST"
 			style="font-family: century gothic;">

@@ -57,28 +57,23 @@
 		<div id="size" class="size">
 			<h3>Code Complexity due to size</h3>
 			<br />
-
 		</div>
 		<div id="variable" class="variable">
 			<h3>Code Complexity due to variables</h3>
 			<br />
-
 		</div>
 		<div id="method" class="method">
 			<h3>Code Complexity due to methods</h3>
 			<br />
-
 		</div>
 		<div id="inheritance" class="inheritance">
 			<h3>Code Complexity due to Inheritance</h3>
 			<br />
-
 		</div>
 		<div id="controlStructure" class="controlStructure">
 			<h3>Code Complexity due to Control Structures</h3>
 			<br />
 			<center>
-				<%@ include file="components/controlStructure.jsp"%>
 			</center>
 		</div>
 		<div id="finalResult" class="finalResult">
